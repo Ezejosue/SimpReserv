@@ -24,8 +24,8 @@ public class Voucher {
 
     }
 
-    public List<String > generateVoucher(){
+    public List<String > generateVoucher(List<String> list){
 
-        return null;
+        return list;
     }
 }
