@@ -13,14 +13,7 @@ public class Payment {
   @Setter @Getter private Date issueDate;
   @Setter @Getter private Date paymentDay;
 
-  public Payment(
-      long id,
-      int idReservation,
-      Voucher voucher,
-      double tax,
-      double fullPayment,
-      Date issueDate,
-      Date paymentDay) {
+  public Payment(long id, int idReservation, Voucher voucher, double tax, double fullPayment, Date issueDate, Date paymentDay) {
     this.id = id;
     this.idReservation = idReservation;
     this.voucher = voucher;
