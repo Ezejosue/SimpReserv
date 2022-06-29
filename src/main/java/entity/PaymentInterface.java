@@ -1,6 +1,6 @@
 package entity;
 
-public interface Functions {
+public interface PaymentInterface {
     public String viewPoints();
     public void applyPoints();
     public void setMembership();
