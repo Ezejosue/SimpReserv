@@ -9,13 +9,27 @@ public class Membership {
   @Setter @Getter private String description;
   @Setter @Getter private double discountPercentage;
 
-  public Membership(
-      long id, MembershipType membershipType, String description, double discountPercentage) {
-    this.id = id;
-    this.membershipType = membershipType;
+  @Setter @Getter private int pointsAmount;
+
+  public Membership( String membershipType, String description, MembershipType membership) {
+    this.id++;
+    this.membershipType.setMembership(membershipType);
     this.description = description;
-    this.discountPercentage = discountPercentage;
+    this.discountPercentage = this.membershipDiscounts(membership);
   }
 
   public Membership() {}
+
+  public double membershipDiscounts(MembershipType m){
+    if(m.getMembership().equalsIgnoreCase("Silver")){
+      this.setDiscountPercentage(10.0);
+    }else if(m.getMembership().equalsIgnoreCase("Gold")){
+      this.setDiscountPercentage(20.0);
+    }else if(m.getMembership().equalsIgnoreCase("Platinum")){
+      this.setDiscountPercentage(20.0);
+    }
+    return this.getDiscountPercentage();
+  }
+
+
 }
