@@ -1,5 +1,3 @@
 package com.hotelreservation.simpreserv;
 
-public class MembershipType {
-
-}
+public enum MembershipType {}
