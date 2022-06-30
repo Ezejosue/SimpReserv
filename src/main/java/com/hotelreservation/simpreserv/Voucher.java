@@ -22,13 +22,13 @@ public class Voucher {
 
   public Voucher() {}
 
-  public List<String> generateVoucher(List<String> list) {
+  /*public List<String> generateVoucher(List<String> list) {
     list.add(String.valueOf(this.getVoucherId()));
      this.getIssueDate().getTime();
     list.add(String.valueOf(this.getPaymentAmount().getFullPayment()));
      list.add(this.getClient().getName());
      list.add(this.getEmployee().getName());
     return list;
-  }
+  }*/
 
 }
