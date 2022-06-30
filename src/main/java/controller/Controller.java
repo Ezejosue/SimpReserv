@@ -1,13 +1,14 @@
 package controller;
 
+import com.hotelreservation.simpreserv.Payment;
 import entity.ProcessPayment;
 
 public class Controller  implements ProcessPayment {
 
 
     @Override
-    public void processPayment() {
-        
+    public void processPayment(Payment payment) {
+
     }
 
     @Override

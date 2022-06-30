@@ -1,12 +1,11 @@
 package com.hotelreservation.simpreserv;
 
-import entity.PaymentInterface;
 import enums.employeeState;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Employee extends Person implements PaymentInterface {
+public class Employee extends Person  {
   @Setter
   @Getter
   private int ID;
@@ -67,27 +66,5 @@ public class Employee extends Person implements PaymentInterface {
     this.schedule = schedule;
   }
 
-  @Override
-  public String viewPoints() {
-    return null;
-  }
 
-  @Override
-  public void applyPoints() {
-
-  }
-
-  @Override
-  public void setMembership() {
-
-  }
-
-  @Override
-  public void cancelMembership() {
-
-  }
-
-  @Override
-  public void updateMembership() {
-  }
 }

@@ -1,6 +1,5 @@
 package com.hotelreservation.simpreserv;
 
-import entity.PaymentInterface;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;

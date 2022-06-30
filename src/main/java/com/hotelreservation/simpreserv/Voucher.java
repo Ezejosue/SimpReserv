@@ -31,7 +31,4 @@ public class Voucher {
     return list;
   }
 
-  public static void main(String[] args) {
-    getIssueDate().setTime(22/5/1958);
-  }
 }
