@@ -26,11 +26,5 @@ public class Client extends Person {
     this.creditCardInfo = creditCardInfo;
     this.persons=persons;
   }
-<<<<<<< Updated upstream
-=======
 
-
-
-
->>>>>>> Stashed changes
 }
