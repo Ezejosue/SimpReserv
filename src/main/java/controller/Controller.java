@@ -6,7 +6,7 @@ import entity.ProcessPayment;
 public class Controller  implements ProcessPayment {
 
 
-    @Override
+    @Override//This method process the payment
     public void processPayment(Payment payment) {
 
     }
