@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 H
 src/main/java/Email.java,4\8\486611a510a59f0718c23517e01d2ded71b181ff
 q
@@ -31,3 +32,9 @@ k
 ;src/main/java/com/hotelreservation/simpreserv/Employee.java,e\7\e7f9350180e280048eb802f3c160d56b287bedf4
 `
 0src/main/java/controller/ControllerEmployee.java,5\f\5fbc054ea4c4d0d03525379ba664d0b6b9de8ff7
+=======
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+q
+Asrc/main/java/com/hotelreservation/simpreserv/MembershipType.java,e\7\e7665e781c7edb106e81ea66582f6b79ee2b42cd
+>>>>>>> Stashed changes
