@@ -19,5 +19,13 @@ public class Payment {
 
   public Payment() {}
 
-
+  @Override
+  public String toString() {
+    return "Payment{" +
+            "id=" + id +
+            ", tax=" + tax +
+            ", totalPayment=" + totalPayment +
+            ", paymentDay=" + paymentDay +
+            '}';
+  }
 }
