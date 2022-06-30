@@ -4,6 +4,7 @@ H
 src/main/java/Email.java,4\8\486611a510a59f0718c23517e01d2ded71b181ff
 q
 Asrc/main/java/com/hotelreservation/simpreserv/MembershipType.java,e\7\e7665e781c7edb106e81ea66582f6b79ee2b42cd
+<<<<<<< Updated upstream
 g
 7src/main/java/com/hotelreservation/simpreserv/Menu.java,a\4\a4a70e2e8c9829bb350ec2e5d87c3883353f108d
 X
@@ -37,4 +38,8 @@ k
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 q
 Asrc/main/java/com/hotelreservation/simpreserv/MembershipType.java,e\7\e7665e781c7edb106e81ea66582f6b79ee2b42cd
+>>>>>>> Stashed changes
+=======
+i
+9src/main/java/com/hotelreservation/simpreserv/Person.java,9\c\9ca77b680fa823584ab2cc48b3b418f3d403caf0
 >>>>>>> Stashed changes
