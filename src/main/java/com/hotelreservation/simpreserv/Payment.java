@@ -6,29 +6,26 @@ import lombok.Setter;
 
 public class Payment {
   @Setter @Getter private long id;
-  @Setter @Getter private int idReservation;
-  @Setter @Getter private Voucher voucher;
   @Setter @Getter private double tax;
-  @Setter @Getter private double fullPayment;
-  @Setter @Getter private Date issueDate;
+  @Setter @Getter private double totalPayment;
   @Setter @Getter private Date paymentDay;
 
-  public Payment(
-      long id,
-      int idReservation,
-      Voucher voucher,
-      double tax,
-      double fullPayment,
-      Date issueDate,
-      Date paymentDay) {
-    this.id = id;
-    this.idReservation = idReservation;
-    this.voucher = voucher;
-    this.tax = tax;
-    this.fullPayment = fullPayment;
-    this.issueDate = issueDate;
-    this.paymentDay = paymentDay;
+  public Payment(double totalPayment) {
+    this.id++;
+    this.tax = totalPayment/100*10;
+    this.totalPayment = totalPayment+this.getTax();
+    this.paymentDay=new Date();
   }
 
   public Payment() {}
+
+  @Override
+  public String toString() {
+    return "Payment{" +
+            "id=" + id +
+            ", tax=" + tax +
+            ", totalPayment=" + totalPayment +
+            ", paymentDay=" + paymentDay +
+            '}';
+  }
 }

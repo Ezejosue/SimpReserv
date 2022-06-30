@@ -1,3 +1,19 @@
 package com.hotelreservation.simpreserv;
 
-public enum MembershipType {}
+import lombok.Getter;
+import lombok.Setter;
+
+public class MembershipType {
+    @Setter
+    @Getter
+    private  String membership;
+
+
+
+
+    public MembershipType() {
+    }
+
+
+
+}

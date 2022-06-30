@@ -20,7 +20,7 @@ public class Client extends Person {
       String membership,
       String creditCardInfo,
       List<Person> persons
-   ) {
+  ) {
     this.ID = ID;
     this.membership = membership;
     this.creditCardInfo = creditCardInfo;

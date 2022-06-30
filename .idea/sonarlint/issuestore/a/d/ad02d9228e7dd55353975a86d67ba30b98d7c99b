@@ -1,3 +1,15 @@
 
-]	java:S125"<This block of commented-out lines of code should be removed.(¹å£Øşÿÿÿÿ8²„µêš0
-X	java:S125"<This block of commented-out lines of code should be removed.(¡‘Ôˆ8³„µêš0
+W
+java:S1854"<Remove this useless assignment to local variable "employee".(Ğ÷è¤úÿÿÿÿ
+P
+java:S1854":Remove this useless assignment to local variable "client".(·¶¢­
+A
+java:S1481"+Remove this unused "client" local variable.(·¶¢­
+H
+java:S1481"-Remove this unused "employee" local variable.(Ğ÷è¤úÿÿÿÿ
+M	java:S106"9Replace this use of System.out or System.err by a logger.(¡Â—
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ğû¯€
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ÚİÑ‰
+M	java:S106"9Replace this use of System.out or System.err by a logger.(¡Â—
+M	java:S106"9Replace this use of System.out or System.err by a logger.(¡Â—
+S	java:S106+"9Replace this use of System.out or System.err by a logger.(Ÿóº‰şÿÿÿÿ

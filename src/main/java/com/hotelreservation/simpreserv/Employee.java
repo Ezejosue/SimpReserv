@@ -1,17 +1,29 @@
 package com.hotelreservation.simpreserv;
 
-import enums.employeeState;
+import enums.employeeStatus;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Employee extends Person {
-  @Setter @Getter private int ID;
-  @Setter @Getter private String cardCompany;
-  @Setter @Getter private int salary;
-  @Setter @Getter private employeeState state;
-  @Setter @Getter private String position;
-  @Setter @Getter private String schedule;
+public class Employee extends Person  {
+  @Setter
+  @Getter
+  private int ID;
+  @Setter
+  @Getter
+  private String cardCompany;
+  @Setter
+  @Getter
+  private int salary;
+  @Setter
+  @Getter
+  private employeeStatus status;
+  @Setter
+  @Getter
+  private String position;
+  @Setter
+  @Getter
+  private String schedule;
 
   public Employee() {
     super();
@@ -21,7 +33,7 @@ public class Employee extends Person {
       int ID,
       String cardCompany,
       int salary,
-      employeeState state,
+      employeeStatus state,
       String position,
       String schedule,
       int idEmployee,
@@ -49,8 +61,10 @@ public class Employee extends Person {
     this.ID = ID;
     this.cardCompany = cardCompany;
     this.salary = salary;
-    this.state = state;
+    this.status = state;
     this.position = position;
     this.schedule = schedule;
   }
+
+
 }
