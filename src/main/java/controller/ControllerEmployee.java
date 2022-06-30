@@ -3,7 +3,7 @@ package controller;
 import com.hotelreservation.simpreserv.Payment;
 import entity.ProcessPayment;
 
-public class Controller  implements ProcessPayment {
+public class ControllerEmployee implements ProcessPayment {
 
 
     @Override//This method process the payment

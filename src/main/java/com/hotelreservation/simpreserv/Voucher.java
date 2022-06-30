@@ -10,18 +10,23 @@ public class Voucher {
   @Setter @Getter private long voucherId;
   @Setter @Getter private  Date issueDate;
   @Setter @Getter private Payment paymentAmount;
- // @Setter @Getter private Client client;
-//  @Setter @Getter private Employee employee;
 
   public Voucher(double amount) {
     this.voucherId++;
     this.paymentAmount=new Payment(amount);
-   // this.client.setName(client);
-   // this.employee.setName(employee);
     this.issueDate = new Date();
   }
 
+    public void printVoucher(){
+    Client client=new Client();
+    Employee employee=new Employee();
 
+      System.out.println(this.getVoucherId());
+      System.out.println(this.getPaymentAmount());
+      System.out.println(this.getIssueDate());
+      System.out.println(this.getVoucherId());
+      System.out.println(this.getVoucherId());
+    }
   @Override
   public String toString() {
     return "Voucher{" +
