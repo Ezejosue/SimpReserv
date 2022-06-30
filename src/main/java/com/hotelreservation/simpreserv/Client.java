@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Client extends Person implements PaymentInterface{
+public class Client extends Person{
   @Setter @Getter private int ID;
   @Setter @Getter private String membership;
   @Setter @Getter private String creditCardInfo;
@@ -44,27 +44,5 @@ public class Client extends Person implements PaymentInterface{
     this.creditCardInfo = creditCardInfo;
   }
   
-  @Override
-  public String viewPoints() {
-    return null;
-  }
 
-  @Override
-  public void applyPoints() {
-
-  }
-
-  @Override
-  public void setMembership() {
-
-  }
-
-  @Override
-  public void cancelMembership() {
-
-  }
-
-  @Override
-  public void updateMembership() {
-  }
 }

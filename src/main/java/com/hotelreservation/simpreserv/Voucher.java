@@ -7,14 +7,13 @@ import lombok.Setter;
 
 public class Voucher {
   @Setter @Getter private long voucherId;
-  @Setter @Getter private Date issueDate;
+  @Setter @Getter private static Date issueDate;
   @Setter @Getter private Payment paymentAmount;
   @Setter @Getter private Client client;
   @Setter @Getter private Employee employee;
 
-  public Voucher(
-      long voucherId, Date issueDate, Payment paymentAmount, Client client, Employee employee) {
-    this.voucherId = voucherId;
+  public Voucher(Date issueDate, Payment paymentAmount, Client client, Employee employee) {
+    this.voucherId++;
     this.issueDate = issueDate;
     this.paymentAmount = paymentAmount;
     this.client = client;
@@ -30,5 +29,9 @@ public class Voucher {
      list.add(this.getClient().getName());
      list.add(this.getEmployee().getName());
     return list;
+  }
+
+  public static void main(String[] args) {
+    getIssueDate().setTime(22/5/1958);
   }
 }
