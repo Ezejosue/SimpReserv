@@ -33,4 +33,18 @@ public class Room {
   }
 
   public Room() {}
+
+  @Override
+  public String toString() {
+    return "Room{" +
+            "id=" + id +
+            ", roomNumber=" + roomNumber +
+            ", roomFloor=" + roomFloor +
+            ", roomDescription='" + roomDescription + '\'' +
+            ", roomFeatures='" + roomFeatures + '\'' +
+            ", roomPrice=" + roomPrice +
+            ", roomType='" + roomType + '\'' +
+            ", roomState=" + roomState +
+            '}';
+  }
 }

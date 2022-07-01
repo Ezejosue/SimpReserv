@@ -41,4 +41,20 @@ public class Reservation {
   }
 
   public Reservation() {}
+
+  @Override
+  public String toString() {
+    return "Reservation{" +
+            "id=" + id +
+            ", idClient=" + idClient +
+            ", idEmployee=" + idEmployee +
+            ", idRoom=" + idRoom +
+            ", reservationType='" + reservationType + '\'' +
+            ", reservationDate=" + reservationDate +
+            ", checkInDate=" + checkInDate +
+            ", checkOutDate=" + checkOutDate +
+            ", reservationPrice=" + reservationPrice +
+            ", reservationState=" + reservationState +
+            '}';
+  }
 }

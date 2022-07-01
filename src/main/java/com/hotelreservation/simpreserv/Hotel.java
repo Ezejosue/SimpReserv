@@ -19,4 +19,15 @@ public class Hotel {
   }
 
   public Hotel() {}
+
+  @Override
+  public String toString() {
+    return "Hotel{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", location='" + location + '\'' +
+            ", category='" + category + '\'' +
+            ", roomQuantity=" + roomQuantity +
+            '}';
+  }
 }
