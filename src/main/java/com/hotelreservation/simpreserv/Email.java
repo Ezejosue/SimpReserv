@@ -1,3 +1,5 @@
+package com.hotelreservation.simpreserv;
+
 import lombok.Getter;
 import lombok.Setter;
 
