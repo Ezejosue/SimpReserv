@@ -35,12 +35,6 @@ public class Voucher {
             ", paymentAmount=" + paymentAmount +
             '}';
   }
-
-  public static void main(String[] args) {
-
-    Voucher vaucher=new Voucher(356.89);
-
-    System.out.println(vaucher);
-  }
+  
 
 }
