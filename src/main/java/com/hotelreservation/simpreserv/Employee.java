@@ -17,39 +17,21 @@ public class Employee extends Person {
     super();
   }
 
-  public Employee(
-      int ID,
-      String cardCompany,
-      int salary,
-      EmployeeStatus state,
-      String position,
-      String schedule,
-      int idEmployee,
-      String nameEmployee,
-      String lastnameEmployee,
-      Date ageEmployee,
-      String genderEmployee,
-      String typeOfDocument,
-      String numberOfDocument,
-      String address,
-      String phoneNumber,
-      String emailEmployee) {
-
-    super(
-        idEmployee,
-        nameEmployee,
-        lastnameEmployee,
-        ageEmployee,
-        genderEmployee,
-        typeOfDocument,
-        numberOfDocument,
-        address,
-        phoneNumber,
-        emailEmployee);
-    this.ID = ID;
+  public Employee(String cardCompany, int salary, EmployeeStatus status, String position, String schedule) {
+    this.ID++;
     this.cardCompany = cardCompany;
     this.salary = salary;
-    this.status = state;
+    this.status = status;
+    this.position = position;
+    this.schedule = schedule;
+  }
+
+  public Employee(String name, String lastname, long dateOfBirt, String gender, String numberOfDocument, String address, String phoneNumber, String email, int ID, String cardCompany, int salary, EmployeeStatus status, String position, String schedule) {
+    super(name, lastname, dateOfBirt, gender, numberOfDocument, address, phoneNumber, email);
+    this.ID++;
+    this.cardCompany = cardCompany;
+    this.salary = salary;
+    this.status = status;
     this.position = position;
     this.schedule = schedule;
   }

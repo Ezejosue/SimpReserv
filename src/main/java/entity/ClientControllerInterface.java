@@ -10,7 +10,7 @@ public interface ClientControllerInterface {
 
   public boolean cancelReservation(Client client, String name);
 
-  public void requestMembership();
+  public dateOfBirt requestMembership();
 
   public void updateMembership(Membership membership);
 

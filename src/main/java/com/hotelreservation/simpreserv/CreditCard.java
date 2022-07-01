@@ -11,9 +11,18 @@ public class CreditCard {
 
   public CreditCard() {}
 
-  public CreditCard(Client client, String cardName, Date expDate) {
+  public CreditCard(Client client, String cardName, long expDate) {
     this.client = client;
     CardName = cardName;
-    this.expDate = expDate;
+    this.expDate = new Date(expDate);
+  }
+
+  @Override
+  public String toString() {
+    return "CreditCard{" +
+            "client=" + client +
+            ", CardName='" + CardName + '\'' +
+            ", expDate=" + expDate +
+            '}';
   }
 }

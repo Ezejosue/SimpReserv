@@ -29,7 +29,7 @@ public class ControllerClient implements ClientControllerInterface, ControllerIn
   }
 
   @Override //
-  public void requestMembership() {}
+  public boolean requestMembership() {}
 
   @Override //
   public void updateMembership(Membership membership) {}
