@@ -29,20 +29,30 @@ public class ControllerClient implements ClientControllerInterface, ControllerIn
   }
 
   @Override //
-  public boolean requestMembership() {}
+  public boolean requestMembership(Client client) {
+    if(client.getMembership()!=null){
+      return false;
+    }
+    return true;
+  }
 
   @Override //
   public void updateMembership(Membership membership) {}
 
   @Override //
-  public void cancelMembership() {}
+  public boolean cancelMembership(Client client) {
+    if(client.getMembership()!=null){
+      return true;
+    }
+    return false;
+  }
 
   @Override //
   public void requestDataUpdate(Client client) {}
 
   @Override //
   public Room requestRoomCatalog() {
-    return null;
+    return requestRoomCatalog();
   }
 
   @Override //

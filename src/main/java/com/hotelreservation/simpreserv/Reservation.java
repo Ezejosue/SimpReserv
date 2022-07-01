@@ -17,20 +17,11 @@ public class Reservation {
   @Getter @Setter private float reservationPrice;
   @Getter @Setter private ReservationStatus reservationState;
 
-  public Reservation(
-      Client idClient,
-      Employee idEmployee,
-      Room idRoom,
-      String reservationType,
-      Date reservationDate,
-      Date checkInDate,
-      Date checkOutDate,
-      float reservationPrice,
-      ReservationStatus reservationState) {
+  public Reservation(String reservationType, Date reservationDate, Date checkInDate, Date checkOutDate, float reservationPrice, ReservationStatus reservationState) {
     this.id++;
-    this.idClient = idClient;
-    this.idEmployee = idEmployee;
-    this.idRoom = idRoom;
+    this.idClient = new Client();
+    this.idEmployee = new Employee();
+    this.idRoom = new Room();
     this.reservationType = reservationType;
     this.reservationDate = reservationDate;
     this.checkInDate = checkInDate;
