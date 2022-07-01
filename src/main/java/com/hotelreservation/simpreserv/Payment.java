@@ -12,20 +12,24 @@ public class Payment {
 
   public Payment(double totalPayment) {
     this.id++;
-    this.tax = totalPayment/100*10;
-    this.totalPayment = totalPayment+this.getTax();
-    this.paymentDay=new Date();
+    this.tax = totalPayment / 100 * 10;
+    this.totalPayment = totalPayment + this.getTax();
+    this.paymentDay = new Date();
   }
 
   public Payment() {}
 
   @Override
   public String toString() {
-    return "Payment{" +
-            "id=" + id +
-            ", tax=" + tax +
-            ", totalPayment=" + totalPayment +
-            ", paymentDay=" + paymentDay +
-            '}';
+    return "Payment{"
+        + "id="
+        + id
+        + ", tax="
+        + tax
+        + ", totalPayment="
+        + totalPayment
+        + ", paymentDay="
+        + paymentDay
+        + '}';
   }
 }

@@ -19,7 +19,17 @@ public class Person {
   public Person() {}
   ;
 
-  public Person(int ID, String name, String lastname, Date age, String gender, String typeOfDocument, String numberOfDocument, String address, String phoneNumber, String email) {
+  public Person(
+      int ID,
+      String name,
+      String lastname,
+      Date age,
+      String gender,
+      String typeOfDocument,
+      String numberOfDocument,
+      String address,
+      String phoneNumber,
+      String email) {
     this.ID = ID;
     this.name = name;
     this.lastname = lastname;
