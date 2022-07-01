@@ -4,16 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class MembershipType {
-    @Setter
-    @Getter
-    private  String membership;
+  @Setter @Getter private String membership;
 
-
-
-
-    public MembershipType() {
-    }
-
-
-
+  public MembershipType() {}
 }

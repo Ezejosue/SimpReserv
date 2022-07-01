@@ -1,6 +1,4 @@
 
-H
-src/main/java/Email.java,4\8\486611a510a59f0718c23517e01d2ded71b181ff
 q
 Asrc/main/java/com/hotelreservation/simpreserv/MembershipType.java,e\7\e7665e781c7edb106e81ea66582f6b79ee2b42cd
 g
@@ -9,8 +7,6 @@ X
 (src/main/java/entity/ProcessPayment.java,9\a\9ad92b2799b7b746fd3db0b5826366b61e07de0d
 ^
 .src/main/java/controller/ControllerClient.java,8\0\8050e67e17835dd3403ccd965501e5cddd098508
-j
-:src/main/java/com/hotelreservation/simpreserv/Payment.java,d\7\d790abbd990dd8bff5e4a76091fb0a6ea1ee5841
 m
 =src/main/java/com/hotelreservation/simpreserv/Membership.java,7\d\7d36257044b420bac27a19d11f930466350b82f5
 n
@@ -21,13 +17,15 @@ W
 'src/main/java/enums/employeeStatus.java,f\a\faeb9941dc7d73c005e764bbd61cc653ef9f0cb1
 Z
 *src/main/java/enums/ReservationStatus.java,d\7\d781993ea0d9bb1deaae92e1cee9ce6bc2058db0
-i
-9src/main/java/com/hotelreservation/simpreserv/Person.java,9\c\9ca77b680fa823584ab2cc48b3b418f3d403caf0
-i
-9src/main/java/com/hotelreservation/simpreserv/Client.java,4\9\49101d9548b0aab402e62709b1aa9d6076f5e079
 j
 :src/main/java/com/hotelreservation/simpreserv/Voucher.java,a\d\ad02d9228e7dd55353975a86d67ba30b98d7c99b
-k
-;src/main/java/com/hotelreservation/simpreserv/Employee.java,e\7\e7f9350180e280048eb802f3c160d56b287bedf4
 `
 0src/main/java/controller/ControllerEmployee.java,5\f\5fbc054ea4c4d0d03525379ba664d0b6b9de8ff7
+j
+:src/main/java/com/hotelreservation/simpreserv/Payment.java,d\7\d790abbd990dd8bff5e4a76091fb0a6ea1ee5841
+i
+9src/main/java/com/hotelreservation/simpreserv/Client.java,4\9\49101d9548b0aab402e62709b1aa9d6076f5e079
+i
+9src/main/java/com/hotelreservation/simpreserv/Person.java,9\c\9ca77b680fa823584ab2cc48b3b418f3d403caf0
+G
+src/main/java/User.java,c\c\cc4d6aa268d93c9fcea3805c8ed34ed49cede1a9

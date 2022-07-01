@@ -1,6 +1,5 @@
 package com.hotelreservation.simpreserv;
 
-import java.util.Date;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,16 +14,10 @@ public class Client extends Person {
     super();
   }
 
-  public Client(
-      int ID,
-      String membership,
-      String creditCardInfo,
-      List<Person> persons
-  ) {
+  public Client(int ID, String membership, String creditCardInfo, List<Person> persons) {
     this.ID = ID;
     this.membership = membership;
     this.creditCardInfo = creditCardInfo;
-    this.persons=persons;
+    this.persons = persons;
   }
-
 }

@@ -4,6 +4,5 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class Reservation {
-    @Setter @Getter
-    private long id;
+  @Setter @Getter private long id;
 }
