@@ -1,6 +1,6 @@
 package enums;
 
-public enum employeeStatus {
+public enum EmployeeStatus {
   HIRED,
   SUSPENDED,
   FIRED;

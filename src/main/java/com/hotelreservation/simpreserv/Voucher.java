@@ -24,8 +24,7 @@ public class Voucher {
       System.out.println(this.getVoucherId());
       System.out.println(this.getPaymentAmount());
       System.out.println(this.getIssueDate());
-      System.out.println(this.getVoucherId());
-      System.out.println(this.getVoucherId());
+      System.out.println(client.toString());
     }
   @Override
   public String toString() {
@@ -35,6 +34,10 @@ public class Voucher {
             ", paymentAmount=" + paymentAmount +
             '}';
   }
-  
 
+  public static void main(String[] args) {
+    Voucher voucher=new Voucher(150.02);
+
+    voucher.printVoucher();
+  }
 }

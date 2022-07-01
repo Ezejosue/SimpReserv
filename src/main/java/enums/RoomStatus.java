@@ -1,7 +1,7 @@
 package enums;
 
 public enum RoomStatus {
-  AVAILABLE,
-  BUSY,
-  MAINTENANCE;
+    AVAILABLE,
+    BUSY,
+    MAINTENANCE;
 }

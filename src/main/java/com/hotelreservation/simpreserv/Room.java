@@ -1,6 +1,6 @@
 package com.hotelreservation.simpreserv;
 
-import enums.RoomState;
+import enums.RoomStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ public class Room {
   @Getter @Setter private String roomFeatures;
   @Getter @Setter private float roomPrice;
   @Getter @Setter private String roomType;
-  @Getter @Setter private RoomState roomState;
+  @Getter @Setter private RoomStatus roomState;
 
   public Room(
       int roomNumber,
@@ -21,7 +21,7 @@ public class Room {
       String roomFeatures,
       float roomPrice,
       String roomType,
-      RoomState roomState) {
+      RoomStatus roomState) {
     this.id++;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;

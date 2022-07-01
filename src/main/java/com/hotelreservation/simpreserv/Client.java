@@ -7,17 +7,27 @@ import lombok.Setter;
 public class Client extends Person {
   @Setter @Getter private int ID;
   @Setter @Getter private String membership;
-  @Setter @Getter private String creditCardInfo;
+  @Setter @Getter private CreditCard creditCardInfo;
   private List<Person> persons;
 
   public Client() {
     super();
   }
 
-  public Client(int ID, String membership, String creditCardInfo, List<Person> persons) {
+  public Client(int ID, String membership, CreditCard creditCardInfo, List<Person> persons) {
     this.ID = ID;
     this.membership = membership;
     this.creditCardInfo = creditCardInfo;
     this.persons = persons;
+  }
+
+  @Override
+  public String toString() {
+    return "Client{" +
+            "ID=" + ID +
+            ", membership='" + membership + '\'' +
+            ", creditCardInfo='" + creditCardInfo + '\'' +
+            ", persons=" + persons +
+            '}';
   }
 }

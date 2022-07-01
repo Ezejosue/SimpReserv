@@ -1,7 +1,7 @@
 package com.hotelreservation.simpreserv;
 
-import enums.employeeStatus;
-import java.time.LocalDate;
+import enums.EmployeeStatus;
+
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ public class Employee extends Person {
   @Setter @Getter private int ID;
   @Setter @Getter private String cardCompany;
   @Setter @Getter private int salary;
-  @Setter @Getter private employeeStatus status;
+  @Setter @Getter private EmployeeStatus status;
   @Setter @Getter private String position;
   @Setter @Getter private String schedule;
 
@@ -22,7 +22,7 @@ public class Employee extends Person {
       int ID,
       String cardCompany,
       int salary,
-      employeeStatus state,
+      EmployeeStatus state,
       String position,
       String schedule,
       int idEmployee,
@@ -55,9 +55,15 @@ public class Employee extends Person {
     this.schedule = schedule;
   }
 
-  public static void main(String[] args) {
-
-    LocalDate todayDate = LocalDate.now();
-    System.out.println(todayDate);
+  @Override
+  public String toString() {
+    return "Employee{" +
+            "ID=" + ID +
+            ", cardCompany='" + cardCompany + '\'' +
+            ", salary=" + salary +
+            ", status=" + status +
+            ", position='" + position + '\'' +
+            ", schedule='" + schedule + '\'' +
+            '}';
   }
 }

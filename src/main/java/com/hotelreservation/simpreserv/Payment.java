@@ -10,6 +10,7 @@ public class Payment {
   @Setter @Getter private double totalPayment;
   @Setter @Getter private Date paymentDay;
 
+
   public Payment(double totalPayment) {
     this.id++;
     this.tax = totalPayment / 100 * 10;
