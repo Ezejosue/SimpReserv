@@ -1,7 +1,7 @@
 package enums;
 
 public enum RoomFloor {
-    FIRST,
-    SECOND,
-    THIRD;
+    PRIMERO,
+    SEGUNDO,
+    TERCERO;
 }

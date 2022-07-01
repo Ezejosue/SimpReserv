@@ -14,7 +14,7 @@ public class Room {
   @Getter @Setter private String roomType;
   @Getter @Setter private Enum roomStatus;
 
-  public Room(int roomNumber, Enum roomFloor, String roomDescription, String roomFeatures, String roomType, RoomStatus roomState) {
+  public Room(int roomNumber, Enum roomFloor, String roomDescription, String roomFeatures, String roomType, RoomStatus roomStatus) {
     this.id++;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;
@@ -28,11 +28,11 @@ public class Room {
   public Room() {}
 
   public void roomInfo(String roomType){
-    System.out.println(this.getRoomNumber());
-    System.out.println(this.getRoomFloor());
-    System.out.println(this.getRoomDescription());
-    System.out.println(this.getRoomPrice());
-    System.out.println(this.getRoomPrice());
+    System.out.println("Habitacion #: "+this.getRoomNumber());
+    System.out.println("Piso: "+this.getRoomFloor());
+    System.out.println("Descripcion: "+this.getRoomDescription());
+    System.out.println("Precio: "+this.getRoomPrice());
+    System.out.println("Estado: "+this.getRoomStatus());
   }
 
   public int calculateRoomPrice(String roomType){
