@@ -6,9 +6,9 @@ import com.hotelreservation.simpreserv.Room;
 
 public interface ClientControllerInterface {
 
-  public void requestReservation();
+  public boolean requestReservation(Client client, String name);
 
-  public void cancelReservation();
+  public boolean cancelReservation(Client client, String name);
 
   public void requestMembership();
 

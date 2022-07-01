@@ -8,11 +8,25 @@ import entity.ControllerInterface;
 
 public class ControllerClient implements ClientControllerInterface, ControllerInterface {
 
-  @Override //
-  public void requestReservation() {}
+  @Override //este metodo revisa el objeto cliente y su el nombre coincide delvuelve verdadero
+  public boolean requestReservation(Client client, String name) {
+    if(client.getName().equalsIgnoreCase(name)){
+      return true;
+    }else {
+      return false;
+    }
 
-  @Override //
-  public void cancelReservation() {}
+  }
+
+  @Override //cancela devuel un booleano
+  public boolean  cancelReservation(Client client, String name) {
+     boolean cancel=true;
+    if(this.requestReservation(client,name)==true){
+      cancel=false;
+    }
+
+    return cancel;
+  }
 
   @Override //
   public void requestMembership() {}

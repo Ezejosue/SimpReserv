@@ -5,7 +5,7 @@ import lombok.Setter;
 
 public class MembershipType {
   @Setter @Getter private String membership;
-  @Setter @Getter private int benefits;
+  @Setter @Getter private double benefits;
   public MembershipType() {}
 
   public MembershipType(String membership) {
@@ -13,7 +13,7 @@ public class MembershipType {
     this.benefits = this.benefits(membership);
   }
 
-  public int benefits(String membership){
+  public double benefits(String membership){
     this.setMembership(membership);
     if (this.getMembership().equalsIgnoreCase("Silver")){
       this.setBenefits(10);
@@ -26,4 +26,11 @@ public class MembershipType {
     return this.getBenefits();
   }
 
+  @Override
+  public String toString() {
+    return "MembershipType{" +
+            "membership='" + membership + '\'' +
+            ", benefits=" + benefits +
+            '}';
+  }
 }

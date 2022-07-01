@@ -6,7 +6,7 @@ import lombok.Setter;
 
 public class Client extends Person {
   @Setter @Getter private int ID;
-  @Setter @Getter private String membership;
+  @Setter @Getter private Membership membership;
   @Setter @Getter private CreditCard creditCardInfo;
   private List<Person> persons;
 
@@ -14,7 +14,7 @@ public class Client extends Person {
     super();
   }
 
-  public Client(int ID, String membership, CreditCard creditCardInfo, List<Person> persons) {
+  public Client(int ID, Membership membership, CreditCard creditCardInfo, List<Person> persons) {
     this.ID = ID;
     this.membership = membership;
     this.creditCardInfo = creditCardInfo;

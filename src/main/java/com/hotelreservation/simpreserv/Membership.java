@@ -11,23 +11,37 @@ public class Membership {
 
   @Setter @Getter private int pointsAmount;
 
-  public Membership(String membershipType, String description, MembershipType membership) {
+  public Membership(String membershipType, MembershipType membership) {
     this.id++;
-    this.membershipType.setMembership(membershipType);
-    this.description = description;
-    this.discountPercentage = this.membershipDiscounts(membership);
+    this.membershipType=membership;
+    this.description = this.membershipDescription(membershipType);
+    this.discountPercentage = this.membershipType.benefits(membershipType);
   }
 
   public Membership() {}
 
-  public double membershipDiscounts(MembershipType m) {
-    if (m.getMembership().equalsIgnoreCase("Silver")) {
-      this.setDiscountPercentage(10.0);
-    } else if (m.getMembership().equalsIgnoreCase("Gold")) {
-      this.setDiscountPercentage(20.0);
-    } else if (m.getMembership().equalsIgnoreCase("Platinum")) {
-      this.setDiscountPercentage(20.0);
+  public String membershipDescription(String membership){
+    String description=null;
+    if(membership.equalsIgnoreCase("Silver")){
+      description= "Membresia Basica";
     }
-    return this.getDiscountPercentage();
+    else if (membership.equalsIgnoreCase("Gold")) {
+      description= "Membrecia media";
+    }
+    else if (membership.equalsIgnoreCase("Platinum")) {
+      description= "Membrecia de lujo";
+    }
+    return description;
+  }
+
+  @Override
+  public String toString() {
+    return "Membership{" +
+            "id=" + id +
+            ", membershipType=" + membershipType +
+            ", description='" + description + '\'' +
+            ", discountPercentage=" + discountPercentage +
+            ", pointsAmount=" + pointsAmount +
+            '}';
   }
 }
