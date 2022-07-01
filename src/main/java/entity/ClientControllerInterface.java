@@ -4,17 +4,19 @@ import com.hotelreservation.simpreserv.Client;
 import com.hotelreservation.simpreserv.Membership;
 import com.hotelreservation.simpreserv.Room;
 
-import java.util.List;
-
 public interface ClientControllerInterface {
 
+  public void requestReservation();
 
-   public void requestReservation();
-   public void cancelReservation();
-   public void requestMembership();
-   public void updateMembership(Membership membership);
-   public void cancelMembership();
-   public void requestDataUpdate(Client client);
-   public Room requestRoomCatalog();
+  public void cancelReservation();
 
+  public void requestMembership();
+
+  public void updateMembership(Membership membership);
+
+  public void cancelMembership();
+
+  public void requestDataUpdate(Client client);
+
+  public Room requestRoomCatalog();
 }

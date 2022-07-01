@@ -5,8 +5,6 @@ m
 =src/main/java/com/hotelreservation/simpreserv/Membership.java,7\d\7d36257044b420bac27a19d11f930466350b82f5
 h
 8src/main/java/com/hotelreservation/simpreserv/Email.java,2\e\2eddd38d50cd082326978ed7e1d3e10258a8cbd8
-g
-7src/main/java/com/hotelreservation/simpreserv/Room.java,4\4\4403df314bccd4f2bd8793bcfbcb694e6c0fec48
 c
 3src/main/java/entity/ClientControllerInterface.java,c\9\c9998d4f79e4b9b68cdcecd71f70f2e3181b44f9
 e

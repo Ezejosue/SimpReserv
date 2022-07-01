@@ -23,11 +23,17 @@ public class Client extends Person {
 
   @Override
   public String toString() {
-    return "Client{" +
-            "ID=" + ID +
-            ", membership='" + membership + '\'' +
-            ", creditCardInfo='" + creditCardInfo + '\'' +
-            ", persons=" + persons +
-            '}';
+    return "Client{"
+        + "ID="
+        + ID
+        + ", membership='"
+        + membership
+        + '\''
+        + ", creditCardInfo='"
+        + creditCardInfo
+        + '\''
+        + ", persons="
+        + persons
+        + '}';
   }
 }

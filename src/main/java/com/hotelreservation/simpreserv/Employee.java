@@ -1,7 +1,6 @@
 package com.hotelreservation.simpreserv;
 
 import enums.EmployeeStatus;
-
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -57,13 +56,22 @@ public class Employee extends Person {
 
   @Override
   public String toString() {
-    return "Employee{" +
-            "ID=" + ID +
-            ", cardCompany='" + cardCompany + '\'' +
-            ", salary=" + salary +
-            ", status=" + status +
-            ", position='" + position + '\'' +
-            ", schedule='" + schedule + '\'' +
-            '}';
+    return "Employee{"
+        + "ID="
+        + ID
+        + ", cardCompany='"
+        + cardCompany
+        + '\''
+        + ", salary="
+        + salary
+        + ", status="
+        + status
+        + ", position='"
+        + position
+        + '\''
+        + ", schedule='"
+        + schedule
+        + '\''
+        + '}';
   }
 }

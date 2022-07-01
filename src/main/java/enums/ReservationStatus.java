@@ -1,8 +1,8 @@
 package enums;
 
 public enum ReservationStatus {
-    CONFIRM,
-    PENDING,
-    CANCELLED,
-    HOLD;
+  CONFIRM,
+  PENDING,
+  CANCELLED,
+  HOLD;
 }

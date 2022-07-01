@@ -1,8 +1,7 @@
 package com.hotelreservation.simpreserv;
 
-import java.util.Date;
-
 import enums.ReservationStatus;
+import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
