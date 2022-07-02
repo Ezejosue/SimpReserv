@@ -1,7 +1,6 @@
 package com.hotelreservation.simpreserv;
 
-import enums.employeeStatus;
-import java.time.LocalDate;
+import enums.EmployeeStatus;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +9,7 @@ public class Employee extends Person {
   @Setter @Getter private int ID;
   @Setter @Getter private String cardCompany;
   @Setter @Getter private int salary;
-  @Setter @Getter private employeeStatus status;
+  @Setter @Getter private EmployeeStatus status;
   @Setter @Getter private String position;
   @Setter @Getter private String schedule;
 
@@ -18,46 +17,43 @@ public class Employee extends Person {
     super();
   }
 
-  public Employee(
-      int ID,
-      String cardCompany,
-      int salary,
-      employeeStatus state,
-      String position,
-      String schedule,
-      int idEmployee,
-      String nameEmployee,
-      String lastnameEmployee,
-      Date ageEmployee,
-      String genderEmployee,
-      String typeOfDocument,
-      String numberOfDocument,
-      String address,
-      String phoneNumber,
-      String emailEmployee) {
-
-    super(
-        idEmployee,
-        nameEmployee,
-        lastnameEmployee,
-        ageEmployee,
-        genderEmployee,
-        typeOfDocument,
-        numberOfDocument,
-        address,
-        phoneNumber,
-        emailEmployee);
-    this.ID = ID;
+  public Employee(String cardCompany, int salary, EmployeeStatus status, String position, String schedule) {
+    this.ID++;
     this.cardCompany = cardCompany;
     this.salary = salary;
-    this.status = state;
+    this.status = status;
     this.position = position;
     this.schedule = schedule;
   }
 
-  public static void main(String[] args) {
+  public Employee(String name, String lastname, long dateOfBirt, String gender, String numberOfDocument, String address, String phoneNumber, String email, int ID, String cardCompany, int salary, EmployeeStatus status, String position, String schedule) {
+    super(name, lastname, dateOfBirt, gender, numberOfDocument, address, phoneNumber, email);
+    this.ID++;
+    this.cardCompany = cardCompany;
+    this.salary = salary;
+    this.status = status;
+    this.position = position;
+    this.schedule = schedule;
+  }
 
-    LocalDate todayDate = LocalDate.now();
-    System.out.println(todayDate);
+  @Override
+  public String toString() {
+    return "Employee{"
+        + "ID="
+        + ID
+        + ", cardCompany='"
+        + cardCompany
+        + '\''
+        + ", salary="
+        + salary
+        + ", status="
+        + status
+        + ", position='"
+        + position
+        + '\''
+        + ", schedule='"
+        + schedule
+        + '\''
+        + '}';
   }
 }

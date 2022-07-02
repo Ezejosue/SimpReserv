@@ -1,8 +1,7 @@
 package com.hotelreservation.simpreserv;
 
+import enums.ReservationStatus;
 import java.util.Date;
-
-import enums.ReservationState;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,22 +15,13 @@ public class Reservation {
   @Getter @Setter private Date checkInDate;
   @Getter @Setter private Date checkOutDate;
   @Getter @Setter private float reservationPrice;
-  @Getter @Setter private ReservationState reservationState;
+  @Getter @Setter private ReservationStatus reservationState;
 
-  public Reservation(
-      Client idClient,
-      Employee idEmployee,
-      Room idRoom,
-      String reservationType,
-      Date reservationDate,
-      Date checkInDate,
-      Date checkOutDate,
-      float reservationPrice,
-      ReservationState reservationState) {
+  public Reservation(String reservationType, Date reservationDate, Date checkInDate, Date checkOutDate, float reservationPrice, ReservationStatus reservationState) {
     this.id++;
-    this.idClient = idClient;
-    this.idEmployee = idEmployee;
-    this.idRoom = idRoom;
+    this.idClient = new Client();
+    this.idEmployee = new Employee();
+    this.idRoom = new Room();
     this.reservationType = reservationType;
     this.reservationDate = reservationDate;
     this.checkInDate = checkInDate;

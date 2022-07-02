@@ -1,5 +1,0 @@
-
-m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Е≥ЃЫ8уЇ∞ЈЫ0
-n	java:S116"MRename this field "ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ЄЭўЈщ€€€€8чЇ∞ЈЫ0
-M
-java:S1068"+Remove this unused "persons" private field.(обсЎю€€€€8щЇ∞ЈЫ0
