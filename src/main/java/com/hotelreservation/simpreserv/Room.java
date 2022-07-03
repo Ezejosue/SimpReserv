@@ -14,7 +14,13 @@ public class Room {
   @Getter @Setter private String roomType;
   @Getter @Setter private Enum roomStatus;
 
-  public Room(int roomNumber, Enum roomFloor, String roomDescription, String roomFeatures, String roomType, RoomStatus roomStatus) {
+  public Room(
+      int roomNumber,
+      Enum roomFloor,
+      String roomDescription,
+      String roomFeatures,
+      String roomType,
+      RoomStatus roomStatus) {
     this.id++;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;
@@ -27,39 +33,50 @@ public class Room {
 
   public Room() {}
 
-  public void roomInfo(String roomType){
-    System.out.println("Habitacion #: "+this.getRoomNumber());
-    System.out.println("Piso: "+this.getRoomFloor());
-    System.out.println("Descripcion: "+this.getRoomDescription());
-    System.out.println("Precio: "+this.getRoomPrice());
-    System.out.println("Estado: "+this.getRoomStatus());
+  public void roomInfo(String roomType) {
+    System.out.println("Habitacion #: " + this.getRoomNumber());
+    System.out.println("Piso: " + this.getRoomFloor());
+    System.out.println("Descripcion: " + this.getRoomDescription());
+    System.out.println("Precio: " + this.getRoomPrice());
+    System.out.println("Estado: " + this.getRoomStatus());
   }
 
-  public int calculateRoomPrice(String roomType){
-    int price=0;
-    if(roomType.equalsIgnoreCase("Simple")){
-      price=95;
-    }else if(roomType.equalsIgnoreCase("Double")){
-      price =83;
-    }else if (roomType.equalsIgnoreCase("Queen")){
-      price=125;
-    }else {
-      price=170;
+  public int calculateRoomPrice(String roomType) {
+    int price = 0;
+    if (roomType.equalsIgnoreCase("Simple")) {
+      price = 95;
+    } else if (roomType.equalsIgnoreCase("Double")) {
+      price = 83;
+    } else if (roomType.equalsIgnoreCase("Queen")) {
+      price = 125;
+    } else {
+      price = 170;
     }
     return price;
   }
 
   @Override
   public String toString() {
-    return "Room{" +
-            "id=" + id +
-            ", roomNumber=" + roomNumber +
-            ", roomFloor=" + roomFloor +
-            ", roomDescription='" + roomDescription + '\'' +
-            ", roomFeatures='" + roomFeatures + '\'' +
-            ", roomPrice=" + roomPrice +
-            ", roomType='" + roomType + '\'' +
-            ", roomStatus=" + roomStatus +
-            '}';
+    return "Room{"
+        + "id="
+        + id
+        + ", roomNumber="
+        + roomNumber
+        + ", roomFloor="
+        + roomFloor
+        + ", roomDescription='"
+        + roomDescription
+        + '\''
+        + ", roomFeatures='"
+        + roomFeatures
+        + '\''
+        + ", roomPrice="
+        + roomPrice
+        + ", roomType='"
+        + roomType
+        + '\''
+        + ", roomStatus="
+        + roomStatus
+        + '}';
   }
 }

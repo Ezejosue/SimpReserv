@@ -15,14 +15,7 @@ public class JavaSenderMail {
 
   public JavaSenderMail() {}
 
-  public static void main(String[] args) {
-    JavaSenderMail email = new JavaSenderMail();
-    // Sending test email
-    email.createAndSendEmail(
-        "test503sv@gmail.com",
-        "Test email subject",
-        "Congratulations !!! \nThis is test email sent by java class.");
-  }
+
 
   public void createAndSendEmail(String emailAddressTo, String msgSubject, String msgText) {
     this.emailAddressTo = emailAddressTo;
