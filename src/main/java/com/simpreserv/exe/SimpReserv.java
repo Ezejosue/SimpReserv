@@ -16,7 +16,7 @@ public class SimpReserv {
 
         Room room= new Room(101,TERCERO,"Bueno","","Simple", AVAILABLE);
 
-        room.roomInfo("Simple");
+        room.roomInfo("Queen");
 
     }
 }
