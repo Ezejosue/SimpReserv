@@ -8,20 +8,21 @@ import entity.ControllerInterface;
 
 public class ControllerClient implements ClientControllerInterface, ControllerInterface {
 
-  @Override // este metodo revisa el objeto cliente y su el nombre coincide delvuelve verdadero
-  public boolean requestReservation(Client client, String name) {
-    if (client.getName().equalsIgnoreCase(name)) {
+  @Override //este metodo revisa el objeto cliente y su el nombre coincide delvuelve verdadero
+  public boolean requestReservation(Client client, String name) {//pasara unalista de clientes
+    if(client.getName().equalsIgnoreCase(name)){
       return true;
-    } else {
+    }else {
       return false;
     }
+
   }
 
-  @Override // cancela devuel un booleano
-  public boolean cancelReservation(Client client, String name) {
-    boolean cancel = true;
-    if (this.requestReservation(client, name) == true) {
-      cancel = false;
+  @Override //cancela devuel un booleano
+  public boolean  cancelReservation(Client client, String name) {
+     boolean cancel=true;
+    if(this.requestReservation(client,name)==true){
+      cancel=false;
     }
 
     return cancel;
@@ -29,7 +30,7 @@ public class ControllerClient implements ClientControllerInterface, ControllerIn
 
   @Override //
   public boolean requestMembership(Client client) {
-    if (client.getMembership() != null) {
+    if(client.getMembership()!=null){
       return false;
     }
     return true;
@@ -40,7 +41,7 @@ public class ControllerClient implements ClientControllerInterface, ControllerIn
 
   @Override //
   public boolean cancelMembership(Client client) {
-    if (client.getMembership() != null) {
+    if(client.getMembership()!=null){
       return true;
     }
     return false;

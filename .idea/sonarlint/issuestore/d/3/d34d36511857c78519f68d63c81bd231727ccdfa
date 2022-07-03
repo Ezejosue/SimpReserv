@@ -1,0 +1,29 @@
+
+`	java:S112D"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òιόÿÿÿÿ
+o
+java:S1192"TDefine a constant instead of duplicating this literal "test503sv@gmail.com" 6 times.(ό±μ›ύÿÿÿÿ
+n	java:S116"TRename this field "USER_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ό±μ›ύÿÿÿÿ
+i	java:S116"TRename this field "PASSSWORD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«Ι¤
+l	java:S116"WRename this field "FROM_ADDRESS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€Ύ
+<
+java:S1170"!Make this final field static too.(ό±μ›ύÿÿÿÿ
+7
+java:S1170"!Make this final field static too.(«Ι¤
+7
+java:S1170"!Make this final field static too.(€Ύ
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±―ύÿÿÿÿ
+;
+java:S2129" Remove this "String" constructor(„Ξφόÿÿÿÿ
+;
+java:S2129	" Remove this "String" constructor(σ»”―ϊÿÿÿÿ
+;
+java:S2129
+" Remove this "String" constructor(ΠΏªόωÿÿÿÿ
+P
+java:S1161/":Add the "@Override" annotation above this method signature(‡θϊΧ
+S	java:S106A"9Replace this use of System.out or System.err by a logger.(°ξωρύÿÿÿÿ
+M
+java:S1068"2Remove this unused "emailAddressTo" private field.(„Ξφόÿÿÿÿ
+I
+java:S1068	".Remove this unused "msgSubject" private field.(σ»”―ϊÿÿÿÿ
