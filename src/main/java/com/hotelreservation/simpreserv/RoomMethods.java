@@ -22,7 +22,7 @@ public class RoomMethods {
     }
   }
 
-  private void saveAllRecords(Map<Integer, Room> listRecords) {
+  public void saveAllRecords(Map<Integer, Room> listRecords) {
     WriteObject wo = new WriteObject(filePath, listRecords);
     wo.writeToFile();
   }

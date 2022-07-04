@@ -24,6 +24,7 @@ public class Room implements Serializable {
       RoomFloor roomFloor,
       String roomDescription,
       String roomFeatures,
+      float roomPrice,
       String roomType,
       RoomStatus roomStatus) {
     this.id = id;
@@ -31,7 +32,7 @@ public class Room implements Serializable {
     this.roomFloor = roomFloor;
     this.roomDescription = roomDescription;
     this.roomFeatures = roomFeatures;
-    this.roomPrice = this.calculateRoomPrice(roomType);
+    this.roomPrice = roomPrice;
     this.roomType = roomType;
     this.roomStatus = roomStatus;
   }
@@ -48,11 +49,11 @@ public class Room implements Serializable {
 
   public int calculateRoomPrice(String roomType) {
     int price;
-    if (roomType.equalsIgnoreCase("Simple")) {
+    if (roomType.equalsIgnoreCase("Single")) {
       price = 95;
     } else if (roomType.equalsIgnoreCase("Double")) {
       price = 83;
-    } else if (roomType.equalsIgnoreCase("Queen")) {
+    } else if (roomType.equalsIgnoreCase("Triple")) {
       price = 125;
     } else {
       price = 170;
