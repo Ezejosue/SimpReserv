@@ -1,6 +1,5 @@
 package com.hotelreservation.simpreserv;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
@@ -8,19 +7,18 @@ public class Menu {
 
   Clear cls = new Clear();
 
-
   public void loggingMenu(String user, String pass) {
     User users = new User();
-    if (users.login(user, pass)==1){
+    if (users.login(user, pass) == 1) {
       userMenu();
-    } else if(users.login(user, pass)==2){
+    } else if (users.login(user, pass) == 2) {
       employeeMenu();
     } else {
       System.out.println("Error, clave o usuario incorrectos, o no existen");
     }
   }
 
-  public void login(){
+  public void login() {
     System.out.println("Ingresa tu usuario: ");
     String user = sc.next();
 
@@ -30,45 +28,65 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize(){
+  public void initialize() {
 
-    System.out.println("****************************************************************************");
-    System.out.println("******                         SimpReserv 1.0                         ******");
-    System.out.println("****************************************************************************");
-    System.out.println("******       Bienvenido al sistema de registro del Hotel Hilton       ******");
-    System.out.println("******       Selecciona una opción                                    ******");
-    System.out.println("****************************************************************************");
-    System.out.println("******           1-Iniciar Sesión                                     ******");
-    System.out.println("******           2-Salir                                              ******");
-    System.out.println("****************************************************************************");
+    System.out.println(
+        "****************************************************************************");
+    System.out.println(
+        "******                         SimpReserv 1.0                         ******");
+    System.out.println(
+        "****************************************************************************");
+    System.out.println(
+        "******       Bienvenido al sistema de registro del Hotel Hilton       ******");
+    System.out.println(
+        "******       Selecciona una opción                                    ******");
+    System.out.println(
+        "****************************************************************************");
+    System.out.println(
+        "******           1-Iniciar Sesión                                     ******");
+    System.out.println(
+        "******           2-Salir                                              ******");
+    System.out.println(
+        "****************************************************************************");
 
-    int option=0;
-    option=sc.nextInt();
-    if (option==1)
-    {
+    int option = 0;
+    option = sc.nextInt();
+    if (option == 1) {
 
       login();
 
     } else {
       System.exit(0);
     }
-
   }
+
   public void userMenu() {
     int close = 0;
     do {
-      System.out.println("****************************************************************************");
-      System.out.println("******                         SimpReserv 1.0                         ******");
-      System.out.println("****************************************************************************");
-      System.out.println("******       Bienvenido al sistema de registro del Hotel Hilton       ******");
-      System.out.println("******       Estas son las opciones disponible para servirte mejor    ******");
-      System.out.println("****************************************************************************");
-      System.out.println("******           1-Reservar Habitacion                                ******");
-      System.out.println("******           2-Cancelar reserva                                   ******");
-      System.out.println("******           3-Solicitar Membrecia                                ******");
-      System.out.println("******           4-Cancelar Membrecia                                 ******");
-      System.out.println("******           5-Salir                                              ******");
-      System.out.println("****************************************************************************");
+      System.out.println(
+          "****************************************************************************");
+      System.out.println(
+          "******                         SimpReserv 1.0                         ******");
+      System.out.println(
+          "****************************************************************************");
+      System.out.println(
+          "******       Bienvenido al sistema de registro del Hotel Hilton       ******");
+      System.out.println(
+          "******       Estas son las opciones disponible para servirte mejor    ******");
+      System.out.println(
+          "****************************************************************************");
+      System.out.println(
+          "******           1-Reservar Habitacion                                ******");
+      System.out.println(
+          "******           2-Cancelar reserva                                   ******");
+      System.out.println(
+          "******           3-Solicitar Membrecia                                ******");
+      System.out.println(
+          "******           4-Cancelar Membrecia                                 ******");
+      System.out.println(
+          "******           5-Salir                                              ******");
+      System.out.println(
+          "****************************************************************************");
 
       int opt = sc.nextInt();
       switch (opt) {
@@ -122,19 +140,32 @@ public class Menu {
   public void employeeMenu() {
     int close = 0;
     do {
-      System.out.println("****************************************************************************");
-      System.out.println("******                         SimpReserv 1.0                         ******");
-      System.out.println("****************************************************************************");
-      System.out.println("******       Bienvenido al sistema de registro del Hotel Hilton       ******");
-      System.out.println("******       Opciones de gestion de Huespedes                         ******");
-      System.out.println("****************************************************************************");
-      System.out.println("******           1-Registrar Usuario                                  ******");
-      System.out.println("******           2-Reservar Habitacion                                ******");
-      System.out.println("******           3-Cancelar reserva                                   ******");
-      System.out.println("******           4-Solicitar Membrecia                                ******");
-      System.out.println("******           5-Cancelar Membrecia                                 ******");
-      System.out.println("******           6-Salir                                              ******");
-      System.out.println("****************************************************************************");
+      System.out.println(
+          "****************************************************************************");
+      System.out.println(
+          "******                         SimpReserv 1.0                         ******");
+      System.out.println(
+          "****************************************************************************");
+      System.out.println(
+          "******       Bienvenido al sistema de registro del Hotel Hilton       ******");
+      System.out.println(
+          "******       Opciones de gestion de Huespedes                         ******");
+      System.out.println(
+          "****************************************************************************");
+      System.out.println(
+          "******           1-Registrar Usuario                                  ******");
+      System.out.println(
+          "******           2-Reservar Habitacion                                ******");
+      System.out.println(
+          "******           3-Cancelar reserva                                   ******");
+      System.out.println(
+          "******           4-Solicitar Membrecia                                ******");
+      System.out.println(
+          "******           5-Cancelar Membrecia                                 ******");
+      System.out.println(
+          "******           6-Salir                                              ******");
+      System.out.println(
+          "****************************************************************************");
       int opt = sc.nextInt();
       switch (opt) {
         case 1:

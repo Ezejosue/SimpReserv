@@ -1,31 +1,21 @@
 package com.hotelreservation.simpreserv;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 
 public class ReadObject {
-    private String filePath;
-    private Object obj;
+  private final String filePath;
 
-    public ReadObject(String filePath, Object obj) {
-        this.filePath = filePath;
-        this.obj = obj;
-    }
+  public ReadObject(String filePath) {
+    this.filePath = filePath;
+  }
 
-    public Object ReadFromFile(){
-        try(FileInputStream fio = new FileInputStream(filePath)){
-            try(ObjectInputStream obj = new ObjectInputStream(fio)){
-                Object info = (Object) obj.readObject();
-                return info;
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+  public Object loadInputStream(FileInputStream fis) {
+    try (ObjectInputStream obj = new ObjectInputStream(fis)) {
+      return obj.readObject();
+    } catch (ClassNotFoundException | IOException e) {
+      throw new RuntimeException(e);
     }
+  }
 }

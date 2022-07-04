@@ -1,27 +1,32 @@
 package com.hotelreservation.simpreserv;
 
+import enums.RoomFloor;
 import enums.RoomStatus;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Room {
+public class Room implements Serializable {
+  @Serial private static final long serialVersionUID = -652876445407826972L;
   @Getter @Setter private int id;
   @Getter @Setter private int roomNumber;
-  @Getter @Setter private Enum roomFloor;
+  @Getter @Setter private RoomFloor roomFloor;
   @Getter @Setter private String roomDescription;
   @Getter @Setter private String roomFeatures;
   @Getter @Setter private float roomPrice;
   @Getter @Setter private String roomType;
-  @Getter @Setter private Enum roomStatus;
+  @Getter @Setter private RoomStatus roomStatus;
 
   public Room(
+      int id,
       int roomNumber,
-      Enum roomFloor,
+      RoomFloor roomFloor,
       String roomDescription,
       String roomFeatures,
       String roomType,
       RoomStatus roomStatus) {
-    this.id++;
+    this.id = id;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;
     this.roomDescription = roomDescription;
@@ -42,7 +47,7 @@ public class Room {
   }
 
   public int calculateRoomPrice(String roomType) {
-    int price = 0;
+    int price;
     if (roomType.equalsIgnoreCase("Simple")) {
       price = 95;
     } else if (roomType.equalsIgnoreCase("Double")) {

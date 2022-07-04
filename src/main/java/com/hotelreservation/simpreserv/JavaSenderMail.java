@@ -15,8 +15,6 @@ public class JavaSenderMail {
 
   public JavaSenderMail() {}
 
-
-
   public void createAndSendEmail(String emailAddressTo, String msgSubject, String msgText) {
     this.emailAddressTo = emailAddressTo;
     this.msgSubject = msgSubject;
