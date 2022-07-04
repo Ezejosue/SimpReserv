@@ -18,7 +18,7 @@ public class User {
   @Getter @Setter private int typeOfUser = 1;
   @Getter @Setter private Date registerDate = dateObj;
 
-  private User[] users = new User[3];
+  private User[] users = new User[10];
 
   public User() {
     chargeInformation();
@@ -49,8 +49,29 @@ public class User {
     return 0;
   }
 
-  public void register() {}
+  public int register(String newUser, String pass, int typeOfUser) {
+    for (int i=0; i<users.length;i++){
+      if (users[i].getUserName().equals(newUser)){
+        return 1;
+      }else {
+          User user = new User(countId(), newUser, pass, typeOfUser,dateObj);
+        System.out.println(countId());
+          users[countId()]=user;
+          return 2;
+      }
+    }
+    return 0;
+  }
 
+  public int countId(){
+    int count = 0;
+    for (int i=0; i<users.length; i++){
+      if (users[i]!=null){
+        count++;
+      }
+    }
+    return count;
+  };
   public void chargeInformation() {
 
     User user = new User(1, "Josue", "12345", 1, dateObj);

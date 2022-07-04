@@ -41,7 +41,6 @@ public class Employee extends Person {
       EmployeeStatus status,
       String position,
       String schedule) {
-    super(name, lastname, dateOfBirt, gender, numberOfDocument, address, phoneNumber, email);
     this.ID++;
     this.cardCompany = cardCompany;
     this.salary = salary;
