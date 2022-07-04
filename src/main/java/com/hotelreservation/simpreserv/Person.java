@@ -18,7 +18,15 @@ public class Person {
   public Person() {}
   ;
 
-  public Person(String name, String lastname, long dateOfBirt, String gender,  String numberOfDocument, String address, String phoneNumber, String email) {
+  public Person(
+      String name,
+      String lastname,
+      long dateOfBirt,
+      String gender,
+      String numberOfDocument,
+      String address,
+      String phoneNumber,
+      String email) {
     this.ID++;
     this.name = name;
     this.lastname = lastname;

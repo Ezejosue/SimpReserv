@@ -9,7 +9,7 @@ import entity.ControllerInterface;
 public class ControllerClient implements ClientControllerInterface, ControllerInterface {
 
   @Override //este metodo revisa el objeto cliente y su el nombre coincide delvuelve verdadero
-  public boolean requestReservation(Client client, String name) {
+  public boolean requestReservation(Client client, String name) {//pasara unalista de clientes
     if(client.getName().equalsIgnoreCase(name)){
       return true;
     }else {

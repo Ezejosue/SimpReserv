@@ -13,35 +13,39 @@ public class Membership {
 
   public Membership(String membershipType, MembershipType membership) {
     this.id++;
-    this.membershipType=membership;
+    this.membershipType = membership;
     this.description = this.membershipDescription(membershipType);
     this.discountPercentage = this.membershipType.benefits(membershipType);
   }
 
   public Membership() {}
 
-  public String membershipDescription(String membership){
-    String description=null;
-    if(membership.equalsIgnoreCase("Silver")){
-      description= "Membresia Basica";
-    }
-    else if (membership.equalsIgnoreCase("Gold")) {
-      description= "Membrecia media";
-    }
-    else if (membership.equalsIgnoreCase("Platinum")) {
-      description= "Membrecia de lujo";
+  public String membershipDescription(String membership) {
+    String description = null;
+    if (membership.equalsIgnoreCase("Silver")) {
+      description = "Membresia Basica";
+    } else if (membership.equalsIgnoreCase("Gold")) {
+      description = "Membrecia media";
+    } else if (membership.equalsIgnoreCase("Platinum")) {
+      description = "Membrecia de lujo";
     }
     return description;
   }
 
   @Override
   public String toString() {
-    return "Membership{" +
-            "id=" + id +
-            ", membershipType=" + membershipType +
-            ", description='" + description + '\'' +
-            ", discountPercentage=" + discountPercentage +
-            ", pointsAmount=" + pointsAmount +
-            '}';
+    return "Membership{"
+        + "id="
+        + id
+        + ", membershipType="
+        + membershipType
+        + ", description='"
+        + description
+        + '\''
+        + ", discountPercentage="
+        + discountPercentage
+        + ", pointsAmount="
+        + pointsAmount
+        + '}';
   }
 }

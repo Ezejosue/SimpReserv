@@ -19,10 +19,14 @@ public class CreditCard {
 
   @Override
   public String toString() {
-    return "CreditCard{" +
-            "client=" + client +
-            ", CardName='" + CardName + '\'' +
-            ", expDate=" + expDate +
-            '}';
+    return "CreditCard{"
+        + "client="
+        + client
+        + ", CardName='"
+        + CardName
+        + '\''
+        + ", expDate="
+        + expDate
+        + '}';
   }
 }

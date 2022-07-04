@@ -17,7 +17,13 @@ public class Reservation {
   @Getter @Setter private float reservationPrice;
   @Getter @Setter private ReservationStatus reservationState;
 
-  public Reservation(String reservationType, Date reservationDate, Date checkInDate, Date checkOutDate, float reservationPrice, ReservationStatus reservationState) {
+  public Reservation(
+      String reservationType,
+      Date reservationDate,
+      Date checkInDate,
+      Date checkOutDate,
+      float reservationPrice,
+      ReservationStatus reservationState) {
     this.id++;
     this.idClient = new Client();
     this.idEmployee = new Employee();

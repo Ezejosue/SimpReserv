@@ -37,9 +37,5 @@ public class Voucher {
         + '}';
   }
 
-  public static void main(String[] args) {
-    Voucher voucher = new Voucher(150.02);
 
-    voucher.printVoucher();
-  }
 }
