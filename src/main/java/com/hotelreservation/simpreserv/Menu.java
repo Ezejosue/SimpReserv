@@ -27,7 +27,30 @@ public class Menu {
 
     loggingMenu(user, password);
   }
+  public void register() {
+    System.out.println("Ingresa tu usuario: ");
+    String user = sc.next();
 
+    System.out.println("Ingresa tu clave: ");
+    String password = sc.next();
+
+    System.out.println("Ingresa el tipo de usuario: 1: para cliente y 2: para empleado");
+    int typeOfUser = sc.nextInt();
+
+    User users = new User();
+
+    if (users.register(user,password,typeOfUser)==1){
+      System.out.println("Ya existe ese usuario");
+      initialize();
+    } else if(users.register(user,password,typeOfUser)==2) {
+      System.out.println("Usuario creado correctamente!!");
+      login();
+    } else{
+      System.out.println("Hubo un error al crear el usuario");
+      System.exit(0);
+    }
+
+  }
   public void initialize() {
 
     System.out.println(
@@ -45,7 +68,9 @@ public class Menu {
     System.out.println(
         "******           1-Iniciar Sesión                                     ******");
     System.out.println(
-        "******           2-Salir                                              ******");
+        "******           2-Registarse                                         ******");
+    System.out.println(
+        "******           3-Salir                                              ******");
     System.out.println(
         "****************************************************************************");
 
@@ -55,7 +80,9 @@ public class Menu {
 
       login();
 
-    } else {
+    } else if (option==2){
+        register();
+    }else {
       System.exit(0);
     }
   }
