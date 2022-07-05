@@ -1,6 +1,7 @@
 package entity;
 
 import com.hotelreservation.simpreserv.Client;
+import com.hotelreservation.simpreserv.Membership;
 
 public interface EmployeeControllerInterface {
 
@@ -17,4 +18,7 @@ public interface EmployeeControllerInterface {
   public Client updateUser();
 
   public Client removeUser();
+
+  public Membership requestMembership(Client client, String name);
+  public Membership cancelMembership(Client client, String name);
 }

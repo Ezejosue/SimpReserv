@@ -1,6 +1,7 @@
 package controller;
 
 import com.hotelreservation.simpreserv.Client;
+import com.hotelreservation.simpreserv.Membership;
 import entity.ControllerInterface;
 import entity.EmployeeControllerInterface;
 
@@ -57,6 +58,17 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
 
   @Override
   public Client removeUser() {
+    return null;
+  }
+
+  @Override
+  public Membership requestMembership(Client client, String name) {
+
+    return null;
+  }
+
+  @Override
+  public Membership cancelMembership(Client client, String name) {
     return null;
   }
 }
