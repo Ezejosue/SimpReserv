@@ -16,7 +16,7 @@ public class Client extends Person {
   }
 
 
-  public Client(String name, String lastname, Date dateOfBirt, String gender, String numberOfDocument, String address, String phoneNumber, String email, int ID, Membership membership, CreditCard creditCardInfo) {
+  public Client(String name, String lastname, Date dateOfBirt, String gender, String numberOfDocument, String address, String phoneNumber, String email, Membership membership, CreditCard creditCardInfo) {
     super(name, lastname, dateOfBirt, gender, numberOfDocument, address, phoneNumber, email);
     this.ID++;
     this.membership = membership;

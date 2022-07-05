@@ -11,11 +11,11 @@ public class Membership {
 
   @Setter @Getter private int pointsAmount;
 
-  public Membership(String membershipType, MembershipType membership) {
+  public Membership(MembershipType membership) {
     this.id++;
     this.membershipType = membership;
-    this.description = this.membershipDescription(membershipType);
-    this.discountPercentage = this.membershipType.benefits(membershipType);
+    this.description = this.membershipDescription(membership.getMembership());
+    this.discountPercentage = this.membershipType.benefits(membership.getMembership());
   }
 
   public Membership() {}

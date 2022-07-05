@@ -19,6 +19,6 @@ public interface EmployeeControllerInterface {
 
   public Client removeUser();
 
-  public Membership requestMembership(Client client, String name);
+  public void requestMembership(Client client, String name, String membership);
   public Membership cancelMembership(Client client, String name);
 }

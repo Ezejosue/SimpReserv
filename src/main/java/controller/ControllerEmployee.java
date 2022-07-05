@@ -1,7 +1,9 @@
 package controller;
 
 import com.hotelreservation.simpreserv.Client;
+import com.hotelreservation.simpreserv.ClientData;
 import com.hotelreservation.simpreserv.Membership;
+import com.hotelreservation.simpreserv.MembershipType;
 import entity.ControllerInterface;
 import entity.EmployeeControllerInterface;
 
@@ -61,10 +63,24 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     return null;
   }
 
-  @Override
-  public Membership requestMembership(Client client, String name) {
+  @Override//Solicitar membrecia
+  public void requestMembership(Client client, String name, String membership) {
+    ClientData list=new ClientData();
+    MembershipType mt=new MembershipType(membership);
+    Membership mn=new Membership(mt);
+    for(int i=0;i<list.clientList().size();i++){
+      if(list.clientList().get(i).getName().compareTo(name)==0){
+        client=list.clientList().get(i);
+      }
+    }
 
-    return null;
+    if (client.getMembership()!=null){
+      System.out.println("Este cliente ya pose membresia");
+    }else {
+      System.out.println("Su membrecia ha sido agregada");
+      client.setMembership(mn);
+    }
+
   }
 
   @Override
