@@ -1,36 +1,33 @@
 package com.hotelreservation.simpreserv;
 
-import controller.Validator;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Person {
-  @Setter @Getter private int ID;
+public class Person implements Serializable {
+  @Serial private static final long serialVersionUID = 2847339137205318831L;
+  @Setter @Getter private int id;
   @Setter @Getter private String name;
-  @Setter @Getter private String dateOfBirt;
+  @Setter @Getter private String dateOfBirth;
   @Setter @Getter private String gender;
   @Setter @Getter private String numberOfDocument;
   @Setter @Getter private String email;
 
-
-  public Person() {}
-  ;
-
   public Person(
-      int ID,
+      int id,
       String name,
-      String dateOfBirt,
+      String dateOfBirth,
       String gender,
       String numberOfDocument,
       String email) {
-    this.ID = ID;
+    this.id = id;
     this.name = name;
-    this.dateOfBirt = dateOfBirt;
+    this.dateOfBirth = dateOfBirth;
     this.gender = gender;
     this.numberOfDocument = numberOfDocument;
     this.email = email;
-  };
-  public void chargeInformation(){};
+  }
 
-
+  public Person() {}
 }

@@ -50,28 +50,30 @@ public class User {
   }
 
   public int register(String newUser, String pass, int typeOfUser) {
-    for (int i=0; i<users.length;i++){
-      if (users[i].getUserName().equals(newUser)){
+    for (int i = 0; i < users.length; i++) {
+      if (users[i].getUserName().equals(newUser)) {
         return 1;
-      }else {
-          User user = new User(countId(), newUser, pass, typeOfUser,dateObj);
+      } else {
+        User user = new User(countId(), newUser, pass, typeOfUser, dateObj);
         System.out.println(countId());
-          users[countId()]=user;
-          return 2;
+        users[countId()] = user;
+        return 2;
       }
     }
     return 0;
   }
 
-  public int countId(){
+  public int countId() {
     int count = 0;
-    for (int i=0; i<users.length; i++){
-      if (users[i]!=null){
+    for (int i = 0; i < users.length; i++) {
+      if (users[i] != null) {
         count++;
       }
     }
     return count;
-  };
+  }
+  ;
+
   public void chargeInformation() {
 
     User user = new User(1, "Josue", "12345", 1, dateObj);
