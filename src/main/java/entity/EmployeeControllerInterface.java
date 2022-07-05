@@ -3,6 +3,8 @@ package entity;
 import com.hotelreservation.simpreserv.Client;
 import com.hotelreservation.simpreserv.Membership;
 
+import java.util.List;
+
 public interface EmployeeControllerInterface {
 
   public void cancelPayments();
@@ -19,6 +21,7 @@ public interface EmployeeControllerInterface {
 
   public Client removeUser();
 
-  public void requestMembership(Client client, String name, String membership);
-  public Membership cancelMembership(Client client, String name);
+  public void requestMembership(Client client, String name);
+
+  // public void cancelMembership(Client client, String name);
 }

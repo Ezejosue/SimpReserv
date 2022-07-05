@@ -7,6 +7,9 @@ import com.hotelreservation.simpreserv.MembershipType;
 import entity.ControllerInterface;
 import entity.EmployeeControllerInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControllerEmployee implements EmployeeControllerInterface, ControllerInterface {
 
   @Override
@@ -64,10 +67,30 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
   }
 
   @Override//Solicitar membrecia
-  public void requestMembership(Client client, String name, String membership) {
+  public void requestMembership(Client client, String name) {
+    List<Client> list=new ArrayList<>();
+    for (int i=0;i<list.size();i++){
+      if (list.get(i).getName().compareTo("Jose")==0){
+        client=list.get(i);
+        list.remove(i);
+      }
+    }
+
+    if (client.getMembership()==null){
+     // client.setMembership(mn);
+      list.add(client);
+    }
+
+    for (Client cl:list) {
+      System.out.println(cl);
+    }
+
+  }
+/*
+  @Override //Metodo cancela la membresia
+  public void cancelMembership(Client client, String name) {
     ClientData list=new ClientData();
-    MembershipType mt=new MembershipType(membership);
-    Membership mn=new Membership(mt);
+
     for(int i=0;i<list.clientList().size();i++){
       if(list.clientList().get(i).getName().compareTo(name)==0){
         client=list.clientList().get(i);
@@ -75,16 +98,10 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     }
 
     if (client.getMembership()!=null){
-      System.out.println("Este cliente ya pose membresia");
+      System.out.println("Su membresia ha sido cancelada");
+        client.setMembership(null);
     }else {
-      System.out.println("Su membrecia ha sido agregada");
-      client.setMembership(mn);
+      System.out.println("Su membrecia ya habia sido cancelada antes");
     }
-
-  }
-
-  @Override
-  public Membership cancelMembership(Client client, String name) {
-    return null;
-  }
+  }*/
 }

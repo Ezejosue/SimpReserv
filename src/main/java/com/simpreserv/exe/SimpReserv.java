@@ -3,16 +3,15 @@ package com.simpreserv.exe;
 import com.hotelreservation.simpreserv.*;
 import controller.ControllerEmployee;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 public class SimpReserv {
 
   public static void main(String[] args) {
-    //Menu login = new Menu();
-   // login.initialize();
-
-    ClientData cd=new ClientData();
-    ControllerEmployee ce=new ControllerEmployee();
-    ce.requestMembership(cd.clientList().get(1),"Miguel","Silver");
-
+    Menu login = new Menu();
+    login.initialize();
 
   }
 }
