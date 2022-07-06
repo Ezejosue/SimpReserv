@@ -12,20 +12,20 @@ public class User {
   Calendar calendar = Calendar.getInstance();
 
   Date dateObj = calendar.getTime();
-  @Getter @Setter private int ID = 1;
+  @Getter @Setter private int id = 1;
   @Getter @Setter private String userName = "";
   @Getter @Setter private String password = "";
   @Getter @Setter private int typeOfUser = 1;
   @Getter @Setter private Date registerDate = dateObj;
 
-  private User[] users = new User[10];
+  private User[] users = new User[3];
 
   public User() {
     chargeInformation();
   }
 
-  public User(int ID, String userName, String password, int typeOfUser, Date registerDate) {
-    this.ID = ID;
+  public User(int id, String userName, String password, int typeOfUser, Date registerDate) {
+    this.id = id;
     this.userName = userName;
     this.password = password;
     this.typeOfUser = typeOfUser;
@@ -49,30 +49,6 @@ public class User {
     return 0;
   }
 
-  public int register(String newUser, String pass, int typeOfUser) {
-    for (int i = 0; i < users.length; i++) {
-      if (users[i].getUserName().equals(newUser)) {
-        return 1;
-      } else {
-        User user = new User(countId(), newUser, pass, typeOfUser, dateObj);
-        System.out.println(countId());
-        users[countId()] = user;
-        return 2;
-      }
-    }
-    return 0;
-  }
-
-  public int countId() {
-    int count = 0;
-    for (int i = 0; i < users.length; i++) {
-      if (users[i] != null) {
-        count++;
-      }
-    }
-    return count;
-  }
-  ;
 
   public void chargeInformation() {
 
