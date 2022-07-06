@@ -50,7 +50,7 @@ public class Menu {
     System.out.println(
         "******           1-Iniciar Sesión                                     ******");
     System.out.println(
-        "******           3-Salir                                              ******");
+        "******           2-Salir                                              ******");
     System.out.println(
         "****************************************************************************");
 
@@ -235,9 +235,9 @@ public class Menu {
             break;
           }
         case 4:
-          { // Solicitar Membrecia
-            System.out.println("Procesar solicitud de membrecia");
-            System.out.println("Enviar correo electronico de confirmacion");
+          { // Mostrar empleados
+            EmployeeMethods employeeList = new EmployeeMethods();
+            employeeList.showEmployees();
 
             break;
           }

@@ -84,13 +84,13 @@ public class EmployeeMethods {
     saveAllRecords(list);
   }
 
-  public static void main(String[] args){
-    EmployeeMethods empFile = new EmployeeMethods();
-    Map<Integer, Employee> emps = new TreeMap<>();
-    emps = empFile.loadAllRecords();
-    for(Map.Entry<Integer, Employee> item : emps.entrySet()){
-      System.out.println(item.getKey() + " - " + item.getValue());
-    }
+  public void showEmployees(){
+  EmployeeMethods empFile = new EmployeeMethods();
+  Map<Integer, Employee> emps = new TreeMap<>();
+  emps = empFile.loadAllRecords();
+  for(Map.Entry<Integer, Employee> item : emps.entrySet()){
+    System.out.println(item.getKey() + " - " + item.getValue());
   }
+}
 
 }
