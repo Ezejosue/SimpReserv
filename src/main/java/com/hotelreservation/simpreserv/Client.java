@@ -7,7 +7,7 @@ import lombok.Setter;
 public class Client extends Person {
 
   Validator val = new Validator();
-  @Setter @Getter private int ID;
+  @Setter @Getter private int id;
   @Setter @Getter private Membership membership;
   @Setter @Getter private CreditCard creditCardInfo;
 
@@ -26,8 +26,8 @@ public class Client extends Person {
       String gender,
       String numberOfDocument,
       String email) {
-    super(idClient, completeName, birthDay, gender, numberOfDocument, email);
-    ID++;
+    super(completeName, birthDay, gender, numberOfDocument, email);
+    this.id = idClient;
     this.membership = membership;
     this.creditCardInfo = creditCardInfo;
   }

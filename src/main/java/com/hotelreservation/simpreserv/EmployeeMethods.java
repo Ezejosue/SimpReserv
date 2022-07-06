@@ -3,6 +3,7 @@ package com.hotelreservation.simpreserv;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class EmployeeMethods {
   private final String filePath;
@@ -29,10 +30,29 @@ public class EmployeeMethods {
     return readFromFile();
   }
 
-  public void addNewRecord(int id, Employee newEmployee) {
+  public void addNewRecord(Employee newEmployee) {
+    int lastId;
     Map<Integer, Employee> list = loadAllRecords();
-    list.put(id, newEmployee);
+    if (list.size() != 0) {
+      lastId = list.get(list.size()).getId();
+    }else{
+      lastId = 0;
+    }
+    lastId ++;
+    newEmployee.setId(lastId);
+    list.put(lastId, newEmployee);
     saveAllRecords(list);
+  }
+
+  private int returnLastId(){
+    Map<Integer, Employee> list = loadAllRecords();
+    int lastId;
+    if (list.size() != 0) {
+      lastId = list.get(list.size()).getId();
+    }else{
+      lastId = 0;
+    }
+    return lastId;
   }
 
   public Employee findRecordById(int id) {
@@ -63,4 +83,14 @@ public class EmployeeMethods {
     list.remove(id);
     saveAllRecords(list);
   }
+
+  public static void main(String[] args){
+    EmployeeMethods empFile = new EmployeeMethods();
+    Map<Integer, Employee> emps = new TreeMap<>();
+    emps = empFile.loadAllRecords();
+    for(Map.Entry<Integer, Employee> item : emps.entrySet()){
+      System.out.println(item.getKey() + " - " + item.getValue());
+    }
+  }
+
 }

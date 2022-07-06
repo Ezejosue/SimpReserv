@@ -45,7 +45,7 @@ public class ReservationMethods {
     Map<Integer, Reservation> list = loadAllRecords();
     Reservation reserva = new Reservation();
     for (Map.Entry<Integer, Reservation> item : list.entrySet()) {
-      if (item.getValue().getIdClient().getID() == clientId) {
+      if (item.getValue().getIdClient().getId() == clientId) {
         reserva = item.getValue();
         break;
       }

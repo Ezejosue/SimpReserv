@@ -1,6 +1,10 @@
 package com.hotelreservation.simpreserv;
 
+import enums.EmployeeStatus;
+
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
@@ -181,33 +185,67 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       System.out.println(
-          "******           1-Registrar Usuario                                  ******");
+          "******           1-Registrar Empleado                                 ******");
       System.out.println(
-          "******           2-Reservar Habitacion                                ******");
+          "******           2-Actualizar Empleado                                ******");
       System.out.println(
-          "******           3-Cancelar reserva                                   ******");
+          "******           3-Buscar Empleado por parametro                      ******");
       System.out.println(
-          "******           4-Solicitar Membrecia                                ******");
+          "******           4-Mostrar Empleados                                  ******");
       System.out.println(
-          "******           5-Cancelar Membrecia                                 ******");
+          "******           5-Eliminar Empleado                                  ******");
       System.out.println(
-          "******           6-Salir                                              ******");
+          "******           6-Eliminar Cliente                                   ******");
+      System.out.println(
+          "******           7-Reservar Habitacion                                ******");
+      System.out.println(
+          "******           8-Cancelar reserva                                   ******");
+      System.out.println(
+          "******           9-Solicitar Membrecia                                ******");
+      System.out.println(
+          "******           10-Cancelar Membrecia                                 ******");
+      System.out.println(
+          "******           11-Salir                                              ******");
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
       switch (opt) {
         case 1:
           { // Registrar Usuario
-            System.out.println("Opciones de registro de usuarios");
-            System.out.println("Nombre");
-            System.out.println("Apellido");
-            System.out.println("Tipo de documento de identidad");
-            System.out.println("Numero de documento de identidad");
-            System.out.println("Fecha de nacimiento");
-            System.out.println("Genero");
-            System.out.println("Direccion");
-            System.out.println("Telefono");
-            System.out.println("Correo Electronico");
+            int id = 0;
+            String name;
+            String dateOfBirth;
+            String gender;
+            String numberOfDocument;
+            String email;
+            String cardCompany;
+            float salary;
+            EmployeeStatus status = EmployeeStatus.HIRED;
+            String position;
+            String schedule;
+            System.out.print("Ingrese el nombre del empleado: ");
+            name = sc.next();
+            System.out.print("Ingrese la fecha de nacimiento del empleado: ");
+            dateOfBirth = sc.next();
+            System.out.print("Ingrese el genero del empleado: ");
+            gender = sc.next();
+            System.out.print("Ingrese el numero de documento de identidad: ");
+            numberOfDocument = sc.next();
+            System.out.print("Ingrese el correo del empleado: ");
+            email = sc.next();
+            System.out.print("Ingrese el numero de empleado (carnet): ");
+            cardCompany = sc.next();
+            System.out.print("Ingrese el salario del empleado: ");
+            salary = sc.nextFloat();
+            System.out.print("Ingrese el puesto de trabajo del empleado: ");
+            position = sc.next();
+            System.out.print("Ingrese el turno de trabajo del empleado: ");
+            schedule = sc.next();
+
+            Employee emp = new Employee(id, name, dateOfBirth, gender, numberOfDocument, email, cardCompany, salary, status, position, schedule);
+            emp.addEmployee(emp);
+
+            System.out.println("Usuario agregado satisfactoriamente.");
             break;
           }
 
