@@ -49,7 +49,6 @@ public class User {
     return 0;
   }
 
-
   public void chargeInformation() {
 
     User user = new User(1, "Josue", "12345", 1, dateObj);

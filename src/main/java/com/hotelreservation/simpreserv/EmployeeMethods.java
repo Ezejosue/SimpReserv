@@ -3,7 +3,6 @@ package com.hotelreservation.simpreserv;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class EmployeeMethods {
   private final String filePath;
@@ -35,10 +34,10 @@ public class EmployeeMethods {
     Map<Integer, Employee> list = loadAllRecords();
     if (list.size() != 0) {
       lastId = list.get(list.size()).getId();
-    }else{
+    } else {
       lastId = 0;
     }
-    lastId ++;
+    lastId++;
     newEmployee.setId(lastId);
     list.put(lastId, newEmployee);
     saveAllRecords(list);
@@ -73,13 +72,10 @@ public class EmployeeMethods {
     saveAllRecords(list);
   }
 
-  public void showEmployees(){
-  EmployeeMethods empFile = new EmployeeMethods();
-  Map<Integer, Employee> emps = new TreeMap<>();
-  emps = empFile.loadAllRecords();
-  for(Map.Entry<Integer, Employee> item : emps.entrySet()){
-    System.out.println(item.getKey() + " - " + item.getValue());
+  public void showEmployees() {
+    Map<Integer, Employee> list = loadAllRecords();
+    for (Map.Entry<Integer, Employee> item : list.entrySet()) {
+      System.out.println(item.getKey() + " - " + item.getValue());
+    }
   }
-}
-
 }

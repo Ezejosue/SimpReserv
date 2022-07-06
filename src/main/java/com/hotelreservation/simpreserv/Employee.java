@@ -40,40 +40,50 @@ public class Employee extends Person implements Serializable {
     this.schedule = schedule;
   }
 
-  public void addEmployee(Employee emp){
+  public void addEmployee(Employee emp) {
     EmployeeMethods empData = new EmployeeMethods();
     empData.addNewRecord(emp);
   }
 
-  public Employee searchEmployeeById(int id){
+  public Employee searchEmployeeById(int id) {
     EmployeeMethods empData = new EmployeeMethods();
     return empData.findRecordById(id);
   }
 
-  public Employee searchEmployeeByCarnet(String cardCompany){
+  public Employee searchEmployeeByCarnet(String cardCompany) {
     EmployeeMethods empData = new EmployeeMethods();
     return empData.findRecordByCardCompany(cardCompany);
   }
 
-  public void updateEmployeeById(int id, Employee emp){
+  public void updateEmployeeById(int id, Employee emp) {
     EmployeeMethods empData = new EmployeeMethods();
     empData.updateRecordById(id, emp);
   }
 
-  public void deleteEmployeeById(int id){
+  public void deleteEmployeeById(int id) {
     EmployeeMethods empData = new EmployeeMethods();
     empData.deleteRecordById(id);
   }
 
   @Override
   public String toString() {
-    return "Employee{" +
-            "id=" + id +
-            ", cardCompany='" + cardCompany + '\'' +
-            ", salary=" + salary +
-            ", status=" + status +
-            ", position='" + position + '\'' +
-            ", schedule='" + schedule + '\'' +
-            "} " + super.toString();
+    return "Employee{"
+        + "id="
+        + id
+        + ", cardCompany='"
+        + cardCompany
+        + '\''
+        + ", salary="
+        + salary
+        + ", status="
+        + status
+        + ", position='"
+        + position
+        + '\''
+        + ", schedule='"
+        + schedule
+        + '\''
+        + "} "
+        + super.toString();
   }
 }

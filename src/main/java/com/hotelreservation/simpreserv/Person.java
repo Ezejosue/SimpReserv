@@ -14,11 +14,7 @@ public class Person implements Serializable {
   @Setter @Getter private String email;
 
   public Person(
-      String name,
-      String dateOfBirth,
-      String gender,
-      String numberOfDocument,
-      String email) {
+      String name, String dateOfBirth, String gender, String numberOfDocument, String email) {
     this.name = name;
     this.dateOfBirth = dateOfBirth;
     this.gender = gender;
@@ -30,12 +26,22 @@ public class Person implements Serializable {
 
   @Override
   public String toString() {
-    return "Person{" +
-            "name='" + name + '\'' +
-            ", dateOfBirth='" + dateOfBirth + '\'' +
-            ", gender='" + gender + '\'' +
-            ", numberOfDocument='" + numberOfDocument + '\'' +
-            ", email='" + email + '\'' +
-            '}';
+    return "Person{"
+        + "name='"
+        + name
+        + '\''
+        + ", dateOfBirth='"
+        + dateOfBirth
+        + '\''
+        + ", gender='"
+        + gender
+        + '\''
+        + ", numberOfDocument='"
+        + numberOfDocument
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + '}';
   }
 }
