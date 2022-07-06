@@ -26,18 +26,36 @@ public class Employee extends Person implements Serializable {
       String gender,
       String numberOfDocument,
       String email,
-      int personId,
       String cardCompany,
       float salary,
       EmployeeStatus status,
       String position,
       String schedule) {
-    super(personId, name, dateOfBirth, gender, numberOfDocument, email);
+    super(name, dateOfBirth, gender, numberOfDocument, email);
     this.id = employeeId;
     this.cardCompany = cardCompany;
     this.salary = salary;
     this.status = status;
     this.position = position;
     this.schedule = schedule;
+  }
+
+  public void addEmployee(Employee emp){
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.addNewRecord(emp);
+  }
+
+
+
+  @Override
+  public String toString() {
+    return "Employee{" +
+            "id=" + id +
+            ", cardCompany='" + cardCompany + '\'' +
+            ", salary=" + salary +
+            ", status=" + status +
+            ", position='" + position + '\'' +
+            ", schedule='" + schedule + '\'' +
+            "} " + super.toString();
   }
 }

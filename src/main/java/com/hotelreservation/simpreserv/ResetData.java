@@ -189,14 +189,21 @@ public class ResetData {
 
   public void resetEmployeeData() {
     Map<Integer, Employee> employees = new TreeMap<>();
-    employees.put(1, new Employee(1, "Juan Perez", "1985-03-18", "M", "123456-7", "jperez@elhotel.com", 1, "0001",1200.00f, EmployeeStatus.HIRED,"Gerente","Diurno"));
-    employees.put(2, new Employee(2, "Tony Stark", "1969-10-04", "M", "365874-9", "tstark@elhotel.com", 2, "0002",950.50f, EmployeeStatus.HIRED,"Jefe de Mantenimiento","Diurno"));
-    employees.put(3, new Employee(3, "Wanda Maximoff", "1995-03-21", "F", "637489-4", "wmaximoff@elhotel.com", 3, "0003",650.00f, EmployeeStatus.HIRED,"Atencion al Cliente","Diurno"));
-    employees.put(4, new Employee(4, "Natasha Romanoff", "1991-03-21", "F", "748965-1", "nromanoff@elhotel.com", 4, "0004",699.00f, EmployeeStatus.HIRED,"Atencion al Cliente","Nocturno"));
+    employees.put(1, new Employee(1, "Juan Perez", "1985-03-18", "M", "123456-7", "jperez@elhotel.com", "0001",1200.00f, EmployeeStatus.HIRED,"Gerente","Diurno"));
+    employees.put(2, new Employee(2, "Tony Stark", "1969-10-04", "M", "365874-9", "tstark@elhotel.com",  "0002",950.50f, EmployeeStatus.HIRED,"Jefe de Mantenimiento","Diurno"));
+    employees.put(3, new Employee(3, "Wanda Maximoff", "1995-03-21", "F", "637489-4", "wmaximoff@elhotel.com",  "0003",650.00f, EmployeeStatus.HIRED,"Atencion al Cliente","Diurno"));
+    employees.put(4, new Employee(4, "Natasha Romanoff", "1991-03-21", "F", "748965-1", "nromanoff@elhotel.com", "0004",699.00f, EmployeeStatus.HIRED,"Atencion al Cliente","Nocturno"));
 
     EmployeeMethods empData = new EmployeeMethods();
     empData.saveAllRecords(employees);
 
+  }
+
+  public static void main(String[] args){
+    ResetData rs = new ResetData();
+    rs.resetHotelData();
+    rs.resetRoomData();
+    rs.resetEmployeeData();
   }
 
 }
