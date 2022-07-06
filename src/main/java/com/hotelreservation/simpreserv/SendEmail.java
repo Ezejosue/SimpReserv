@@ -11,7 +11,7 @@ public class SendEmail {
     private String msgSubject = new String();
     private String msgText = new String();
 
-    final String to = "tonyvasqueza002@gmail.com"; // Username of the Google(gmail) account
+
     final String password = "gbwmxuejoacoxowm"; // Password of the Google(gmail) account
     final String from = "tonyvasqueza002@gmail.com"; // From address
 
@@ -35,7 +35,7 @@ public class SendEmail {
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
                             protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication(to, password);
+                                return new PasswordAuthentication(emailAddressTo, password);
                             }
                         });
 
@@ -48,9 +48,9 @@ public class SendEmail {
             message.setContent(msgText, "text/html"); // set content type of the email
 
             message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse(to)); // Set email recipient
+                    InternetAddress.parse(emailAddressTo)); // Set email recipient
 
-            message.setSubject("Hello World"); // Set email message subject
+            message.setSubject(msgSubject); // Set email message subject
             Transport.send(message); // Send email message
 
             System.out.println("Sent message successfully!");
