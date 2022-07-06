@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Person implements Serializable {
+public abstract class Person implements Serializable {
   @Serial private static final long serialVersionUID = 2847339137205318831L;
   @Setter @Getter private String name;
   @Setter @Getter private String dateOfBirth;
