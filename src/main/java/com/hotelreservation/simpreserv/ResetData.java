@@ -3,6 +3,10 @@ package com.hotelreservation.simpreserv;
 import enums.EmployeeStatus;
 import enums.RoomFloor;
 import enums.RoomStatus;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -250,10 +254,34 @@ public class ResetData {
     empData.saveAllRecords(employees);
   }
 
+  public void resetClientData(){
+    Map<Integer,Client> clients = new TreeMap<>();
+    Membership ms = new Membership();
+    ms.setId(1);
+    ms.setMembershipType(new MembershipType("Silver"));
+    ms.setDescription("Membership test");
+    ms.setDiscountPercentage(0.25);
+    ms.setPointsAmount(10);
+
+    Date ccDate = new Date();
+    CreditCard cc = new CreditCard();
+    cc.setCardName("CARDHOLDER NAME");
+    cc.setExpDate(ccDate);
+
+    clients.put(1, new Client(ms, cc, 1, "Jhon Doe", "18/02/1987", "M", "123456", "cliente1@email.com"));
+    clients.put(2, new Client(ms, cc, 2, "Diana Prince", "30/11/1999", "F", "987654", "cliente2@email.com"));
+    clients.put(3, new Client(ms, cc, 3, "Ana de Armas", "30/04/1988", "F", "654789", "cliente3@email.com"));
+
+    ClientMethods cltData = new ClientMethods();
+    cltData.saveAllRecords(clients);
+
+  }
+
   public static void main(String[] args) {
     ResetData rs = new ResetData();
     rs.resetHotelData();
     rs.resetRoomData();
     rs.resetEmployeeData();
+    rs.resetClientData();
   }
 }
