@@ -45,7 +45,25 @@ public class Employee extends Person implements Serializable {
     empData.addNewRecord(emp);
   }
 
+  public Employee searchEmployeeById(int id){
+    EmployeeMethods empData = new EmployeeMethods();
+    return empData.findRecordById(id);
+  }
 
+  public Employee searchEmployeeByCarnet(String cardCompany){
+    EmployeeMethods empData = new EmployeeMethods();
+    return empData.findRecordByCardCompany(cardCompany);
+  }
+
+  public void updateEmployeeById(int id, Employee emp){
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.updateRecordById(id, emp);
+  }
+
+  public void deleteEmployeeById(int id){
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.deleteRecordById(id);
+  }
 
   @Override
   public String toString() {

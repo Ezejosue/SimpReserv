@@ -44,17 +44,6 @@ public class EmployeeMethods {
     saveAllRecords(list);
   }
 
-  private int returnLastId(){
-    Map<Integer, Employee> list = loadAllRecords();
-    int lastId;
-    if (list.size() != 0) {
-      lastId = list.get(list.size()).getId();
-    }else{
-      lastId = 0;
-    }
-    return lastId;
-  }
-
   public Employee findRecordById(int id) {
     Map<Integer, Employee> list = loadAllRecords();
     return list.get(id);
