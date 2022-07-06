@@ -269,22 +269,77 @@ public class Menu {
                 employeeMenu();
                 break;
               case 2:
+                System.out.print("Digite su fecha de cumpleaños: ");
+                dateOfBirth = sc.next();
+                emp.setDateOfBirth(dateOfBirth);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 3:
+                 System.out.print("Digite el nuevo genero: ");
+                gender = sc.next();
+                emp.setGender(gender);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 4:
+                 System.out.print("Digite el nuevo numero de documento: ");
+                numberOfDocument = sc.next();
+                emp.setNumberOfDocument(numberOfDocument);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 5:
+                 System.out.print("Digite el nuevo email: ");
+                email = sc.next();
+                emp.setEmail(email);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 6:
+                 System.out.print("Digite el nuevo carnet: ");
+                cardCompany = sc.next();
+                emp.setCardCompany(cardCompany);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 7:
+                 System.out.print("Digite el nuevo salario: ");
+                salary = sc.nextFloat();
+                emp.setSalary(salary);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 8:
+                 System.out.print("Digite el estado [ 1- HIRED, 2- FIRED O 3- SUSPENDED]: ");
+                 int selection = sc.nextInt();
+                if (selection==1){
+                  emp.setStatus(EmployeeStatus.HIRED);
+                  emp.updateEmployeeById(id, emp);
+                  employeeMenu();
+                } else if (selection==2){
+                    emp.setStatus(EmployeeStatus.FIRED);
+                    emp.updateEmployeeById(id, emp);
+                    employeeMenu();
+                } else {
+                  emp.setStatus(EmployeeStatus.SUSPENDED);
+                  emp.updateEmployeeById(id, emp);
+                  employeeMenu();
+                }
                 break;
               case 9:
+                 System.out.print("Digite el nuevo puesto: ");
+                position = sc.next();
+                emp.setPosition(position);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
               case 10:
+                 System.out.print("Digite el nuevo horario: ");
+                schedule = sc.next();
+                emp.setSchedule(schedule);
+                emp.updateEmployeeById(id, emp);
+                employeeMenu();
                 break;
             }
 
