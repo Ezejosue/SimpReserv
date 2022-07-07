@@ -1,6 +1,6 @@
 package com.simpreserv.exe;
 
-import com.hotelreservation.simpreserv.*;
+import com.model.simpreserv.Menu;
 
 public class SimpReserv {
 
