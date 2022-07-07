@@ -1,3 +1,6 @@
+src/main/resources/plugins/*.jar
+out
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -8,9 +11,14 @@ target/
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/sonarlint/issuestore/
 *.iws
 *.iml
 *.ipr
+*.pb
+
+# ---- Sonar
+.sonar
 
 ### Eclipse ###
 .apt_generated
@@ -204,3 +212,12 @@ $RECYCLE.BIN/
 /build/DownloadCFamilyPlugin/ManualTestOutput
 /src/EmbeddedVsix/ts
 /build/DownloadSonarPlugin/ManualTestOutput
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/issuestore/a/1/a1be1f80b3db2b20e5b3425d46877d3797c51c78
+.idea/sonarlint/issuestore/8/0/8050e67e17835dd3403ccd965501e5cddd098508
+.idea/sonarlint/issuestore/4/4/4403df314bccd4f2bd8793bcfbcb694e6c0fec48
+.idea/sonarlint/issuestore/index.pb
+.idea/sonarlint/issuestore/a/1/a1be1f80b3db2b20e5b3425d46877d3797c51c78
+.idea/sonarlint/issuestore/8/0/8050e67e17835dd3403ccd965501e5cddd098508
+.idea/sonarlint/issuestore/4/4/4403df314bccd4f2bd8793bcfbcb694e6c0fec48
+*.pb
