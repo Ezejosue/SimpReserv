@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.model.simpreserv.Client;
 import com.model.simpreserv.ReadObject;
 import com.model.simpreserv.Room;
 import com.model.simpreserv.WriteObject;
@@ -34,9 +35,16 @@ public class RoomMethods {
     return readFromFile();
   }
 
-  public void addNewRecord(int id, Room newRoom) {
+  public void addNewRecord(Room newRoom) {
+    int lastId;
     Map<Integer, Room> list = loadAllRecords();
-    list.put(id, newRoom);
+    if (list.size() != 0) {
+      lastId = list.get(list.size()).getId();
+    } else {
+      lastId = 0;
+    }
+    lastId++;
+    list.put(lastId, newRoom);
     saveAllRecords(list);
   }
 
@@ -84,5 +92,12 @@ public class RoomMethods {
     Map<Integer, Room> list = loadAllRecords();
     list.remove(id);
     saveAllRecords(list);
+  }
+
+  public void showRooms() {
+    Map<Integer, Room> list = loadAllRecords();
+    for (Map.Entry<Integer, Room> item : list.entrySet()) {
+      System.out.println(item.getKey() + " - " + item.getValue());
+    }
   }
 }

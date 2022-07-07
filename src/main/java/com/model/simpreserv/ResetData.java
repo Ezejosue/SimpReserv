@@ -27,8 +27,7 @@ public class ResetData {
             11,
             RoomFloor.FIRST,
             "Suite",
-            "With pool sight",
-            84.99f,
+            84.99,
             "Single",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -38,8 +37,7 @@ public class ResetData {
             12,
             RoomFloor.FIRST,
             "Suite",
-            "With pool sight",
-            84.99f,
+            84.99,
             "Single",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -49,8 +47,7 @@ public class ResetData {
             13,
             RoomFloor.FIRST,
             "Suite with kitchen",
-            "With street sight",
-            94.99f,
+            94.99,
             "Double",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -60,8 +57,7 @@ public class ResetData {
             14,
             RoomFloor.FIRST,
             "Suite with kitchen",
-            "With street sight",
-            94.99f,
+            94.99,
             "Double",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -71,8 +67,7 @@ public class ResetData {
             15,
             RoomFloor.FIRST,
             "Suite with dining room and kitchen",
-            "With sea sight",
-            124.99f,
+            124.99,
             "Triple",
             RoomStatus.AVAILABLE));
 
@@ -83,8 +78,7 @@ public class ResetData {
             21,
             RoomFloor.SECOND,
             "Suite",
-            "With pool sight",
-            84.99f,
+            84.99,
             "Single",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -94,8 +88,7 @@ public class ResetData {
             22,
             RoomFloor.SECOND,
             "Suite",
-            "With pool sight",
-            84.99f,
+            84.99,
             "Single",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -105,8 +98,7 @@ public class ResetData {
             23,
             RoomFloor.SECOND,
             "Suite with kitchen",
-            "With street sight",
-            94.99f,
+            94.99,
             "Double",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -116,8 +108,7 @@ public class ResetData {
             24,
             RoomFloor.SECOND,
             "Suite with kitchen",
-            "With street sight",
-            94.99f,
+            94.99,
             "Double",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -127,8 +118,7 @@ public class ResetData {
             25,
             RoomFloor.SECOND,
             "Suite with dining room and kitchen",
-            "With sea sight",
-            124.99f,
+            124.99,
             "Triple",
             RoomStatus.AVAILABLE));
 
@@ -139,8 +129,7 @@ public class ResetData {
             31,
             RoomFloor.THIRD,
             "Suite",
-            "With pool sight",
-            84.99f,
+            84.99,
             "Single",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -150,8 +139,7 @@ public class ResetData {
             32,
             RoomFloor.THIRD,
             "Suite",
-            "With pool sight",
-            84.99f,
+            84.99,
             "Single",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -161,8 +149,7 @@ public class ResetData {
             33,
             RoomFloor.THIRD,
             "Suite with kitchen",
-            "With street sight",
-            94.99f,
+            94.99,
             "Double",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -172,8 +159,7 @@ public class ResetData {
             34,
             RoomFloor.THIRD,
             "Suite with kitchen",
-            "With street sight",
-            94.99f,
+            94.99,
             "Double",
             RoomStatus.AVAILABLE));
     rooms.put(
@@ -183,8 +169,7 @@ public class ResetData {
             35,
             RoomFloor.THIRD,
             "Penhouse with terrace and interior pool",
-            "With sea sight",
-            224.99f,
+            224.99,
             "Penhouse",
             RoomStatus.AVAILABLE));
 
@@ -204,7 +189,7 @@ public class ResetData {
             "123456-7",
             "jperez@elhotel.com",
             "0001",
-            1200.00f,
+            1200.00,
             EmployeeStatus.HIRED,
             "Gerente",
             "Diurno"));
@@ -218,7 +203,7 @@ public class ResetData {
             "365874-9",
             "tstark@elhotel.com",
             "0002",
-            950.50f,
+            950.50,
             EmployeeStatus.HIRED,
             "Jefe de Mantenimiento",
             "Diurno"));
@@ -232,7 +217,7 @@ public class ResetData {
             "637489-4",
             "wmaximoff@elhotel.com",
             "0003",
-            650.00f,
+            650.00,
             EmployeeStatus.HIRED,
             "Atencion al Cliente",
             "Diurno"));
@@ -246,7 +231,7 @@ public class ResetData {
             "748965-1",
             "nromanoff@elhotel.com",
             "0004",
-            699.00f,
+            699.00,
             EmployeeStatus.HIRED,
             "Atencion al Cliente",
             "Nocturno"));

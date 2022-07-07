@@ -11,7 +11,7 @@ public class Employee extends Person implements Serializable {
   @Serial private static final long serialVersionUID = 463034257352516815L;
   @Setter @Getter private int id;
   @Setter @Getter private String carnet;
-  @Setter @Getter private float salary;
+  @Setter @Getter private double salary;
   @Setter @Getter private EmployeeStatus status;
   @Setter @Getter private String position;
   @Setter @Getter private String schedule;
@@ -28,7 +28,7 @@ public class Employee extends Person implements Serializable {
       String numberOfDocument,
       String email,
       String carnet,
-      float salary,
+      double salary,
       EmployeeStatus status,
       String position,
       String schedule) {

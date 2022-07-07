@@ -2,6 +2,7 @@ package com.model.simpreserv;
 
 import com.controller.ClientMethods;
 import com.controller.EmployeeMethods;
+import com.controller.RoomMethods;
 import com.enums.EmployeeStatus;
 import java.util.Scanner;
 
@@ -74,6 +75,14 @@ public class Menu {
     String numberOfDocument;
     String email;
     Client cl;
+
+    Reservation reserva;
+    int idReserva;
+    Room room;
+    int idRoom;
+    int roomNum;
+    Employee emp;
+
     int close = 0;
     do {
       System.out.println(
@@ -91,7 +100,7 @@ public class Menu {
       System.out.println(
           "******           1-Registrar cliente                                  ******");
       System.out.println(
-          "******           2-Cancelar reserva                                   ******");
+          "******           2-Crear reservacion                                  ******");
       System.out.println(
           "******           3-Eliminar cliente                                   ******");
       System.out.println(
@@ -124,16 +133,44 @@ public class Menu {
             cl = new Client(membership, creditCardInfo, id, completeName, birthDay, gender, numberOfDocument, email);
             cl.addClient(cl);
 
-            System.out.println("cliente agregado satisfactoriamente.");
+            System.out.println("Cliente agregado satisfactoriamente.");
 
             userMenu();
             break;
           }
         case 2:
-          { // Cancelar reserva
-            System.out.println("Esta seguro de que quiere cancelar su reserva");
-            System.out.println("1-Si");
-            System.out.println("1-No");
+          { // Crear reserva
+            id = 0;
+            idRoom = 0;
+            idReserva = 0;
+            System.out.println("Seleccione el cliente para hacer la reservacion.");
+            System.out.println("Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
+            int opcion = sc.nextInt();
+            cl = new Client();
+            if (opcion == 1) {
+              System.out.print("Ingrese el numero de documento del cliente a buscar: ");
+              numberOfDocument = sc.next();
+              cl = cl.searchClientByDocNumber(numberOfDocument);
+            } else if (opcion == 2) {
+              System.out.print("Ingrese el id de cliente a buscar: ");
+              id = sc.nextInt();
+              cl = cl.searchClientById(id);
+            }
+            id = cl.getId();
+            System.out.println("Resultado: " + cl.toString());
+            System.out.println("Seleccione la habitacion a reservar.");
+            RoomMethods rmData = new RoomMethods();
+            rmData.showRooms();
+            System.out.print("Ingrese el numero de habitacion: ");
+            roomNum = sc.nextInt();
+
+            room = new Room();
+            room = room.findRoomByNumber(roomNum);
+            idRoom = room.getId();
+
+            /*reserva = new Reservation(idReserva, cl);*/
+
+            userMenu();
             break;
           }
         case 3:
@@ -143,7 +180,7 @@ public class Menu {
             int opcion = sc.nextInt();
             cl = new Client();
             if (opcion == 1) {
-              System.out.print("Ingrese el numero de documeto del cliente a buscar: ");
+              System.out.print("Ingrese el numero de documento del cliente a buscar: ");
               numberOfDocument = sc.next();
               cl = cl.searchClientByDocNumber(numberOfDocument);
             } else if (opcion == 2) {

@@ -1,5 +1,6 @@
 package com.model.simpreserv;
 
+import com.controller.ReservationMethods;
 import com.enums.ReservationStatus;
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class Reservation implements Serializable {
   @Getter @Setter private Date reservationDate;
   @Getter @Setter private Date checkInDate;
   @Getter @Setter private Date checkOutDate;
-  @Getter @Setter private float reservationPrice;
+  @Getter @Setter private double reservationPrice;
   @Getter @Setter private ReservationStatus reservationStatus;
 
   public Reservation(
@@ -41,6 +42,11 @@ public class Reservation implements Serializable {
   }
 
   public Reservation() {}
+
+  public void createReservation(Reservation newReserva){
+    ReservationMethods rsmData = new ReservationMethods();
+    rsmData.addNewRecord(newReserva);
+  }
 
   @Override
   public String toString() {

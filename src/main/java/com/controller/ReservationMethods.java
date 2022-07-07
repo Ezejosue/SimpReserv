@@ -33,9 +33,17 @@ public class ReservationMethods {
     return readFromFile();
   }
 
-  public void addNewRecord(int id, Reservation newReservation) {
+  public void addNewRecord(Reservation newReservation) {
+    int lastId;
     Map<Integer, Reservation> list = loadAllRecords();
-    list.put(id, newReservation);
+    if (list.size() != 0) {
+      lastId = list.get(list.size()).getId();
+    } else {
+      lastId = 0;
+    }
+    lastId++;
+    newReservation.setId(lastId);
+    list.put(lastId, newReservation);
     saveAllRecords(list);
   }
 
