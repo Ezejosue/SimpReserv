@@ -4,6 +4,11 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.io.File;
+import java.io.IOException;
+import javax.mail.internet.MimeMultipart;
+import javax.mail.internet.MimeBodyPart;
+
 
 public class SendEmail {
 
@@ -33,6 +38,7 @@ public class SendEmail {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
 
+        // Get the Session object.
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
                             protected PasswordAuthentication getPasswordAuthentication() {
                                 return new PasswordAuthentication(emailAddressTo, password);
@@ -45,14 +51,28 @@ public class SendEmail {
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from)); // Set from address of the email
-            message.setContent(msgText, "text/html"); // set content type of the email
-
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(emailAddressTo)); // Set email recipient
 
             message.setSubject(msgSubject); // Set email message subject
-            Transport.send(message); // Send email message
 
+            Multipart multipart = new MimeMultipart();
+            MimeBodyPart attachmentPart = new MimeBodyPart();
+            MimeBodyPart textPart = new MimeBodyPart();
+
+            try {
+                File file = new  File("C:\\Users\\DELL\\Desktop\\Java\\SimpReserv\\SimpReserv.txt");
+
+                attachmentPart.attachFile(file);
+                textPart.setText(msgText);
+                multipart.addBodyPart(textPart);
+                multipart.addBodyPart(attachmentPart);
+
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+            message.setContent(multipart);
+            Transport.send(message); // Send email message
             System.out.println("Sent message successfully!");
 
         } catch (MessagingException e) {
