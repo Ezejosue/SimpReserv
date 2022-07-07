@@ -3,7 +3,12 @@ package com.hotelreservation.simpreserv;
 import lombok.Getter;
 import lombok.Setter;
 
-public class MembershipType {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class MembershipType implements Serializable {
+  @Serial
+  private static final long serialVersionUID = 6350191974148119748L;
   @Setter @Getter private String membership;
   @Setter @Getter private double benefits;
 
