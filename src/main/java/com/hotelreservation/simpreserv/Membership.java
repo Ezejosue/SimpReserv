@@ -3,24 +3,20 @@ package com.hotelreservation.simpreserv;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class Membership implements Serializable {
-  @Serial
-  private static final long serialVersionUID = -1962409242131469743L;
-  @Setter @Getter private long id;
+  @Setter @Getter private final long ID=121565465465l;
   @Setter @Getter private MembershipType membershipType;
   @Setter @Getter private String description;
   @Setter @Getter private double discountPercentage;
 
   @Setter @Getter private int pointsAmount;
 
-  public Membership(String membershipType, MembershipType membership) {
-    this.id++;
+  public Membership(MembershipType membership) {
     this.membershipType = membership;
-    this.description = this.membershipDescription(membershipType);
-    this.discountPercentage = this.membershipType.benefits(membershipType);
+    this.description = this.membershipDescription(membership.getMembership());
+    this.discountPercentage = this.membershipType.benefits(membership.getMembership());
   }
 
   public Membership() {}
@@ -39,18 +35,12 @@ public class Membership implements Serializable {
 
   @Override
   public String toString() {
-    return "Membership{"
-        + "id="
-        + id
-        + ", membershipType="
-        + membershipType
-        + ", description='"
-        + description
-        + '\''
-        + ", discountPercentage="
-        + discountPercentage
-        + ", pointsAmount="
-        + pointsAmount
-        + '}';
+    return "Membership{" +
+            "ID=" + ID +
+            ", membershipType=" + membershipType +
+            ", description='" + description + '\'' +
+            ", discountPercentage=" + discountPercentage +
+            ", pointsAmount=" + pointsAmount +
+            '}';
   }
 }

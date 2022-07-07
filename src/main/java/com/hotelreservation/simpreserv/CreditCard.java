@@ -1,36 +1,28 @@
 package com.hotelreservation.simpreserv;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-public class CreditCard implements Serializable {
-  @Serial
-  private static final long serialVersionUID = -808952222592281123L;
-  @Setter @Getter private Client client;
+public class CreditCard {
+  @Setter @Getter private String client;
   @Setter @Getter private String CardName;
   @Setter @Getter private Date expDate;
 
   public CreditCard() {}
 
-  public CreditCard(Client client, String cardName, long expDate) {
+  public CreditCard(String client, String cardName, Date expDate) {
     this.client = client;
     CardName = cardName;
-    this.expDate = new Date(expDate);
+    this.expDate = expDate;
   }
 
   @Override
   public String toString() {
-    return "CreditCard{"
-        + "client="
-        + client
-        + ", CardName='"
-        + CardName
-        + '\''
-        + ", expDate="
-        + expDate
-        + '}';
+    return "CreditCard{" +
+            "client=" + client +
+            ", CardName='" + CardName + '\'' +
+            ", expDate=" + expDate +
+            '}';
   }
 }
