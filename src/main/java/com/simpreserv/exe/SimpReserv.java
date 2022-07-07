@@ -2,9 +2,11 @@ package com.simpreserv.exe;
 
 import com.model.simpreserv.Menu;
 
+import java.text.ParseException;
+
 public class SimpReserv {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws ParseException {
 
     /*CreateFile createFile = new CreateFile();
     createFile.setCreateFile();

@@ -2,16 +2,24 @@ package com.model.simpreserv;
 
 import com.controller.ClientMethods;
 import com.controller.EmployeeMethods;
+import com.controller.ReservationMethods;
 import com.controller.RoomMethods;
 import com.enums.EmployeeStatus;
+import com.enums.ReservationStatus;
+import com.enums.RoomStatus;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
 
   Clear cls = new Clear();
 
-  public void loggingMenu(String user, String pass) {
+  public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
     if (users.login(user, pass) == 1) {
       userMenu();
@@ -23,7 +31,7 @@ public class Menu {
     }
   }
 
-  public void login() {
+  public void login() throws ParseException {
     System.out.println("Ingresa tu usuario: ");
     String user = sc.next();
 
@@ -33,7 +41,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize() {
+  public void initialize() throws ParseException {
 
     System.out.println(
         "****************************************************************************");
@@ -65,7 +73,7 @@ public class Menu {
     }
   }
 
-  public void userMenu() {
+  public void userMenu() throws ParseException {
     int id;
     Membership membership = new Membership();
     CreditCard creditCardInfo = new CreditCard();
@@ -164,11 +172,33 @@ public class Menu {
             System.out.print("Ingrese el numero de habitacion: ");
             roomNum = sc.nextInt();
 
-            room = new Room();
-            room = room.findRoomByNumber(roomNum);
-            idRoom = room.getId();
+            System.out.print("Ingrese la fecha de inicio de la reservacion: ");
+            String sTemp = sc.next();
+            Date checkIn = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            System.out.print("Ingrese la fecha de fin de la reservacion: ");
+            sTemp = sc.next();
+            Date checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
 
-            /*reserva = new Reservation(idReserva, cl);*/
+            long difInOut = Math.abs(checkOut.getTime() - checkIn.getTime());
+            long days = TimeUnit.DAYS.convert(difInOut, TimeUnit.MILLISECONDS);
+
+            room = new Room();
+            room = room.searchRoomByNumber(roomNum);
+            idRoom = room.getId();
+            double priceReserva = days * room.getRoomPrice();
+
+            emp = new Employee();
+            emp = emp.searchEmployeeById(3);
+
+            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM);
+            reserva.createReservation(reserva);
+
+            System.out.println("La reservacion se ha realizado satisfactoriamente.");
+
+            room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
+
+            ReservationMethods rsvData = new ReservationMethods();
+            rsvData.showReservations();
 
             userMenu();
             break;

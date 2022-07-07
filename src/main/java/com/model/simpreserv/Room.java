@@ -54,9 +54,14 @@ public class Room implements Serializable {
     return price;
   }
 
-  public Room findRoomByNumber(int roomNumber){
+  public Room searchRoomByNumber(int roomNumber){
     RoomMethods rmData = new RoomMethods();
     return rmData.findRecordByNumber(roomNumber);
+  }
+
+  public void changeRoomStatusById(int id, RoomStatus roomStatus){
+    RoomMethods rmData = new RoomMethods();
+    rmData.updateRecordStatusById(id, roomStatus);
   }
 
   @Override

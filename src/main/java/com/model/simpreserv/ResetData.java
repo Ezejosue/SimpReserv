@@ -1,13 +1,12 @@
 package com.model.simpreserv;
 
-import com.controller.ClientMethods;
-import com.controller.EmployeeMethods;
-import com.controller.HotelMethods;
-import com.controller.RoomMethods;
+import com.controller.*;
 import com.enums.EmployeeStatus;
+import com.enums.ReservationStatus;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -255,11 +254,25 @@ public class ResetData {
 
   }
 
+  public void resetReservationData(){
+    Map<Integer, Reservation> reservations = new TreeMap<>();
+
+    Client clt = new Client();
+    Employee emp = new Employee();
+    Room room = new Room();
+
+    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD));
+
+    ReservationMethods rsvData = new ReservationMethods();
+    rsvData.saveAllRecords(reservations);
+  }
+
   public static void main(String[] args) {
     ResetData rs = new ResetData();
     rs.resetHotelData();
     rs.resetRoomData();
     rs.resetEmployeeData();
     rs.resetClientData();
+    rs.resetReservationData();
   }
 }
