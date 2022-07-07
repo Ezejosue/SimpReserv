@@ -63,6 +63,15 @@ public class Menu {
   }
 
   public void userMenu() {
+    int id;
+    Membership membership;
+    CreditCard creditCardInfo;
+    String completeName;
+    String birthDay;
+    String gender;
+    String numberOfDocument;
+    String email;
+    Client cl;
     int close = 0;
     do {
       System.out.println(
@@ -78,30 +87,42 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       System.out.println(
-          "******           1-Reservar Habitacion                                ******");
+          "******           1-Registrar cliente                                  ******");
       System.out.println(
           "******           2-Cancelar reserva                                   ******");
       System.out.println(
-          "******           3-Solicitar Membrecia                                ******");
+          "******           3-Eliminar cliente                                   ******");
       System.out.println(
-          "******           4-Cancelar Membrecia                                 ******");
+          "******           4-Mostrar cliente                                    ******");
       System.out.println(
-          "******           5-Salir                                              ******");
+          "******           5-Buscar cliente por id o documento de identidad     ******");
+      System.out.println(
+          "******           6-Actualizar datos de cliente                        ******");
+      System.out.println(
+          "******           7-Salir                                              ******");
       System.out.println(
           "****************************************************************************");
 
       int opt = sc.nextInt();
       switch (opt) {
         case 1:
-          { // Reservar Habitacion
-            System.out.println("Seleccionar fecha de llegada");
-            System.out.println("Seleccionar tiempo de estadia");
-            System.out.println("Seleccionar habitacion");
+          { // Agregar clientes
+            id = 0;
+            System.out.print("Ingrese el nombre del cliente: ");
+            completeName = sc.next();
+            System.out.print("Ingrese la fecha de nacimiento del cliente: ");
+            birthDay = sc.next();
+            System.out.print("Ingrese el genero del cliente: ");
+            gender = sc.next();
+            System.out.print("Ingrese el numero de documento de identidad: ");
+            numberOfDocument = sc.next();
+            System.out.print("Ingrese el correo del cliente: ");
+            email = sc.next();
 
-            System.out.println("Seleccione el metodo de pago");
-            System.out.println("1-Tarjeta de Credito/Debito");
-            System.out.println("2-Paypal/Zelle");
-            System.out.println("3-Puntos accumulados");
+
+            System.out.println("cliente agregado satisfactoriamente.");
+
+            userMenu();
             break;
           }
         case 2:
@@ -112,29 +133,136 @@ public class Menu {
             break;
           }
         case 3:
-          { // Solicitar Membrecia
-            System.out.println("Seleccione el tipo de membresia");
-            System.out.println("1-Silver");
-            System.out.println("2-Gold");
-            System.out.println("3-Planinium");
-            System.out.println(
-                "Su membrecia ha sido solicitada. Revise su correo electronico para mas informacion");
+          { // Eliminar cliente
+            System.out.print(
+                "Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
+            int opcion = sc.nextInt();
+            cl = new Client();
+            if (opcion == 1) {
+              System.out.print("Ingrese el numero de documeto del cliente a buscar: ");
+              numberOfDocument = sc.next();
+              cl = cl.searchClientByDocNumber(numberOfDocument);
+            } else if (opcion == 2) {
+              System.out.print("Ingrese el id de cliente a buscar: ");
+              id = sc.nextInt();
+              cl = cl.searchClientById(id);
+            }
+            id = cl.getId();
+            System.out.println("Resultado: " + cl.toString());
+            System.out.print("Seguro que desea eliminar este cliente? Y/N");
+            String eleccion = sc.next();
+            if (eleccion.equals("Y")) {
+              cl.deleteClientById(id);
+            }
+            userMenu();
             break;
           }
         case 4:
-          { // Cancelar Membrecia
-            System.out.println("Esta seguro de que quiere cancelar su Membresia");
-            System.out.println("1-Si");
-            System.out.println("1-No");
-            System.out.println("Su membrecia ha sido cancelada exitosamente");
+          { // Mostrar Clientes
+            ClientMethods showCl = new ClientMethods();
+            showCl.showClients();
+            userMenu();
             break;
           }
         case 5:
-          { // Cerrar la applicacion
-            System.out.println("La aplicacion se ha cerrado con exito");
-            opt = 0;
+          {
+            System.out.print(
+                "Digite 1 para buscar cliente por documeto de identidad o 2 para buscar cliente por Id:");
+            int opcion = sc.nextInt();
+            cl = new Client();
+            if (opcion == 1) {
+              System.out.print("Ingrese el numero de documento de cliente a buscar: ");
+              numberOfDocument = sc.next();
+              cl = cl.searchClientByDocNumber(numberOfDocument);
+            } else if (opcion == 2) {
+              System.out.print("Ingrese el id de cliente a buscar: ");
+              id = sc.nextInt();
+              cl = cl.searchClientById(id);
+            }
+            System.out.println("Resultado: " + cl.toString());
+            employeeMenu();
             break;
           }
+
+        case 6:
+        {
+          System.out.print(
+              "Digite 1 para buscar cliente por documeto de identidad o 2 para buscar cliente por Id:");
+          int opcion = sc.nextInt();
+          cl = new Client();
+          if (opcion == 1) {
+            System.out.print("Ingrese el numero de documento de cliente a buscar: ");
+            numberOfDocument = sc.next();
+            cl = cl.searchClientByDocNumber(numberOfDocument);
+          } else if (opcion == 2) {
+            System.out.print("Ingrese el id de cliente a buscar: ");
+            id = sc.nextInt();
+            cl = cl.searchClientById(id);
+          }
+          id = cl.getId();
+          System.out.println("Resultado: " + cl.toString());
+          System.out.println("Seleccione el campo que desea modificar (1 - 7): ");
+          opcion = sc.nextInt();
+
+          switch (opcion) {
+            case 1:
+              System.out.print("Digite el nuevo nombre: ");
+              completeName = sc.next();
+              cl.setName(completeName);
+              cl.updateClientById(id, cl);
+              userMenu();
+              break;
+            case 2:
+              System.out.print("Digite su fecha de cumpleaños: ");
+              birthDay = sc.next();
+              cl.setDateOfBirth(birthDay);
+              cl.updateClientById(id, cl);
+              userMenu();
+              break;
+            case 3:
+              System.out.print("Digite el nuevo genero: ");
+              gender = sc.next();
+              cl.setGender(gender);
+              cl.updateClientById(id, cl);
+              userMenu();
+              break;
+            case 4:
+              System.out.print("Digite el nuevo numero de documento: ");
+              numberOfDocument = sc.next();
+              cl.setNumberOfDocument(numberOfDocument);
+              cl.updateClientById(id, cl);
+              userMenu();
+              break;
+            case 5:
+              System.out.print("Digite el nuevo email: ");
+              email = sc.next();
+              cl.setEmail(email);
+              cl.updateClientById(id, cl);
+              userMenu();
+              break;
+            case 6:
+             /* System.out.print("Digite el nuevo carnet: ");
+              cardCompany = sc.next();
+              cl.setCardCompany(cardCompany);
+              cl.updateClientById(id, cl);
+              userMenu();*/
+              break;
+            case 7:
+            /*  System.out.print("Digite el nuevo salario: ");
+              salary = sc.nextFloat();
+              cl.setSalary(cl);
+              cl.updateClientById(id, cl);
+              userMenu();*/
+              break;
+          }
+          break;
+        }
+        case 7:
+        { // Cerrar la applicacion
+          System.out.println("La aplicacion se ha cerrado con exito");
+          opt = 0;
+          break;
+        }
       }
     } while (close != 0);
   }
