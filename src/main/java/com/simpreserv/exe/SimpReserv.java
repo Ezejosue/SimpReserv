@@ -10,7 +10,7 @@ public class SimpReserv {
     createFile.setCreateFile();
 
     SendEmail sendEmail = new SendEmail();
-    sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Hilton", "En el archivo adjunto esta toda la informacion de su reserva");
+    sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Hilton2", "En el archivo adjunto esta toda la informacion de su reserva2");
 
     Menu login = new Menu();
     login.initialize();
