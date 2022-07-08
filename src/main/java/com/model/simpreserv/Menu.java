@@ -1,9 +1,6 @@
 package com.model.simpreserv;
 
-import com.controller.ClientMethods;
-import com.controller.EmployeeMethods;
-import com.controller.ReservationMethods;
-import com.controller.RoomMethods;
+import com.controller.*;
 import com.enums.EmployeeStatus;
 import com.enums.ReservationStatus;
 import com.enums.RoomStatus;
