@@ -1,20 +1,26 @@
 package com.model.simpreserv;
 
 import com.controller.ClientMethods;
-import com.controller.ControllerEmployee;
 import com.controller.EmployeeMethods;
+import com.controller.ReservationMethods;
 import com.controller.RoomMethods;
 import com.enums.EmployeeStatus;
+import com.enums.ReservationStatus;
+import com.enums.RoomStatus;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
 
   Clear cls = new Clear();
 
-  public void loggingMenu(String user, String pass) {
+  public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
     if (users.login(user, pass) == 1) {
       userMenu();
@@ -26,7 +32,7 @@ public class Menu {
     }
   }
 
-  public void login() {
+  public void login() throws ParseException {
     System.out.println("Ingresa tu usuario: ");
     String user = sc.next();
 
@@ -36,7 +42,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize() {
+  public void initialize() throws ParseException {
 
     System.out.println(
         "****************************************************************************");
@@ -68,7 +74,7 @@ public class Menu {
     }
   }
 
-  public void userMenu() {
+  public void userMenu() throws ParseException {
     int id;
     Membership membership = new Membership();
     CreditCard creditCardInfo = new CreditCard();
@@ -161,17 +167,41 @@ public class Menu {
             }
             id = cl.getId();
             System.out.println("Resultado: " + cl.toString());
+            System.out.println("Presione enter para continuar...");
+            new java.util.Scanner(System.in).nextLine();
             System.out.println("Seleccione la habitacion a reservar.");
             RoomMethods rmData = new RoomMethods();
             rmData.showRooms();
             System.out.print("Ingrese el numero de habitacion: ");
             roomNum = sc.nextInt();
 
+            System.out.print("Ingrese la fecha de inicio de la reservacion: ");
+            String sTemp = sc.next();
+            Date checkIn = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            System.out.print("Ingrese la fecha de fin de la reservacion: ");
+            sTemp = sc.next();
+            Date checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+
+            long difInOut = Math.abs(checkOut.getTime() - checkIn.getTime());
+            long days = TimeUnit.DAYS.convert(difInOut, TimeUnit.MILLISECONDS);
+
             room = new Room();
             room = room.searchRoomByNumber(roomNum);
             idRoom = room.getId();
+            double priceReserva = days * room.getRoomPrice();
 
-            /*reserva = new Reservation(idReserva, cl);*/
+            emp = new Employee();
+            emp = emp.searchEmployeeById(3);
+
+            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM);
+            reserva.createReservation(reserva);
+
+            System.out.println("La reservacion se ha realizado satisfactoriamente.");
+
+            room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
+
+            ReservationMethods rsvData = new ReservationMethods();
+            rsvData.showReservations();
 
             userMenu();
             break;
@@ -298,7 +328,7 @@ public class Menu {
   }
 
   public void employeeMenu() {
-    int close = 1;
+    int close = 0;
 
     int id;
     String name;
@@ -348,7 +378,9 @@ public class Menu {
       System.out.println(
           "******           10-Cancelar Membrecia                                ******");
       System.out.println(
-          "******           11-Salir                                             ******");
+          "******           11-Registrar Usuario                                 ******");
+      System.out.println(
+          "******           12-Salir                                             ******");
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
@@ -392,7 +424,7 @@ public class Menu {
                     schedule);
             emp.addEmployee(emp);
 
-            System.out.println("Usuario agregado satisfactoriamente.");
+            System.out.println("Empleado agregado satisfactoriamente.");
 
             employeeMenu();
             break;
@@ -530,7 +562,7 @@ public class Menu {
             break;
           }
         case 5:
-          { // Cancelar Empleado
+          { // Cancelar Membrecia
             System.out.print(
                 "Digite 1 para buscar empleado por carnet o 2 para buscar empleado por Id:");
             int opcion = sc.nextInt();
@@ -554,9 +586,11 @@ public class Menu {
             employeeMenu();
             break;
           }
-        case 6:{//
+        case 6:
+        {
           User usr;
           Calendar calendar = Calendar.getInstance();
+
           Date dateObj = calendar.getTime();
           id = 0;
           String user, pass;
@@ -567,6 +601,8 @@ public class Menu {
           pass = sc.next();
           System.out.print("Ingrese el tipo de usuario: 1 para cliente y 2 para usuario: ");
           typeUser = sc.nextInt();
+
+
           usr =
               new User(
                   id,
@@ -581,31 +617,10 @@ public class Menu {
           employeeMenu();
           break;
         }
-        case 7:{//Reservar habitacion
-          System.out.println("Este modulo aun esta en construccion");
-          System.out.println("Lo sentimos mucho :(");
-          break;
-        }
-        case 8:{//Cancelar reserva
-          System.out.println("Este modulo aun esta en construccion");
-          System.out.println("Lo sentimos mucho :(");
-          break;
-        }
-        case 9:{//Solicitar membrecia
-            ControllerEmployee cm=new ControllerEmployee();
-            cm.membershipMenu();
-          break;
-        }
-        case 10:{//Cancelar membrecia
-          ControllerEmployee cm=new ControllerEmployee();
-          cm.cancelMenu();
-          break;
-        }
-          case 11:
+        case 7:
           { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;
-            close=opt;
             break;
           }
       }
