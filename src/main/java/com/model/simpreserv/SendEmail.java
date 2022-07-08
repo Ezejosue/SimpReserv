@@ -1,4 +1,4 @@
-package com.model.simpreserv;
+package com.hotelreservation.simpreserv;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -61,7 +61,7 @@ public class SendEmail {
             MimeBodyPart textPart = new MimeBodyPart();
 
             try {
-                File file = new  File("C:\\Users\\DELL\\Desktop\\Java\\SimpReserv\\SimpReserv.txt");
+                File file = new  File("src\\main\\java\\com\\file\\SimpReserv.txt");
 
                 attachmentPart.attachFile(file);
                 textPart.setText(msgText);
