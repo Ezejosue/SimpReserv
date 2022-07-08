@@ -617,7 +617,27 @@ public class Menu {
           employeeMenu();
           break;
         }
-        case 7:
+        case 7:{//Reservar habitacion
+          System.out.println("Este modulo aun esta en construccion");
+          System.out.println("Lo sentimos mucho :(");
+          break;
+        }
+        case 8:{//Cancelar reserva
+          System.out.println("Este modulo aun esta en construccion");
+          System.out.println("Lo sentimos mucho :(");
+          break;
+        }
+        case 9:{//Solicitar membrecia
+            ControllerEmployee cm=new ControllerEmployee();
+            cm.membershipMenu();
+          break;
+        }
+        case 10:{//Cancelar membrecia
+          ControllerEmployee cm=new ControllerEmployee();
+          cm.cancelMenu();
+          break;
+        }
+          case 11:
           { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;
