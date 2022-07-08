@@ -166,6 +166,8 @@ public class Menu {
             }
             id = cl.getId();
             System.out.println("Resultado: " + cl.toString());
+            System.out.println("Presione enter para continuar...");
+            new java.util.Scanner(System.in).nextLine();
             System.out.println("Seleccione la habitacion a reservar.");
             RoomMethods rmData = new RoomMethods();
             rmData.showRooms();
