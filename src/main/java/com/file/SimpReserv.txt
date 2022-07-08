@@ -1,0 +1,9 @@
+Hotel: Hotel Sea Sand
+Categoria: 4 Stars
+Direccion: Caribean Coast
+Descripcion: Penhouse with terrace and interior pool
+Tipo: Penhouse
+Piso: THIRD
+Numero: 35
+Precio: 224.99
+Cliente: Ana de Armas
