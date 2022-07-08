@@ -1,1 +1,9 @@
-Creando un archivo para nuestra aplicacion SimpReserv
+Hotel: Hotel Sea Sand
+Categoria: 4 Stars
+Direccion: Caribean Coast
+Descripcion: Suite
+Tipo: Single
+Piso: FIRST
+Numero: 11
+Precio: 84.99
+Cliente: Jhon Doe

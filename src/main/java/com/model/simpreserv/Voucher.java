@@ -22,13 +22,17 @@ public class Voucher implements Serializable {
   }
 
   public void printVoucher() {
+
     Client client = new Client();
     Employee employee = new Employee();
-   // Hotel hotel = new Hotel();
     Room room = new Room();
     HotelMethods hotelMethods = new HotelMethods();
     Hotel hotel = hotelMethods.loadRecord();
 
+    hotel.getName();
+    hotel.getLocation();
+    hotel.getCategory();
+    /*
     System.out.println("Codigo: " + this.getVoucherId());
     System.out.println("Precio: " + this.getPaymentAmount());
     System.out.println("Fecha: " + this.getIssueDate());
@@ -38,7 +42,7 @@ public class Voucher implements Serializable {
     System.out.println("Piso: " + room.getRoomFloor());
     System.out.println("Tipo habitacion: " + room.getRoomType());
     System.out.println("Nombre del cliente: " + client.getName());
-    System.out.println("Atendido por: " + employee.getName());
+    System.out.println("Atendido por: " + employee.getName());  */
 
   }
 
