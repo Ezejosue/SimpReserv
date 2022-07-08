@@ -1,20 +1,14 @@
 package com.model.simpreserv;
 
-import com.controller.ClientMethods;
 import com.controller.ControllerUser;
-import com.controller.UserMethods;
-import java.io.Serial;
-import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
-public class User implements Serializable {
-  @Serial
-  private static final long serialVersionUID = -7397263011125385531L;
-
+public class User {
+  SimpleDateFormat dtf = new SimpleDateFormat("yyyy/MM/dd");
   Calendar calendar = Calendar.getInstance();
 
   Date dateObj = calendar.getTime();
@@ -24,7 +18,11 @@ public class User implements Serializable {
   @Getter @Setter private int typeOfUser = 1;
   @Getter @Setter private Date registerDate = dateObj;
 
-  public User() {}
+  private User[] users = new User[3];
+
+  public User() {
+    chargeInformation();
+  }
 
   public User(int id, String userName, String password, int typeOfUser, Date registerDate) {
     this.id = id;
@@ -35,54 +33,33 @@ public class User implements Serializable {
   }
 
   public int login(String user, String pass) {
-    UserMethods userData = new UserMethods();
+    ControllerUser con = new ControllerUser();
 
-    int type = userData.findRecordByUserName(user).getTypeOfUser();
-    if (userData.findRecordByUserName(user).getUserName().equals(user)&&userData.findRecordByPassWord(pass).getPassword().equals(pass)&&type==1){
+    for (int i = 0; i < users.length; i++) {
+      if (con.validatePassword(users[i].getPassword(), pass) == true
+          && con.validateUser(users[i].getUserName(), user) == true
+          && con.validateTypeOfUser(users[i].getTypeOfUser()) == 1) {
         return 1;
-    } else if(userData.findRecordByUserName(user).getUserName().equals(user)&&userData.findRecordByPassWord(pass).getPassword().equals(pass)&&type==2){
-      return 2;
+      } else if (con.validatePassword(users[i].getPassword(), pass) == true
+          && con.validateUser(users[i].getUserName(), user) == true
+          && con.validateTypeOfUser(users[i].getTypeOfUser()) == 2) {
+        return 2;
+      }
     }
     return 0;
   }
 
+  public void chargeInformation() {
 
-  public void addUser(User newUser){
-    UserMethods userData = new UserMethods();
-    userData.addNewRecord(newUser);
+    User user = new User(1, "Josue", "12345", 1, dateObj);
+    users[0] = user;
+    User user2 = new User(2, "Carlos", "1234", 2, dateObj);
+    users[1] = user2;
+    User user3 = new User(3, "Stalyn", "123", 1, dateObj);
+    users[2] = user3;
   }
 
-  public User searchUserById(int id) {
-    UserMethods userData = new UserMethods();
-    return userData.findRecordById(id);
-  }
+  public void updateProfile() {}
 
-  public void updateUserById(int id, User user) {
-    UserMethods userData = new UserMethods();
-    userData.updateRecordById(id, user);
-  }
-
-  public void deleteUserById(int id) {
-    UserMethods userData = new UserMethods();
-    userData.deleteRecordById(id);
-  }
-
-
-
-  @Override
-  public String toString() {
-    return "User "
-        + "id "
-        + id
-        + " - "
-        + super.toString()
-        + " | userName: "
-        + userName
-        + " | password: "
-        + password
-        + "| typeOfClient: "
-        + typeOfUser
-        + "| registerDate: "
-        + registerDate;
-  }
+  public void passwordRecovery() {}
 }

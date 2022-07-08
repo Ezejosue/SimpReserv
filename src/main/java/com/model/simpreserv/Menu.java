@@ -10,7 +10,6 @@ import com.enums.RoomStatus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -368,7 +367,7 @@ public class Menu {
       System.out.println(
           "******           5-Eliminar Empleado                                  ******");
       System.out.println(
-          "******           6-Registrar Usuario                                  ******");
+          "******           6-Eliminar Cliente                                   ******");
       System.out.println(
           "******           7-Reservar Habitacion                                ******");
       System.out.println(
@@ -376,11 +375,9 @@ public class Menu {
       System.out.println(
           "******           9-Solicitar Membrecia                                ******");
       System.out.println(
-          "******           10-Cancelar Membrecia                                ******");
+          "******           10-Cancelar Membrecia                                 ******");
       System.out.println(
-          "******           11-Registrar Usuario                                 ******");
-      System.out.println(
-          "******           12-Salir                                             ******");
+          "******           11-Salir                                              ******");
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
@@ -424,7 +421,7 @@ public class Menu {
                     schedule);
             emp.addEmployee(emp);
 
-            System.out.println("Empleado agregado satisfactoriamente.");
+            System.out.println("Usuario agregado satisfactoriamente.");
 
             employeeMenu();
             break;
@@ -587,37 +584,6 @@ public class Menu {
             break;
           }
         case 6:
-        {
-          User usr;
-          Calendar calendar = Calendar.getInstance();
-
-          Date dateObj = calendar.getTime();
-          id = 0;
-          String user, pass;
-          int typeUser;
-          System.out.print("Ingrese el nombre del usuario: ");
-          user = sc.next();
-          System.out.print("Ingrese la clave: ");
-          pass = sc.next();
-          System.out.print("Ingrese el tipo de usuario: 1 para cliente y 2 para usuario: ");
-          typeUser = sc.nextInt();
-
-
-          usr =
-              new User(
-                  id,
-                  user,
-                  pass,
-                  typeUser,
-                  dateObj);
-          usr.addUser(usr);
-
-          System.out.println("Usuario agregado satisfactoriamente.");
-
-          employeeMenu();
-          break;
-        }
-        case 7:
           { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;

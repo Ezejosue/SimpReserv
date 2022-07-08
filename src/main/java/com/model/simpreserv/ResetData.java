@@ -5,12 +5,11 @@ import com.enums.EmployeeStatus;
 import com.enums.ReservationStatus;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
+
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
-import java.util.Calendar;
-import java.util.Date;
 public class ResetData {
   public void resetHotelData() {
     Hotel myHotel = new Hotel(1, "Hotel Sea Sand", "Caribean Coast", "4 Stars", 15);
@@ -268,20 +267,6 @@ public class ResetData {
     rsvData.saveAllRecords(reservations);
   }
 
-  public void resetUserData(){
-    Calendar calendar = Calendar.getInstance();
-    Date dateObj = calendar.getTime();
-    Map<Integer,User> users = new TreeMap<>();
-
-    users.put(1, new User(1, "Josue", "1234", 1, dateObj));
-    users.put(2, new User(2, "Carlos", "123", 2, dateObj));
-    users.put(3, new User(3, "Stalyn", "12345", 1, dateObj));
-
-    UserMethods userData = new UserMethods();
-    userData.saveAllRecords(users);
-
-  }
-
   public static void main(String[] args) {
     ResetData rs = new ResetData();
     rs.resetHotelData();
@@ -289,6 +274,5 @@ public class ResetData {
     rs.resetEmployeeData();
     rs.resetClientData();
     rs.resetReservationData();
-    rs.resetUserData();
   }
 }
