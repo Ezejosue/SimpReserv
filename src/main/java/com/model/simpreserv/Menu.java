@@ -5,6 +5,8 @@ import com.controller.ControllerEmployee;
 import com.controller.EmployeeMethods;
 import com.controller.RoomMethods;
 import com.enums.EmployeeStatus;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Menu {
@@ -166,7 +168,7 @@ public class Menu {
             roomNum = sc.nextInt();
 
             room = new Room();
-            room = room.findRoomByNumber(roomNum);
+            room = room.searchRoomByNumber(roomNum);
             idRoom = room.getId();
 
             /*reserva = new Reservation(idReserva, cl);*/
@@ -336,7 +338,7 @@ public class Menu {
       System.out.println(
           "******           5-Eliminar Empleado                                  ******");
       System.out.println(
-          "******           6-Eliminar Cliente                                   ******");
+          "******           6-Registrar Usuario                                  ******");
       System.out.println(
           "******           7-Reservar Habitacion                                ******");
       System.out.println(
@@ -344,9 +346,9 @@ public class Menu {
       System.out.println(
           "******           9-Solicitar Membrecia                                ******");
       System.out.println(
-          "******           10-Cancelar Membrecia                                 ******");
+          "******           10-Cancelar Membrecia                                ******");
       System.out.println(
-          "******           11-Salir                                              ******");
+          "******           11-Salir                                             ******");
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
@@ -552,8 +554,31 @@ public class Menu {
             employeeMenu();
             break;
           }
-        case 6:{//Eliminar cliente
-          System.out.println("Este modulo aun esta en construccion");
+        case 6:{//
+          User usr;
+          Calendar calendar = Calendar.getInstance();
+          Date dateObj = calendar.getTime();
+          id = 0;
+          String user, pass;
+          int typeUser;
+          System.out.print("Ingrese el nombre del usuario: ");
+          user = sc.next();
+          System.out.print("Ingrese la clave: ");
+          pass = sc.next();
+          System.out.print("Ingrese el tipo de usuario: 1 para cliente y 2 para usuario: ");
+          typeUser = sc.nextInt();
+          usr =
+              new User(
+                  id,
+                  user,
+                  pass,
+                  typeUser,
+                  dateObj);
+          usr.addUser(usr);
+
+          System.out.println("Usuario agregado satisfactoriamente.");
+
+          employeeMenu();
           break;
         }
         case 7:{//Reservar habitacion

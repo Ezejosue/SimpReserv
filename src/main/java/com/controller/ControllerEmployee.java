@@ -121,8 +121,8 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
         entry.getValue().setMembership(mn);
         cm.updateRecordById(entry.getKey(), entry.getValue());
         System.out.println("La membrecia ha sido agregada");
-      }else if(entry.getValue().getName().compareTo(name)!=0&& entries.hasNext()==false){
-        System.out.println("El nombre del cliente no es correcto");
+      }else if(entry.getValue().getName().compareTo(name)!=0&&entries.hasNext()==false){
+        //System.out.println("El nombre del cliente no es correcto");
         System.out.println("Favor consultar la lista de clientes a continuacion");
       }
     }
@@ -142,7 +142,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
         cm.updateRecordById(entry.getKey(), entry.getValue());
         System.out.println("La membrecia ha sido Cancelada");
       }else if(entry.getValue().getName().compareTo(name)!=0&& entries.hasNext()==false){
-        System.out.println("El nombre del cliente no es correcto");
+        //System.out.println("El nombre del cliente no es correcto");
         System.out.println("Favor consultar la lista de clientes a continuacion");
       }
     }
