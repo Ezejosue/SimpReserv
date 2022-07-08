@@ -1,9 +1,13 @@
 package com.model.simpreserv;
 
+import com.controller.RoomMethods;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Map;
+import java.util.TreeMap;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,8 +17,7 @@ public class Room implements Serializable {
   @Getter @Setter private int roomNumber;
   @Getter @Setter private RoomFloor roomFloor;
   @Getter @Setter private String roomDescription;
-  @Getter @Setter private String roomFeatures;
-  @Getter @Setter private float roomPrice;
+  @Getter @Setter private double roomPrice;
   @Getter @Setter private String roomType;
   @Getter @Setter private RoomStatus roomStatus;
 
@@ -23,29 +26,19 @@ public class Room implements Serializable {
       int roomNumber,
       RoomFloor roomFloor,
       String roomDescription,
-      String roomFeatures,
-      float roomPrice,
+      double roomPrice,
       String roomType,
       RoomStatus roomStatus) {
     this.id = id;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;
     this.roomDescription = roomDescription;
-    this.roomFeatures = roomFeatures;
     this.roomPrice = roomPrice;
     this.roomType = roomType;
     this.roomStatus = roomStatus;
   }
 
   public Room() {}
-
-  public void roomInfo(String roomType) {
-    System.out.println("Habitacion #: " + this.getRoomNumber());
-    System.out.println("Piso: " + this.getRoomFloor());
-    System.out.println("Descripcion: " + this.getRoomDescription());
-    System.out.println("Precio: " + this.getRoomPrice());
-    System.out.println("Estado: " + this.getRoomStatus());
-  }
 
   public int calculateRoomPrice(String roomType) {
     int price;
@@ -61,28 +54,27 @@ public class Room implements Serializable {
     return price;
   }
 
+  public Room searchRoomByNumber(int roomNumber){
+    RoomMethods rmData = new RoomMethods();
+    return rmData.findRecordByNumber(roomNumber);
+  }
+
+  public void changeRoomStatusById(int id, RoomStatus roomStatus){
+    RoomMethods rmData = new RoomMethods();
+    rmData.updateRecordStatusById(id, roomStatus);
+  }
+
   @Override
   public String toString() {
-    return "Room{"
-        + "id="
-        + id
-        + ", roomNumber="
-        + roomNumber
-        + ", roomFloor="
-        + roomFloor
-        + ", roomDescription='"
-        + roomDescription
-        + '\''
-        + ", roomFeatures='"
-        + roomFeatures
-        + '\''
-        + ", roomPrice="
-        + roomPrice
-        + ", roomType='"
-        + roomType
-        + '\''
-        + ", roomStatus="
-        + roomStatus
-        + '}';
+    return "Room Info: " +
+            " | id:  " + id +
+            " | roomNumber: " + roomNumber +
+            " | roomPrice:  " + roomPrice +
+            " | roomFloor:  " + roomFloor +
+            " | roomType:   " + roomType +
+            " | roomStatus: " + roomStatus +
+            " | roomDescription: " + roomDescription +
+            " \n";
   }
+
 }

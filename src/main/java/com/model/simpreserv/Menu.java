@@ -2,15 +2,24 @@ package com.model.simpreserv;
 
 import com.controller.ClientMethods;
 import com.controller.EmployeeMethods;
+import com.controller.ReservationMethods;
+import com.controller.RoomMethods;
 import com.enums.EmployeeStatus;
+import com.enums.ReservationStatus;
+import com.enums.RoomStatus;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
 
   Clear cls = new Clear();
 
-  public void loggingMenu(String user, String pass) {
+  public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
     if (users.login(user, pass) == 1) {
       userMenu();
@@ -22,7 +31,7 @@ public class Menu {
     }
   }
 
-  public void login() {
+  public void login() throws ParseException {
     System.out.println("Ingresa tu usuario: ");
     String user = sc.next();
 
@@ -32,7 +41,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize() {
+  public void initialize() throws ParseException {
 
     System.out.println(
         "****************************************************************************");
@@ -64,7 +73,7 @@ public class Menu {
     }
   }
 
-  public void userMenu() {
+  public void userMenu() throws ParseException {
     int id;
     Membership membership = new Membership();
     CreditCard creditCardInfo = new CreditCard();
@@ -74,6 +83,14 @@ public class Menu {
     String numberOfDocument;
     String email;
     Client cl;
+
+    Reservation reserva;
+    int idReserva;
+    Room room;
+    int idRoom;
+    int roomNum;
+    Employee emp;
+
     int close = 0;
     do {
       System.out.println(
@@ -91,7 +108,7 @@ public class Menu {
       System.out.println(
           "******           1-Registrar cliente                                  ******");
       System.out.println(
-          "******           2-Cancelar reserva                                   ******");
+          "******           2-Crear reservacion                                  ******");
       System.out.println(
           "******           3-Eliminar cliente                                   ******");
       System.out.println(
@@ -124,16 +141,66 @@ public class Menu {
             cl = new Client(membership, creditCardInfo, id, completeName, birthDay, gender, numberOfDocument, email);
             cl.addClient(cl);
 
-            System.out.println("cliente agregado satisfactoriamente.");
+            System.out.println("Cliente agregado satisfactoriamente.");
 
             userMenu();
             break;
           }
         case 2:
-          { // Cancelar reserva
-            System.out.println("Esta seguro de que quiere cancelar su reserva");
-            System.out.println("1-Si");
-            System.out.println("1-No");
+          { // Crear reserva
+            id = 0;
+            idRoom = 0;
+            idReserva = 0;
+            System.out.println("Seleccione el cliente para hacer la reservacion.");
+            System.out.println("Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
+            int opcion = sc.nextInt();
+            cl = new Client();
+            if (opcion == 1) {
+              System.out.print("Ingrese el numero de documento del cliente a buscar: ");
+              numberOfDocument = sc.next();
+              cl = cl.searchClientByDocNumber(numberOfDocument);
+            } else if (opcion == 2) {
+              System.out.print("Ingrese el id de cliente a buscar: ");
+              id = sc.nextInt();
+              cl = cl.searchClientById(id);
+            }
+            id = cl.getId();
+            System.out.println("Resultado: " + cl.toString());
+            System.out.println("Seleccione la habitacion a reservar.");
+            RoomMethods rmData = new RoomMethods();
+            rmData.showRooms();
+            System.out.print("Ingrese el numero de habitacion: ");
+            roomNum = sc.nextInt();
+
+            System.out.print("Ingrese la fecha de inicio de la reservacion: ");
+            String sTemp = sc.next();
+            Date checkIn = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            System.out.print("Ingrese la fecha de fin de la reservacion: ");
+            sTemp = sc.next();
+            Date checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+
+            long difInOut = Math.abs(checkOut.getTime() - checkIn.getTime());
+            long days = TimeUnit.DAYS.convert(difInOut, TimeUnit.MILLISECONDS);
+
+            room = new Room();
+            room = room.searchRoomByNumber(roomNum);
+            idRoom = room.getId();
+            double priceReserva = days * room.getRoomPrice();
+
+            emp = new Employee();
+            emp = emp.searchEmployeeById(3);
+
+            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM);
+            reserva.createReservation(reserva);
+
+            System.out.println("La reservacion se ha realizado satisfactoriamente.");
+
+            room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
+
+            ReservationMethods rsvData = new ReservationMethods();
+            rsvData.showReservations();
+
+            userMenu();
             break;
           }
         case 3:
@@ -143,7 +210,7 @@ public class Menu {
             int opcion = sc.nextInt();
             cl = new Client();
             if (opcion == 1) {
-              System.out.print("Ingrese el numero de documeto del cliente a buscar: ");
+              System.out.print("Ingrese el numero de documento del cliente a buscar: ");
               numberOfDocument = sc.next();
               cl = cl.searchClientByDocNumber(numberOfDocument);
             } else if (opcion == 2) {

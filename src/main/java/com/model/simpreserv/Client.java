@@ -59,14 +59,14 @@ public class Client extends Person implements Serializable {
 
   @Override
   public String toString() {
-    return "Client{"
-        + "id="
+    return "Client "
+        + "id "
         + id
-        + ", membership="
+        + " - "
+        + super.toString()
+        + " | Membership: "
         + membership
-        + ", creditCardInfo="
-        + creditCardInfo
-        + "} "
-        + super.toString();
+        + " | CreditCardInfo: "
+        + creditCardInfo;
   }
 }

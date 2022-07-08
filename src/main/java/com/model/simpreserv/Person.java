@@ -26,22 +26,17 @@ public abstract class Person implements Serializable {
 
   @Override
   public String toString() {
-    return "Person{"
-        + "name='"
+    return " | "
+        + " Name: "
         + name
-        + '\''
-        + ", dateOfBirth='"
+        + " | Birthday: "
         + dateOfBirth
-        + '\''
-        + ", gender='"
+        + " | Gender: "
         + gender
-        + '\''
-        + ", numberOfDocument='"
+        + " | Doc Id #: "
         + numberOfDocument
-        + '\''
-        + ", email='"
+        + " | eMail: "
         + email
-        + '\''
-        + '}';
+        + " | ";
   }
 }

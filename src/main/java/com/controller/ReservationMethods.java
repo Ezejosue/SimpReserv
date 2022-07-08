@@ -1,9 +1,11 @@
 package com.controller;
 
+import com.model.simpreserv.Client;
 import com.model.simpreserv.ReadObject;
 import com.model.simpreserv.Reservation;
 import com.model.simpreserv.WriteObject;
 import com.enums.ReservationStatus;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
@@ -16,15 +18,15 @@ public class ReservationMethods {
   }
 
   private Map<Integer, Reservation> readFromFile() {
-    try (FileInputStream fis = new FileInputStream(filePath)) {
-      ReadObject ro = new ReadObject(filePath);
-      return (Map<Integer, Reservation>) ro.loadInputStream(fis);
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
+      try (FileInputStream fis = new FileInputStream(filePath)) {
+        ReadObject ro = new ReadObject(filePath);
+        return (Map<Integer, Reservation>) ro.loadInputStream(fis);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
   }
 
-  private void saveAllRecords(Map<Integer, Reservation> listRecords) {
+  public void saveAllRecords(Map<Integer, Reservation> listRecords) {
     WriteObject wo = new WriteObject(filePath, listRecords);
     wo.writeToFile();
   }
@@ -33,9 +35,17 @@ public class ReservationMethods {
     return readFromFile();
   }
 
-  public void addNewRecord(int id, Reservation newReservation) {
+  public void addNewRecord(Reservation newReservation) {
+    int lastId;
     Map<Integer, Reservation> list = loadAllRecords();
-    list.put(id, newReservation);
+    if (list.size() != 0) {
+      lastId = list.get(list.size()).getId();
+    } else {
+      lastId = 0;
+    }
+    lastId++;
+    newReservation.setId(lastId);
+    list.put(lastId, newReservation);
     saveAllRecords(list);
   }
 
@@ -72,5 +82,12 @@ public class ReservationMethods {
     Map<Integer, Reservation> list = loadAllRecords();
     list.remove(id);
     saveAllRecords(list);
+  }
+
+  public void showReservations() {
+    Map<Integer, Reservation> list = loadAllRecords();
+    for (Map.Entry<Integer, Reservation> item : list.entrySet()) {
+      System.out.println(item.getKey() + " - " + item.getValue());
+    }
   }
 }
