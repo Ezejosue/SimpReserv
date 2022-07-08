@@ -65,23 +65,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
 
   @Override//Solicitar membrecia
   public void requestMembership(Client client, String name) {
-    List<Client> list=new ArrayList<>();
-    for (int i=0;i<list.size();i++){
-      if (list.get(i).getName().compareTo("Jose")==0){
-        client=list.get(i);
-        list.remove(i);
-      }
-    }
-
-    if (client.getMembership()==null){
-     // client.setMembership(mn);
-      list.add(client);
-    }
-
-    for (Client cl:list) {
-      System.out.println(cl);
-    }
-
+   
   }
 /*
   @Override //Metodo cancela la membresia
