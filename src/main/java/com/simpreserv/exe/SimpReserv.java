@@ -1,19 +1,21 @@
 package com.simpreserv.exe;
 
+import com.hotelreservation.simpreserv.SendEmail;
 import com.model.simpreserv.Menu;
+import com.model.simpreserv.Voucher;
 
 public class SimpReserv {
 
   public static void main(String[] args) {
 
-    CreateFile createFile = new CreateFile();
-    createFile.setCreateFile();
+    Voucher voucher = new Voucher(200.5);
+    voucher.printVoucher();
 
-    SendEmail sendEmail = new SendEmail();
-    sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Hilton2", "En el archivo adjunto esta toda la informacion de su reserva2");
+   // SendEmail sendEmail = new SendEmail();
+  //  sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Hilton", "En el archivo adjunto esta toda la informacion de su reserva");
 
-    Menu login = new Menu();
-    login.initialize();
+   // Menu login = new Menu();
+   // login.initialize();
 
   }
 }

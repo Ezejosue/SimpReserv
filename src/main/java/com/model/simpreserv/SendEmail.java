@@ -61,7 +61,7 @@ public class SendEmail {
             MimeBodyPart textPart = new MimeBodyPart();
 
             try {
-                File file = new  File("C:\\Users\\DELL\\Desktop\\Java\\SimpReserv\\SimpReserv.txt");
+                File file = new  File("C:\\Users\\DELL\\Desktop\\Java\\SimpReserv\\src\\main\\java\\com\\file\\SimpReserv.txt");
 
                 attachmentPart.attachFile(file);
                 textPart.setText(msgText);

@@ -3,6 +3,8 @@ package com.model.simpreserv;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+
+import com.controller.HotelMethods;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,11 +24,22 @@ public class Voucher implements Serializable {
   public void printVoucher() {
     Client client = new Client();
     Employee employee = new Employee();
+   // Hotel hotel = new Hotel();
+    Room room = new Room();
+    HotelMethods hotelMethods = new HotelMethods();
+    Hotel hotel = hotelMethods.loadRecord();
 
-    System.out.println(this.getVoucherId());
-    System.out.println(this.getPaymentAmount());
-    System.out.println(this.getIssueDate());
-    System.out.println(client.toString());
+    System.out.println("Codigo: " + this.getVoucherId());
+    System.out.println("Precio: " + this.getPaymentAmount());
+    System.out.println("Fecha: " + this.getIssueDate());
+    System.out.println("Hotel: " + hotel.getName());
+    System.out.println("Direccion: " + hotel.getLocation());
+    System.out.println("Numero habitacion: " + room.getRoomNumber());
+    System.out.println("Piso: " + room.getRoomFloor());
+    System.out.println("Tipo habitacion: " + room.getRoomType());
+    System.out.println("Nombre del cliente: " + client.getName());
+    System.out.println("Atendido por: " + employee.getName());
+
   }
 
   @Override
