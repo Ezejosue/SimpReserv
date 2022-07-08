@@ -73,11 +73,16 @@ public class ControllerClient implements ClientControllerInterface, ControllerIn
   public void viewHotelInformation() {}
 
   @Override
-  public void viewCard() {}
+  public void viewCard(String name) {}
 
   @Override
   public void updateCard() {}
 
   @Override
-  public void removeCard() {}
+  public void removeCard(String cardOwner) {}
+
+  @Override
+  public void addCard(String cardOwner, String cardName, String expDate) {
+
+  }
 }

@@ -1,11 +1,13 @@
 package com.controller;
 
+import com.model.simpreserv.Client;
 import com.model.simpreserv.Hotel;
 import com.model.simpreserv.ReadObject;
 import com.model.simpreserv.WriteObject;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 
 public class HotelMethods {
   private final String filePath;

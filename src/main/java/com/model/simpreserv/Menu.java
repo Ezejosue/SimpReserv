@@ -1,6 +1,7 @@
 package com.model.simpreserv;
 
 import com.controller.ClientMethods;
+import com.controller.ControllerEmployee;
 import com.controller.EmployeeMethods;
 import com.controller.RoomMethods;
 import com.enums.EmployeeStatus;
@@ -295,7 +296,7 @@ public class Menu {
   }
 
   public void employeeMenu() {
-    int close = 0;
+    int close = 1;
 
     int id;
     String name;
@@ -527,7 +528,7 @@ public class Menu {
             break;
           }
         case 5:
-          { // Cancelar Membrecia
+          { // Cancelar Empleado
             System.out.print(
                 "Digite 1 para buscar empleado por carnet o 2 para buscar empleado por Id:");
             int opcion = sc.nextInt();
@@ -551,10 +552,33 @@ public class Menu {
             employeeMenu();
             break;
           }
-        case 6:
+        case 6:{//Eliminar cliente
+          System.out.println("Este modulo aun esta en construccion");
+          break;
+        }
+        case 7:{//Reservar habitacion
+          System.out.println("Este modulo aun esta en construccion");
+          break;
+        }
+        case 8:{//Cancelar reserva
+          System.out.println("Este modulo aun esta en construccion");
+          break;
+        }
+        case 9:{//Solicitar membrecia
+            ControllerEmployee cm=new ControllerEmployee();
+            cm.membershipMenu();
+          break;
+        }
+        case 10:{//Cancelar membrecia
+          ControllerEmployee cm=new ControllerEmployee();
+          cm.cancelMenu();
+          break;
+        }
+          case 11:
           { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;
+            close=opt;
             break;
           }
       }
