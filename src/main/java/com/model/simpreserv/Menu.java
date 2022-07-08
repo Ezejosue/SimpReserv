@@ -1,6 +1,7 @@
 package com.model.simpreserv;
 
 import com.controller.ClientMethods;
+import com.controller.ControllerEmployee;
 import com.controller.EmployeeMethods;
 import com.controller.ReservationMethods;
 import com.controller.RoomMethods;
