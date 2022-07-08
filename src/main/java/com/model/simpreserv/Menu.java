@@ -197,6 +197,17 @@ public class Menu {
 
             room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
 
+            HotelMethods hotelMethods = new HotelMethods();
+            Hotel hotel = hotelMethods.loadRecord();
+
+            CreateFile createFile = new CreateFile();
+            createFile.setCreateFile(hotel, cl, room);
+
+            SendEmail sendEmail = new SendEmail();
+            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
+                    "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
+            System.out.println("Se ha enviado correo de confirmacion de reservacion.");
+
             ReservationMethods rsvData = new ReservationMethods();
             rsvData.showReservations();
 

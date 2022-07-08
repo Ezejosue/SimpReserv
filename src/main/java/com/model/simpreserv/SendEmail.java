@@ -1,4 +1,4 @@
-package com.hotelreservation.simpreserv;
+package com.model.simpreserv;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
