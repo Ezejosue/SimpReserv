@@ -19,4 +19,5 @@ public interface EmployeeControllerInterface {
   public void requestMembership(String membership, String name);
 
    public void cancelMembership(String name);
+
 }

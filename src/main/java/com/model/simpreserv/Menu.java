@@ -558,10 +558,12 @@ public class Menu {
         }
         case 7:{//Reservar habitacion
           System.out.println("Este modulo aun esta en construccion");
+          System.out.println("Lo sentimos mucho :(");
           break;
         }
         case 8:{//Cancelar reserva
           System.out.println("Este modulo aun esta en construccion");
+          System.out.println("Lo sentimos mucho :(");
           break;
         }
         case 9:{//Solicitar membrecia

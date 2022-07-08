@@ -113,6 +113,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     MembershipType mt=new MembershipType(membership);
     Membership mn=new Membership(mt);
 
+
     Iterator<Map.Entry<Integer, Client>> entries = cm.loadAllRecords().entrySet().iterator();
     while (entries.hasNext()) {
       Map.Entry<Integer, Client> entry = entries.next();
@@ -120,6 +121,9 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
         entry.getValue().setMembership(mn);
         cm.updateRecordById(entry.getKey(), entry.getValue());
         System.out.println("La membrecia ha sido agregada");
+      }else if(entry.getValue().getName().compareTo(name)!=0&& entries.hasNext()==false){
+        System.out.println("El nombre del cliente no es correcto");
+        System.out.println("Favor consultar la lista de clientes a continuacion");
       }
     }
     cm.showClients();
@@ -137,6 +141,9 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
         entry.getValue().setMembership(null);
         cm.updateRecordById(entry.getKey(), entry.getValue());
         System.out.println("La membrecia ha sido Cancelada");
+      }else if(entry.getValue().getName().compareTo(name)!=0&& entries.hasNext()==false){
+        System.out.println("El nombre del cliente no es correcto");
+        System.out.println("Favor consultar la lista de clientes a continuacion");
       }
     }
     cm.showClients();
@@ -173,8 +180,5 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     String var=sc.nextLine();
     cm.cancelMembership(var);
   }
-  public static void main(String[] args) {
-    ControllerEmployee cm=new ControllerEmployee();
-    cm.cancelMembership("Jhon Doe");
-  }
+
 }
