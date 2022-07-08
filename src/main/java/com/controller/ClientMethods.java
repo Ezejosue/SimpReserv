@@ -47,10 +47,11 @@ public class ClientMethods {
     saveAllRecords(list);
   }
 
-  public Client findRecordById(int id) {
+  public Client findRecordById(int id) {//Devuelve una lista
     Map<Integer, Client> list = loadAllRecords();
     return list.get(id);
   }
+
 
   public Client findRecordByDocNumber(String docNumber) {
     Map<Integer, Client> list = loadAllRecords();

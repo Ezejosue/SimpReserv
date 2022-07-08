@@ -14,9 +14,11 @@ public interface ControllerInterface {
 
   public void viewHotelInformation();
 
-  public void viewCard();
+  public void viewCard(String name);
 
   public void updateCard();
 
-  public void removeCard();
+  public void removeCard(String cardOwner);
+
+  public void addCard(String cardOwner, String cardName, String expDate);
 }

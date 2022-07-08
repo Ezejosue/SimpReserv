@@ -8,8 +8,6 @@ public interface EmployeeControllerInterface {
 
   public void processRefund();
 
-  public void sendEmail();
-
   public void updateNights();
 
   public Client createUser();
@@ -18,7 +16,8 @@ public interface EmployeeControllerInterface {
 
   public Client removeUser();
 
-  public void requestMembership(Client client, String name);
+  public void requestMembership(String membership, String name);
 
-  // public void cancelMembership(Client client, String name);
+   public void cancelMembership(String name);
+
 }
