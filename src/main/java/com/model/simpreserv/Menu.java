@@ -378,7 +378,7 @@ public class Menu {
       System.out.println(
           "******           6-Registrar Usuario                                  ******");
       System.out.println(
-          "******           7-Reservar Habitacion                                ******");
+          "******           7-Actualizar Usuario                                 ******");
       System.out.println(
           "******           8-Cancelar reserva                                   ******");
       System.out.println(
@@ -634,9 +634,50 @@ public class Menu {
 
           break;
         }
-        case 7:{//Reservar habitacion
-          System.out.println("Este modulo aun esta en construccion");
-          System.out.println("Lo sentimos mucho :(");
+        case 7:{//Modificar usuario
+          User usr;
+          id = 0;
+          System.out.print(
+              "Digite 1 para buscar usuario por id o 2 para buscar por username: ");
+          int opcion = sc.nextInt();
+          usr = new User();
+          if (opcion == 1) {
+            System.out.print("Ingrese el id del usuario a buscar: ");
+            id = sc.nextInt();
+            usr = usr.searchUserById(id);
+          } else if (opcion == 2) {
+            System.out.print("Ingrese el username del usuario a buscar: ");
+            String Uname = sc.next();
+            usr = usr.searchUserByName(Uname);
+          }
+
+          id = usr.getId();
+          System.out.println("Resultado: " + usr.toString());
+          System.out.println("Seleccione el campo que desea modificar (1 - 3): ");
+          opcion = sc.nextInt();
+          switch (opcion) {
+            case 1:
+              System.out.print("Digite el nuevo nombre: ");
+              String user = sc.next();
+              usr.setUserName(user);
+              usr.updateUserById(id, usr);
+              employeeMenu();
+              break;
+            case 2:
+              System.out.print("Digite la nueva clave: ");
+              String pass = sc.next();
+              usr.setPassword(pass);
+              usr.updateUserById(id, usr);
+              employeeMenu();
+              break;
+            case 3:
+              System.out.print("Digite el tipo de usuario: ");
+              int type = sc.nextInt();
+              usr.setTypeOfUser(type);
+              usr.updateUserById(id, usr);
+              employeeMenu();
+              break;
+          }
           break;
         }
         case 8:{//Cancelar reserva
