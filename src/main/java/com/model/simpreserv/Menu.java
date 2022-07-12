@@ -203,7 +203,7 @@ public class Menu {
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
-            SendEmail sendEmail = new SendEmail();
+            com.hotelreservation.simpreserv.SendEmail sendEmail = new com.hotelreservation.simpreserv.SendEmail();
             sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
@@ -596,6 +596,7 @@ public class Menu {
           }
         case 6:
         {
+          Validator validate = new Validator();
           User usr;
           Calendar calendar = Calendar.getInstance();
 
@@ -610,19 +611,27 @@ public class Menu {
           System.out.print("Ingrese el tipo de usuario: 1 para cliente y 2 para usuario: ");
           typeUser = sc.nextInt();
 
+          if (validate.formatUsername(user)&&validate.formatPassword(pass)&&validate.validateTypeUser(typeUser)){
+            usr =
+                new User(
+                    id,
+                    user,
+                    pass,
+                    typeUser,
+                    dateObj);
 
-          usr =
-              new User(
-                  id,
-                  user,
-                  pass,
-                  typeUser,
-                  dateObj);
-          usr.addUser(usr);
+            usr.addUser(usr, user);
+            System.out.println("Presione enter para continuar...");
+            new java.util.Scanner(System.in).nextLine();
+            employeeMenu();
+          } else {
+            System.out.println("Presione enter para continuar...");
+            new java.util.Scanner(System.in).nextLine();
+            employeeMenu();
+          }
 
-          System.out.println("Usuario agregado satisfactoriamente.");
 
-          employeeMenu();
+
           break;
         }
         case 7:{//Reservar habitacion
