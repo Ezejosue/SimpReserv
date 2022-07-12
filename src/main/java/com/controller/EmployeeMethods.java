@@ -64,6 +64,18 @@ public class EmployeeMethods {
     return employee;
   }
 
+  public Employee findRecordByName(String name) {
+    Map<Integer, Employee> list = loadAllRecords();
+    Employee employee = new Employee();
+    for (Map.Entry<Integer, Employee> item : list.entrySet()) {
+      if (item.getValue().getName().equals(name)) {
+        employee = item.getValue();
+        break;
+      }
+    }
+    return employee;
+  }
+
   public void updateRecordById(int id, Employee newEmployee) {
     Map<Integer, Employee> list = loadAllRecords();
     list.replace(id, newEmployee);

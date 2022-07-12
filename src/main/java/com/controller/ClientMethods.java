@@ -47,17 +47,28 @@ public class ClientMethods {
     saveAllRecords(list);
   }
 
-  public Client findRecordById(int id) {//Devuelve una lista
+  public Client findRecordById(int id) {
     Map<Integer, Client> list = loadAllRecords();
     return list.get(id);
   }
-
 
   public Client findRecordByDocNumber(String docNumber) {
     Map<Integer, Client> list = loadAllRecords();
     Client client = new Client();
     for (Map.Entry<Integer, Client> item : list.entrySet()) {
       if (item.getValue().getNumberOfDocument().equals(docNumber)) {
+        client = item.getValue();
+        break;
+      }
+    }
+    return client;
+  }
+
+  public Client findRecordByName(String name){
+    Map<Integer, Client> list = loadAllRecords();
+    Client client = new Client();
+    for (Map.Entry<Integer, Client> item : list.entrySet()) {
+      if (item.getValue().getName().equals(name)) {
         client = item.getValue();
         break;
       }

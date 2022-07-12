@@ -47,6 +47,11 @@ public class Client extends Person implements Serializable {
     return cltData.findRecordByDocNumber(docNumber);
   }
 
+  public Client searchClientByName(String name){
+    ClientMethods cltData = new ClientMethods();
+    return cltData.findRecordByName(name);
+  }
+
   public void updateClientById(int id, Client clt) {
     ClientMethods cltData = new ClientMethods();
     cltData.updateRecordById(id, clt);

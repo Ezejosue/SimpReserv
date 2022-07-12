@@ -56,6 +56,11 @@ public class Employee extends Person implements Serializable {
     return empData.findRecordByCardCompany(cardCompany);
   }
 
+  public Employee searchEmployeeByName(String name){
+    EmployeeMethods empData = new EmployeeMethods();
+    return empData.findRecordByName(name);
+  }
+
   public void updateEmployeeById(int id, Employee emp) {
     EmployeeMethods empData = new EmployeeMethods();
     empData.updateRecordById(id, emp);

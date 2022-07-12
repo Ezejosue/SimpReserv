@@ -1,10 +1,6 @@
 package com.model.simpreserv;
 
-import com.controller.ClientMethods;
-import com.controller.ControllerEmployee;
-import com.controller.EmployeeMethods;
-import com.controller.ReservationMethods;
-import com.controller.RoomMethods;
+import com.controller.*;
 import com.enums.EmployeeStatus;
 import com.enums.ReservationStatus;
 import com.enums.RoomStatus;
@@ -194,7 +190,7 @@ public class Menu {
             emp = new Employee();
             emp = emp.searchEmployeeById(3);
 
-            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM);
+            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM, false);
             reserva.createReservation(reserva);
 
             System.out.println("La reservacion se ha realizado satisfactoriamente.");
