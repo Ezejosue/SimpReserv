@@ -262,7 +262,7 @@ public class ResetData {
     Employee emp = new Employee();
     Room room = new Room();
 
-    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD));
+    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD, false));
 
     ReservationMethods rsvData = new ReservationMethods();
     rsvData.saveAllRecords(reservations);
