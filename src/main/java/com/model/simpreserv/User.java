@@ -63,6 +63,10 @@ public class User implements Serializable {
     UserMethods userData = new UserMethods();
     return userData.findRecordById(id);
   }
+  public User searchUserByName(String username) {
+    UserMethods userData = new UserMethods();
+    return userData.findRecordByUserName(username);
+  }
 
   public void updateUserById(int id, User user) {
     UserMethods userData = new UserMethods();
