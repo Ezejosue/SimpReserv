@@ -47,10 +47,10 @@ public class SendEmail {
         // Get the Session object.
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
-                            protected PasswordAuthentication getPasswordAuthentication() {
-                                return new PasswordAuthentication(FROM, PASS);
-                            }
-                        });
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(FROM, PASS);
+            }
+        });
 
         session.setDebug(false); // Used to debug SMTP issues
 
@@ -71,22 +71,24 @@ public class SendEmail {
             try {
 
 
-            File file = new  File(FILE_PATH);
+                File file = new File(FILE_PATH);
 
-            attachmentPart.attachFile(file);
-            textPart.setText(msgText);
-            multipart.addBodyPart(textPart);
-            multipart.addBodyPart(attachmentPart);
+                attachmentPart.attachFile(file);
+                textPart.setText(msgText);
+                multipart.addBodyPart(textPart);
+                multipart.addBodyPart(attachmentPart);
 
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             message.setContent(multipart);
             Transport.send(message); // Send email message
 
         } catch (MessagingException e) {
             throw new RuntimeException(e);
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
+        }
+
+    }
 }
