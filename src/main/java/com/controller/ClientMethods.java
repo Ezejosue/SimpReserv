@@ -64,6 +64,18 @@ public class ClientMethods {
     return client;
   }
 
+  public Client findRecordByName(String name){
+    Map<Integer, Client> list = loadAllRecords();
+    Client client = new Client();
+    for (Map.Entry<Integer, Client> item : list.entrySet()) {
+      if (item.getValue().getName().equals(name)) {
+        client = item.getValue();
+        break;
+      }
+    }
+    return client;
+  }
+
   public void updateRecordById(int id, Client newClient) {
     Map<Integer, Client> list = loadAllRecords();
     list.replace(id, newClient);

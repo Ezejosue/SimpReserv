@@ -19,6 +19,7 @@ public class Reservation implements Serializable {
   @Getter @Setter private Date checkOutDate;
   @Getter @Setter private double reservationPrice;
   @Getter @Setter private ReservationStatus reservationStatus;
+  @Getter @Setter private boolean paidStatus;
 
   public Reservation(
       int id,
@@ -29,7 +30,8 @@ public class Reservation implements Serializable {
       Date checkInDate,
       Date checkOutDate,
       double reservationPrice,
-      ReservationStatus reservationStatus) {
+      ReservationStatus reservationStatus,
+      boolean paidStatus) {
     this.id = id;
     this.client = client;
     this.employee = employee;
@@ -39,6 +41,7 @@ public class Reservation implements Serializable {
     this.checkOutDate = checkOutDate;
     this.reservationPrice = reservationPrice;
     this.reservationStatus = reservationStatus;
+    this.paidStatus = paidStatus;
   }
 
   public Reservation() {}
@@ -52,14 +55,15 @@ public class Reservation implements Serializable {
   public String toString() {
     return "Reservation{" +
             "id=" + id +
-            ", client=" + client +
-            ", employee=" + employee +
-            ", room=" + room +
-            ", reservationDate=" + reservationDate +
-            ", checkInDate=" + checkInDate +
-            ", checkOutDate=" + checkOutDate +
-            ", reservationPrice=" + reservationPrice +
-            ", reservationStatus=" + reservationStatus +
+            " | client=" + client +
+            " | employee=" + employee +
+            " | room=" + room +
+            " | reservationDate=" + reservationDate +
+            " | checkInDate=" + checkInDate +
+            " | checkOutDate=" + checkOutDate +
+            " | reservationPrice=" + reservationPrice +
+            " | reservationStatus=" + reservationStatus +
+            " | paidStatus=" + paidStatus +
             '}';
   }
 }

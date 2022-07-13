@@ -12,7 +12,6 @@ public class Membership implements Serializable {
   @Setter @Getter private MembershipType membershipType;
   @Setter @Getter private String description;
   @Setter @Getter private double discountPercentage;
-
   @Setter @Getter private int pointsAmount;
 
   public Membership(MembershipType membership) {

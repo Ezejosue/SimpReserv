@@ -33,5 +33,9 @@ public class SimpReserv {
    // Menu login = new Menu();
    // login.initialize();
 
+    Menu login = new Menu();
+    login.initialize();
+
+
   }
 }
