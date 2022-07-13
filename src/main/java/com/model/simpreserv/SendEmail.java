@@ -1,4 +1,4 @@
-package com.hotelreservation.simpreserv;
+package com.model.simpreserv;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -69,7 +69,6 @@ public class SendEmail {
 
 
             try {
-                File file = new  File("src\\main\\java\\com\\file\\SimpReserv.txt");
 
 
             File file = new  File(FILE_PATH);

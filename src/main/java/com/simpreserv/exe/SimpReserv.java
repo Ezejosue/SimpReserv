@@ -3,7 +3,6 @@ package com.simpreserv.exe;
 import com.controller.ClientMethods;
 import com.controller.HotelMethods;
 import com.controller.RoomMethods;
-import com.hotelreservation.simpreserv.SendEmail;
 import com.model.simpreserv.*;
 
 import java.text.ParseException;
