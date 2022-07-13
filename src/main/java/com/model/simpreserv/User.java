@@ -47,14 +47,25 @@ public class User implements Serializable {
   }
 
 
-  public void addUser(User newUser){
+  public void addUser(User newUser, String userN){
     UserMethods userData = new UserMethods();
-    userData.addNewRecord(newUser);
+    if (userData.findRecordByUserName(userN).getUserName().equals(userN))
+    {
+      System.out.println("Ese nombre de usuario ya existe!!");
+    } else {
+
+      userData.addNewRecord(newUser);
+      System.out.println("Usuario agregado satisfactoriamente.");
+    }
   }
 
   public User searchUserById(int id) {
     UserMethods userData = new UserMethods();
     return userData.findRecordById(id);
+  }
+  public User searchUserByName(String username) {
+    UserMethods userData = new UserMethods();
+    return userData.findRecordByUserName(username);
   }
 
   public void updateUserById(int id, User user) {
