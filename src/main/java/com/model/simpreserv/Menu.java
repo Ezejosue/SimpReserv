@@ -596,7 +596,7 @@ public class Menu {
           }
         case 6:
         {
-          Validator validate = new Validator();
+          UserValidator validate = new UserValidator();
           User usr;
           Calendar calendar = Calendar.getInstance();
 
