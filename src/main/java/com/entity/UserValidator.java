@@ -1,6 +1,6 @@
 package com.entity;
 
-public interface Validator {
+public interface UserValidator {
   public String formatDate(String date);
   public boolean formatPassword(String pass);
   public boolean formatUsername(String user);
