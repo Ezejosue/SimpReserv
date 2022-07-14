@@ -7,5 +7,3 @@ Piso: FIRST
 Numero: 11
 Precio: 84.99
 Cliente: Jhon Doe
-
-

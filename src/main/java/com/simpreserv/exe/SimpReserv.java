@@ -11,7 +11,10 @@ public class SimpReserv {
 
   public static void main(String[] args) throws ParseException {
 
-    /*HotelMethods hotelMethods = new HotelMethods();
+    Loger loger = new Loger();
+    Loger.createLogger();
+
+   /* HotelMethods hotelMethods = new HotelMethods();
     Hotel hotel = hotelMethods.loadRecord();
 
     ClientMethods clientMethods = new ClientMethods();
