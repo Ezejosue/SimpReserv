@@ -392,6 +392,7 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
+      validator val = new validator();
       switch (opt) {
         case 1:
           { // Registrar Usuario
@@ -417,24 +418,29 @@ public class Menu {
             System.out.print("Ingrese el turno de trabajo del empleado: ");
             schedule = sc.next();
 
-            emp =
-                new Employee(
-                    id,
-                    name,
-                    dateOfBirth,
-                    gender,
-                    numberOfDocument,
-                    email,
-                    cardCompany,
-                    salary,
-                    status,
-                    position,
-                    schedule);
-            emp.addEmployee(emp);
+            if (val.validateLetters(name))
+            {
 
-            System.out.println("Empleado agregado satisfactoriamente.");
-
-            employeeMenu();
+                emp =
+                    new Employee(
+                        id,
+                        name,
+                        dateOfBirth,
+                        gender,
+                        numberOfDocument,
+                        email,
+                        cardCompany,
+                        salary,
+                        status,
+                        position,
+                        schedule);
+                emp.addEmployee(emp);
+                System.out.println("Empleado ingresado exitosamente!");
+                employeeMenu();
+            }else {
+              System.out.println("Intentelo de nuevo");
+              employeeMenu();
+            }
             break;
           }
 
