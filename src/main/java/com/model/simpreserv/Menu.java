@@ -9,14 +9,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
-
-  Clear cls = new Clear();
+  validator val = new validator();
 
   public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
@@ -141,12 +139,17 @@ public class Menu {
             System.out.print("Ingrese el correo del cliente: ");
             email = sc.next();
 
-            cl = new Client(membership, creditCardInfo, id, completeName, birthDay, gender, numberOfDocument, email);
-            cl.addClient(cl);
+            if (val.validateLetters(completeName)&&val.validateGender(gender)&&val.validateEmail(email)){
 
-            System.out.println("Cliente agregado satisfactoriamente.");
+              cl = new Client(membership, creditCardInfo, id, completeName, birthDay, gender, numberOfDocument, email);
+              cl.addClient(cl);
+              System.out.println("Cliente agregado satisfactoriamente.");
 
-            userMenu();
+              userMenu();
+            } else {
+              userMenu();
+            }
+
             break;
           }
         case 2:
@@ -357,6 +360,7 @@ public class Menu {
 
     Employee emp;
 
+
     do {
       System.out.println(
           "****************************************************************************");
@@ -397,7 +401,6 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
-      validator val = new validator();
       switch (opt) {
         case 1:
           { // Registrar Usuario
