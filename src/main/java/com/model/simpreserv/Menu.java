@@ -9,7 +9,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -40,7 +39,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize(){
+  public void initialize() throws ParseException {
 
     System.out.println(
         "****************************************************************************");
@@ -62,17 +61,13 @@ public class Menu {
         "****************************************************************************");
 
     int option = 0;
-    try {
-      option = sc.nextInt();
-      if (option == 1) {
+    option = sc.nextInt();
+    if (option == 1) {
 
-        login();
+      login();
 
-      } else {
-        System.exit(0);
-      }
-    } catch (Exception ex){
-      System.out.println("Error: " + ex.getMessage() + " ingrese una opcion valida");
+    } else {
+      System.exit(0);
     }
   }
 
@@ -208,8 +203,8 @@ public class Menu {
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
-            SendEmail send= new SendEmail();
-            send.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
+            com.hotelreservation.simpreserv.SendEmail sendEmail = new com.hotelreservation.simpreserv.SendEmail();
+            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
 
@@ -397,6 +392,7 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
+      validator val = new validator();
       switch (opt) {
         case 1:
           { // Registrar Usuario
@@ -407,7 +403,7 @@ public class Menu {
             name = sc.next();
             System.out.print("Ingrese la fecha de nacimiento del empleado: ");
             dateOfBirth = sc.next();
-            System.out.print("Ingrese el genero del empleado: ");
+            System.out.print("Ingrese el genero del empleado: [M / F]");
             gender = sc.next();
             System.out.print("Ingrese el numero de documento de identidad: ");
             numberOfDocument = sc.next();
@@ -422,24 +418,33 @@ public class Menu {
             System.out.print("Ingrese el turno de trabajo del empleado: ");
             schedule = sc.next();
 
-            emp =
-                new Employee(
-                    id,
-                    name,
-                    dateOfBirth,
-                    gender,
-                    numberOfDocument,
-                    email,
-                    cardCompany,
-                    salary,
-                    status,
-                    position,
-                    schedule);
-            emp.addEmployee(emp);
+            if (val.validateLetters(name)&&val.validateGender(gender)&&val.validateEmail(email)&&val.validateNumbers(salary))
+            {
 
-            System.out.println("Empleado agregado satisfactoriamente.");
-
-            employeeMenu();
+                emp =
+                    new Employee(
+                        id,
+                        name,
+                        dateOfBirth,
+                        gender,
+                        numberOfDocument,
+                        email,
+                        cardCompany,
+                        salary,
+                        status,
+                        position,
+                        schedule);
+                emp.addEmployee(emp);
+                System.out.println("Empleado ingresado exitosamente!");
+                System.out.println("Presione enter para continuar...");
+                new java.util.Scanner(System.in).nextLine();
+                employeeMenu();
+            }else {
+              System.out.println("Intentelo de nuevo");
+              System.out.println("Presione enter para continuar...");
+              new java.util.Scanner(System.in).nextLine();
+              employeeMenu();
+            }
             break;
           }
 
@@ -601,7 +606,7 @@ public class Menu {
           }
         case 6:
         {
-          Validator validate = new Validator();
+          UserValidator validate = new UserValidator();
           User usr;
           Calendar calendar = Calendar.getInstance();
 
