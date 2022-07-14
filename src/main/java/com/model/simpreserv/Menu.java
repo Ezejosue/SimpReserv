@@ -403,7 +403,7 @@ public class Menu {
             name = sc.next();
             System.out.print("Ingrese la fecha de nacimiento del empleado: ");
             dateOfBirth = sc.next();
-            System.out.print("Ingrese el genero del empleado: ");
+            System.out.print("Ingrese el genero del empleado: [M / F]");
             gender = sc.next();
             System.out.print("Ingrese el numero de documento de identidad: ");
             numberOfDocument = sc.next();
@@ -418,7 +418,7 @@ public class Menu {
             System.out.print("Ingrese el turno de trabajo del empleado: ");
             schedule = sc.next();
 
-            if (val.validateLetters(name))
+            if (val.validateLetters(name)&&val.validateGender(gender)&&val.validateEmail(email)&&val.validateNumbers(salary))
             {
 
                 emp =
@@ -436,9 +436,13 @@ public class Menu {
                         schedule);
                 emp.addEmployee(emp);
                 System.out.println("Empleado ingresado exitosamente!");
+                System.out.println("Presione enter para continuar...");
+                new java.util.Scanner(System.in).nextLine();
                 employeeMenu();
             }else {
               System.out.println("Intentelo de nuevo");
+              System.out.println("Presione enter para continuar...");
+              new java.util.Scanner(System.in).nextLine();
               employeeMenu();
             }
             break;
