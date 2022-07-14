@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -39,7 +40,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize() throws ParseException {
+  public void initialize(){
 
     System.out.println(
         "****************************************************************************");
@@ -61,13 +62,17 @@ public class Menu {
         "****************************************************************************");
 
     int option = 0;
-    option = sc.nextInt();
-    if (option == 1) {
+    try {
+      option = sc.nextInt();
+      if (option == 1) {
 
-      login();
+        login();
 
-    } else {
-      System.exit(0);
+      } else {
+        System.exit(0);
+      }
+    } catch (Exception ex){
+      System.out.println("Error: " + ex.getMessage() + " ingrese una opcion valida");
     }
   }
 
