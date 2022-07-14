@@ -208,8 +208,8 @@ public class Menu {
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
-            com.hotelreservation.simpreserv.SendEmail sendEmail = new com.hotelreservation.simpreserv.SendEmail();
-            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
+            SendEmail send= new SendEmail();
+            send.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
 
