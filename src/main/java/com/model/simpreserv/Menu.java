@@ -367,29 +367,31 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       System.out.println(
-          "******           1-Registrar Empleado                                 ******");
+              "******           1-Registrar Empleado                                 ******");
       System.out.println(
-          "******           2-Actualizar Empleado                                ******");
+              "******           2-Actualizar Empleado                                ******");
       System.out.println(
-          "******           3-Buscar Empleado por Id o Carnet                    ******");
+              "******           3-Buscar Empleado por Id o Carnet                    ******");
       System.out.println(
-          "******           4-Mostrar Empleados                                  ******");
+              "******           4-Mostrar Empleados                                  ******");
       System.out.println(
-          "******           5-Eliminar Empleado                                  ******");
+              "******           5-Eliminar Empleado                                  ******");
       System.out.println(
-          "******           6-Registrar Usuario                                  ******");
+              "******           6-Registrar Usuario                                  ******");
       System.out.println(
-          "******           7-Reservar Habitacion                                ******");
+              "******           7-Reservar Habitacion                                ******");
       System.out.println(
-          "******           8-Cancelar reserva                                   ******");
+              "******           8-Cancelar reserva                                   ******");
       System.out.println(
-          "******           9-Solicitar Membrecia                                ******");
+              "******           9-Solicitar Membrecia                                ******");
       System.out.println(
-          "******           10-Cancelar Membrecia                                ******");
+              "******           10-Cancelar Membrecia                                ******");
       System.out.println(
-          "******           11-Registrar Usuario                                 ******");
+              "******           11-Gestion de Pagos                              ******");
       System.out.println(
-          "******           12-Salir                                             ******");
+              "******           12-Gestion de tarjetas de credito                ******");
+      System.out.println(
+              "******           13-Salir                                             ******");
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
@@ -646,7 +648,48 @@ public class Menu {
           cm.cancelMenu();
           break;
         }
-          case 11:
+        case 11:{//Gestion de pagos
+          System.out.println("Esta es la seccion de gestion de pagos");
+          System.out.println("1-Procesar pagos, 2-Cancelar pagos");
+          int opt2=sc.nextInt();
+          switch (opt2){
+            case 1:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.processPaymentMenu();
+              break;
+            }
+            case 2:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.cancelPaymentMenu();
+              break;
+            }
+          }
+          break;
+        }
+        case 12:{//Gestion de tarjetas de credito
+          System.out.println("Esta es la seccion de gestion de tarjetas de credito");
+          System.out.println("1-Agregar tarjeta, 2-Eliminar tarjeta, 3-Ver informacion de la tarjeta");
+          int opt2=sc.nextInt();
+          switch (opt2){
+            case 1:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.addCardMenu();
+              break;
+            }
+            case 2:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.removeCardMenu();
+              break;
+            }
+            case 3:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.cardInfoMenu();
+              break;
+            }
+          }
+          break;
+        }
+          case 13:
           { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;

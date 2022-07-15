@@ -28,21 +28,20 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
       System.out.println(MSG2);
       clientM.showClients();
     } else{//Process the payment itself
-      rm.updatePamentStatus(aux.getId(),true);
+      res.setPaidStatus(true);
       LocalDate dIn= LocalDate.parse(dateIn);
       LocalDate dOut = LocalDate.parse(dateOut);
       LocalDate paymentDate=LocalDate.now();
       res.setReservationDate(paymentDate);
       res.setCheckInDate(dIn);
       res.setCheckOutDate(dOut);
-      rm.updateRecordStatusById(aux.getId(),ReservationStatus.CONFIRM);
+      res.setReservationStatus(ReservationStatus.CONFIRM);
       res.setReservationPrice(this.daysCalculator(name,dateIn,dateOut));
       res.setReservationDate(paymentDate);
       res.setClient(aux);
       rm.updateRecordById(aux.getId(),res);
-      System.out.println("------El-pago-se-ha-complatado-------");
+      System.out.println("------El-Pago-Se-Ha-Completado-Exitosamente------");
     }
-    System.out.println("");
     System.out.println("____________________");
     System.out.println("");
 
@@ -53,7 +52,6 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
       Reservation res = rm.findRecordByClientName(name);
       LocalDate dIn= LocalDate.parse(dateIn);
       LocalDate dOut = LocalDate.parse(dateOut);
-     // LocalDate paymentDate=LocalDate.now();
       long numberOFDays = DAYS.between(dIn, dOut);
       double total= numberOFDays*res.getRoom().getRoomPrice();
       Payment py=new Payment(total);
@@ -191,7 +189,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     }
 
   }
-
+//These methods are related with the menu options
   public void membershipMenu(){
     Scanner sc=new Scanner(System.in);
     ControllerEmployee cm=new ControllerEmployee();
@@ -199,15 +197,15 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     System.out.println("1-Silver, 2-Gold, 3-Platinum");
     String opt=sc.nextLine();
     if(opt.equalsIgnoreCase("1")){
-      System.out.println("Escriba el nombre del cliente");
+      System.out.println(MSG3);
       opt=sc.nextLine();
       cm.requestMembership("Silver",opt);
     } else if (opt.equalsIgnoreCase("2")) {
-      System.out.println("Escriba el nombre del cliente");
+      System.out.println(MSG3);
       opt=sc.nextLine();
       cm.requestMembership("Gold",opt);
     }else if (opt.equalsIgnoreCase("3")){
-      System.out.println("Escriba el nombre del cliente");
+      System.out.println(MSG3);
       opt=sc.nextLine();
       cm.requestMembership("Plantinum",opt);
     }
@@ -217,7 +215,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
   public void cancelMenu(){
     Scanner sc=new Scanner(System.in);
     ControllerEmployee cm=new ControllerEmployee();
-      System.out.println("Escriba el nombre del cliente");
+      System.out.println(MSG3);
       String opt=sc.nextLine();
       cm.cancelMembership(opt);
   }
@@ -225,7 +223,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     public void addCardMenu(){
         Scanner sc=new Scanner(System.in);
         ControllerEmployee cm=new ControllerEmployee();
-        System.out.println("Escriba el nombre del cliente");
+        System.out.println(MSG3);
         String opt=sc.nextLine();
         System.out.println("Seleccione el tipo de tarjeta");
         System.out.println("1-Visa, 2-Mastercard, 3-Discovery");
@@ -244,7 +242,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     public void removeCardMenu(){
         Scanner sc=new Scanner(System.in);
         ControllerEmployee cm=new ControllerEmployee();
-        System.out.println("Escriba el nombre del cliente");
+        System.out.println(MSG3);
         String opt=sc.nextLine();
         cm.removeCard(opt);
     }
@@ -252,9 +250,30 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     public void cardInfoMenu(){
         Scanner sc=new Scanner(System.in);
         ControllerEmployee cm=new ControllerEmployee();
-        System.out.println("Escriba el nombre del cliente");
+        System.out.println(MSG3);
         String opt=sc.nextLine();
         cm.viewCard(opt);
+    }
+
+    public void processPaymentMenu(){
+        Scanner sc=new Scanner(System.in);
+        ControllerEmployee cm=new ControllerEmployee();
+        System.out.println(MSG3);
+        String opt=sc.nextLine();
+        System.out.println("Fecha de entrada: YYYY-MM-DD");
+        String opt2=sc.nextLine();
+        System.out.println("Fecha de salida: YYYY-MM-DD");
+        String opt3=sc.nextLine();
+        cm.processPayment(opt,opt2,opt3);
+
+    }
+
+    public void cancelPaymentMenu(){
+        Scanner sc=new Scanner(System.in);
+        ControllerEmployee cm=new ControllerEmployee();
+        System.out.println(MSG3);
+        String opt=sc.nextLine();
+        cm.cancelPayment(opt);
     }
 
 }
