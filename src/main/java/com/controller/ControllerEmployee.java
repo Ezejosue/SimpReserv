@@ -87,6 +87,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
 
   @Override
   public void viewHotelInformation() {
+   HotelMethods hotelMethods=new HotelMethods();
 
   }
 
@@ -136,21 +137,6 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
       cm.showClients();
     }
 
-  }
-
-  @Override
-  public Client createUser() {
-    return null;
-  }
-
-  @Override
-  public Client updateUser() {
-    return null;
-  }
-
-  @Override
-  public Client removeUser() {
-    return null;
   }
 
   @Override//Request Membership

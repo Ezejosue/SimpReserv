@@ -7,11 +7,6 @@ public interface EmployeeControllerInterface {
   static final String MSG2="Si el cliente no esta en la lista porfavor regresar al menu principal para agregarlo";
   static final String MSG3="Escriba el nombre del cliente";
 
-  public Client createUser();
-
-  public Client updateUser();
-
-  public Client removeUser();
 
   public void requestMembership(String membership, String name);
 
