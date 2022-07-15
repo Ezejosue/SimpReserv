@@ -11,48 +11,73 @@ import java.util.*;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class ControllerEmployee implements EmployeeControllerInterface, ControllerInterface {
-  private static final String MSG1="El cliente o no existe o el nombre es incorrecto. Revise la lista porfavor.";
-  private static final String MSG2="Si el cliente no esta en la lista porfavor regresar al menu principal para agregarlo";
+
    
   @Override
   public void processPayment(String name, String dateIn, String dateOut) {
-    //Review client List(Paso 1 y paso 2)
+    //Paso 1: llamando todos los metodos
     ClientMethods clientM=new ClientMethods();
     EmployeeMethods em=new EmployeeMethods();
     RoomMethods rooms=new RoomMethods();
     ReservationMethods rm=new ReservationMethods();
     Client aux=clientM.findRecordByName(name);
     Reservation res = rm.findRecordByClientName(name);
-    /*
-    if(aux.getName()==null){
+
+    if(aux.getName()==null) {//Revisar si es nula
       System.out.println(MSG1);
       System.out.println(MSG2);
       clientM.showClients();
-    }else{
-      res.setPaidStatus(true);
+    } else{
+      rm.updatePamentStatus(aux.getId(),true);
       LocalDate dIn= LocalDate.parse(dateIn);
       LocalDate dOut = LocalDate.parse(dateOut);
-      LocalDate paymentDate=LocalDate.now();
+      LocalDate paymentDate=LocalDate.now();//Calcular el monto y la fecha de pago
       long numberOFDays = DAYS.between(dIn, dOut);
-      double total= numberOFDays*rooms.findRecordById(1).getRoomPrice();
+      double total= numberOFDays*res.getRoom().getRoomPrice();
       Payment py=new Payment(total);
+      res.setReservationDate(paymentDate);
       res.setCheckInDate(dIn);
       res.setCheckOutDate(dOut);
-      res.setRoom(rooms.findRecordById(1));
-      res.setReservationStatus(ReservationStatus.CONFIRM);
+      rm.updateRecordStatusById(aux.getId(),ReservationStatus.CONFIRM);
       res.setReservationPrice(py.getTotalPayment());
+      res.setClient(aux);
       rm.updateRecordById(aux.getId(),res);
+      System.out.println("------El-pago-se-ha-complatado-------");
     }
+    System.out.println("");
+    System.out.println("____________________");
+    System.out.println("");
+
     rm.showReservations();
-    
-     */
+
   }
 
   @Override
-  public void cancelPayment() {}
+  public void cancelPayment(String nombre) {
+    //Review client List(Paso 1 y paso 2)
+    ClientMethods clientM=new ClientMethods();
+    ReservationMethods rm=new ReservationMethods();
+    Client aux=clientM.findRecordByName(nombre);
+    Reservation res = rm.findRecordByClientName(nombre);
 
-  @Override
-  public void viewBalance() {}
+    if(aux.getName()==null) {
+      System.out.println(MSG1);
+      System.out.println(MSG2);
+      clientM.showClients();
+    } else{
+      res.setPaidStatus(false);
+      res.setReservationStatus(ReservationStatus.CANCELLED);
+      res.setReservationPrice(0.0);
+      res.setClient(aux);
+      rm.updateRecordById(aux.getId(),res);
+      System.out.println("------La cancelacion ha sido completad-------");
+    }
+    System.out.println("");
+    System.out.println("____________________");
+    System.out.println("");
+
+
+  }
 
   @Override
   public void viewHotelInformation() {
@@ -106,16 +131,6 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     }
 
   }
-
-  @Override
-  public void cancelPayments() {}
-
-  @Override
-  public void processRefund() {}
-
-
-  @Override
-  public void updateNights() {}
 
   @Override
   public Client createUser() {
@@ -202,8 +217,9 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
   }
   public static void main(String[] args) {
    ControllerEmployee ce=new ControllerEmployee();
-   ce.requestMembership("Gold","Jhon Doe");
-   ce.processPayment("Jhon Doe","2022-07-16","2022-07-21");
+  // ce.requestMembership("Gold","Jhon Doe");
+   //ce.processPayment("Jhon Doe","2022-07-16","2022-07-21");
+    ce.cancelPayment("Jhon Doe");
   }
 
 }

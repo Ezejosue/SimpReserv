@@ -4,9 +4,8 @@ public interface ControllerInterface {
 
   public void processPayment(String name, String dateIn, String dateOut);
 
-  public void cancelPayment();
+  public void cancelPayment(String nombre);
 
-  public void viewBalance();
 
   public void viewHotelInformation();
 

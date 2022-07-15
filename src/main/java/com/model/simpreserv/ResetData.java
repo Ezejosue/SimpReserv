@@ -251,6 +251,7 @@ public class ResetData {
     clients.put(1, new Client(ms, cc, 1, "Jhon Doe", "18/02/1987", "M", "123456", "cliente1@email.com"));
     clients.put(2, new Client(ms, cc, 2, "Diana Prince", "30/11/1999", "F", "987654", "cliente2@email.com"));
     clients.put(3, new Client(ms, cc, 3, "Ana de Armas", "30/04/1988", "F", "654789", "cliente3@email.com"));
+    clients.put(3, new Client(ms, cc, 4, "Jose Ramirez", "25/07/1978", "M", "869587", "cliente4@email.com"));
 
     ClientMethods cltData = new ClientMethods();
     cltData.saveAllRecords(clients);
@@ -260,11 +261,27 @@ public class ResetData {
   public void resetReservationData(){
     Map<Integer, Reservation> reservations = new TreeMap<>();
 
-    Client clt = new Client();
-    Employee emp = new Employee();
-    Room room = new Room();
-
-    reservations.put(1, new Reservation(1, clt, emp, room, LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"), LocalDate.parse("2022-01-20"), 224.99, ReservationStatus.HOLD, false));
+    RoomMethods rm=new RoomMethods();
+    ClientMethods cm=new ClientMethods();
+    Employee emp=new Employee();
+    reservations.put(1, new Reservation(1, cm.findRecordById(1),
+            emp.searchEmployeeById(1), rm.findRecordById(1),
+            LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"),
+            LocalDate.parse("2022-01-20"),
+            224.99, ReservationStatus.HOLD,
+            false));
+    reservations.put(2, new Reservation(2, cm.findRecordById(2),
+            emp.searchEmployeeById(2), rm.findRecordById(2),
+            LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"),
+            LocalDate.parse("2022-01-20"),
+            224.99, ReservationStatus.HOLD,
+            false));
+    reservations.put(3, new Reservation(3, cm.findRecordById(3),
+            emp.searchEmployeeById(3), rm.findRecordById(3),
+            LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"),
+            LocalDate.parse("2022-01-20"),
+            224.99, ReservationStatus.HOLD,
+            false));
 
     ReservationMethods rsvData = new ReservationMethods();
     rsvData.saveAllRecords(reservations);

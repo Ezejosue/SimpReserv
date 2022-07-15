@@ -85,6 +85,13 @@ public class ReservationMethods {
     saveAllRecords(list);
   }
 
+
+  public void updatePamentStatus(int id, boolean payment) {//Metodo que actualiza el pago
+    Map<Integer, Reservation> list = loadAllRecords();
+    list.get(id).setPaidStatus(payment);
+    saveAllRecords(list);
+  }
+
   public void updateRecordStatusById(int id, ReservationStatus reservationStatus) {
     Map<Integer, Reservation> list = loadAllRecords();
     list.get(id).setReservationStatus(reservationStatus);

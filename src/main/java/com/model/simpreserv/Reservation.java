@@ -5,7 +5,7 @@ import com.enums.ReservationStatus;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
+
 import lombok.Getter;
 import lombok.Setter;
 
