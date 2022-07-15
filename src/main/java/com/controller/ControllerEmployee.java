@@ -14,8 +14,8 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
 
    
   @Override
-  public void processPayment(String name, String dateIn, String dateOut) {
-    //Paso 1: llamando todos los metodos
+  public void processPayment(String name, String dateIn, String dateOut) {//This method process the payment
+    //Step 1: calling all the object
     ClientMethods clientM=new ClientMethods();
     EmployeeMethods em=new EmployeeMethods();
     RoomMethods rooms=new RoomMethods();
@@ -23,23 +23,21 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     Client aux=clientM.findRecordByName(name);
     Reservation res = rm.findRecordByClientName(name);
 
-    if(aux.getName()==null) {//Revisar si es nula
+    if(aux.getName()==null) {//review if the called object is null
       System.out.println(MSG1);
       System.out.println(MSG2);
       clientM.showClients();
-    } else{
+    } else{//Process the payment itself
       rm.updatePamentStatus(aux.getId(),true);
       LocalDate dIn= LocalDate.parse(dateIn);
       LocalDate dOut = LocalDate.parse(dateOut);
-      LocalDate paymentDate=LocalDate.now();//Calcular el monto y la fecha de pago
-      long numberOFDays = DAYS.between(dIn, dOut);
-      double total= numberOFDays*res.getRoom().getRoomPrice();
-      Payment py=new Payment(total);
+      LocalDate paymentDate=LocalDate.now();
       res.setReservationDate(paymentDate);
       res.setCheckInDate(dIn);
       res.setCheckOutDate(dOut);
       rm.updateRecordStatusById(aux.getId(),ReservationStatus.CONFIRM);
-      res.setReservationPrice(py.getTotalPayment());
+      res.setReservationPrice(this.daysCalculator(name,dateIn,dateOut));
+      res.setReservationDate(paymentDate);
       res.setClient(aux);
       rm.updateRecordById(aux.getId(),res);
       System.out.println("------El-pago-se-ha-complatado-------");
@@ -49,7 +47,17 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     System.out.println("");
 
     rm.showReservations();
-
+  }
+  public double daysCalculator(String name, String dateIn, String dateOut){
+      ReservationMethods rm=new ReservationMethods();
+      Reservation res = rm.findRecordByClientName(name);
+      LocalDate dIn= LocalDate.parse(dateIn);
+      LocalDate dOut = LocalDate.parse(dateOut);
+     // LocalDate paymentDate=LocalDate.now();
+      long numberOFDays = DAYS.between(dIn, dOut);
+      double total= numberOFDays*res.getRoom().getRoomPrice();
+      Payment py=new Payment(total);
+      return py.getTotalPayment();
   }
 
   @Override
@@ -147,7 +155,7 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     return null;
   }
 
-  @Override//Solicitar membrecia
+  @Override//Request Membership
   public void requestMembership(String membership, String name) {
     ClientMethods cm=new ClientMethods();
     MembershipType mt=new MembershipType(membership);
@@ -182,8 +190,6 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
       cm.showClients();
     }
 
-
-
   }
 
   public void membershipMenu(){
@@ -206,20 +212,49 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
       cm.requestMembership("Plantinum",opt);
     }
 
-
   }
 
   public void cancelMenu(){
     Scanner sc=new Scanner(System.in);
     ControllerEmployee cm=new ControllerEmployee();
-
-
+      System.out.println("Escriba el nombre del cliente");
+      String opt=sc.nextLine();
+      cm.cancelMembership(opt);
   }
-  public static void main(String[] args) {
-   ControllerEmployee ce=new ControllerEmployee();
-  // ce.requestMembership("Gold","Jhon Doe");
-   //ce.processPayment("Jhon Doe","2022-07-16","2022-07-21");
-    ce.cancelPayment("Jhon Doe");
-  }
+
+    public void addCardMenu(){
+        Scanner sc=new Scanner(System.in);
+        ControllerEmployee cm=new ControllerEmployee();
+        System.out.println("Escriba el nombre del cliente");
+        String opt=sc.nextLine();
+        System.out.println("Seleccione el tipo de tarjeta");
+        System.out.println("1-Visa, 2-Mastercard, 3-Discovery");
+        String opt2=sc.nextLine();
+        System.out.println("Escriba la fecha de expiracion: YYYY-MM-DD");
+        String opt3=sc.nextLine();
+        if(opt2.equalsIgnoreCase("1")){
+            cm.addCard(opt,"Visa",opt3);
+        } else if (opt2.equalsIgnoreCase("2")) {
+            cm.addCard(opt,"Mastercard",opt3);
+        }else if (opt2.equalsIgnoreCase("3")){
+            cm.addCard(opt,"Discovery",opt3);
+        }
+    }
+
+    public void removeCardMenu(){
+        Scanner sc=new Scanner(System.in);
+        ControllerEmployee cm=new ControllerEmployee();
+        System.out.println("Escriba el nombre del cliente");
+        String opt=sc.nextLine();
+        cm.removeCard(opt);
+    }
+
+    public void cardInfoMenu(){
+        Scanner sc=new Scanner(System.in);
+        ControllerEmployee cm=new ControllerEmployee();
+        System.out.println("Escriba el nombre del cliente");
+        String opt=sc.nextLine();
+        cm.viewCard(opt);
+    }
 
 }
