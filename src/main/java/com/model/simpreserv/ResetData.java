@@ -5,6 +5,8 @@ import com.enums.EmployeeStatus;
 import com.enums.ReservationStatus;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
@@ -262,7 +264,7 @@ public class ResetData {
     Employee emp = new Employee();
     Room room = new Room();
 
-    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD, false));
+    reservations.put(1, new Reservation(1, clt, emp, room, LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"), LocalDate.parse("2022-01-20"), 224.99, ReservationStatus.HOLD, false));
 
     ReservationMethods rsvData = new ReservationMethods();
     rsvData.saveAllRecords(reservations);

@@ -7,6 +7,7 @@ import com.enums.RoomStatus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -190,7 +191,7 @@ public class Menu {
             emp = new Employee();
             emp = emp.searchEmployeeById(3);
 
-            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM, false);
+            reserva = new Reservation(idReserva, cl, emp, room, LocalDate.parse("2022-06-24"), LocalDate.parse("2022-06-27"), LocalDate.parse("2022-06-30"), priceReserva, ReservationStatus.CONFIRM, false);
             reserva.createReservation(reserva);
 
             System.out.println("La reservacion se ha realizado satisfactoriamente.");

@@ -46,7 +46,8 @@ public class ReservationMethods {
     lastId++;
     newReservation.setId(lastId);
     list.put(lastId, newReservation);
-    saveAllRecords(list);
+    //saveAllRecords(list);
+    this.saveAllRecords(list);
   }
 
   public Reservation findRecordById(int id) {
@@ -59,6 +60,18 @@ public class ReservationMethods {
     Reservation reserva = new Reservation();
     for (Map.Entry<Integer, Reservation> item : list.entrySet()) {
       if (item.getValue().getClient().getId() == clientId) {
+        reserva = item.getValue();
+        break;
+      }
+    }
+    return reserva;
+  }
+  //Metodo de prueba
+  public Reservation findRecordByClientName(String  clientName) {
+    Map<Integer, Reservation> list = loadAllRecords();
+    Reservation reserva = new Reservation();
+    for (Map.Entry<Integer, Reservation> item : list.entrySet()) {
+      if (item.getValue().getClient().getName().compareTo(clientName)==0) {
         reserva = item.getValue();
         break;
       }

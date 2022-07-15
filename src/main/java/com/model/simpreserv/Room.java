@@ -21,14 +21,7 @@ public class Room implements Serializable {
   @Getter @Setter private String roomType;
   @Getter @Setter private RoomStatus roomStatus;
 
-  public Room(
-      int id,
-      int roomNumber,
-      RoomFloor roomFloor,
-      String roomDescription,
-      double roomPrice,
-      String roomType,
-      RoomStatus roomStatus) {
+  public Room(int id, int roomNumber, RoomFloor roomFloor, String roomDescription, double roomPrice, String roomType, RoomStatus roomStatus) {
     this.id = id;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;
