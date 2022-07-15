@@ -1,6 +1,5 @@
 package com.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,11 +7,6 @@ public class UserValidator implements com.entity.UserValidator {
 
   private static final String PATTERN = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,15})";
   private static final String PATTERNUSER = "^[a-zA-Z0-9._-]{3,}$";
-  @Override
-  public String formatDate(String date) {
-    new SimpleDateFormat("dd/MM/yyyy").format(date);
-    return date;
-  }
 
   @Override
   public boolean formatPassword(String pass) {

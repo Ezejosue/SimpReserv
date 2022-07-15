@@ -38,7 +38,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize() throws ParseException {
+  public void initialize(){
 
     System.out.println(
         "****************************************************************************");
@@ -60,13 +60,17 @@ public class Menu {
         "****************************************************************************");
 
     int option = 0;
-    option = sc.nextInt();
-    if (option == 1) {
+    try {
+      option = sc.nextInt();
+      if (option == 1) {
 
-      login();
+        login();
 
-    } else {
-      System.exit(0);
+      } else {
+        System.exit(0);
+      }
+    } catch (Exception ex){
+      System.out.println("Error: " + ex.getMessage() + " ingrese una opcion valida");
     }
   }
 
@@ -207,8 +211,8 @@ public class Menu {
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
-            com.hotelreservation.simpreserv.SendEmail sendEmail = new com.hotelreservation.simpreserv.SendEmail();
-            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
+            SendEmail send= new SendEmail();
+            send.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
 
