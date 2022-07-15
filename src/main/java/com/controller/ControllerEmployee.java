@@ -22,28 +22,28 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     ReservationMethods rm=new ReservationMethods();
     Client aux=clientM.findRecordByName(name);
     Reservation res = rm.findRecordByClientName(name);
-
+      System.out.println(res.isPaidStatus());
     if(aux.getName()==null) {//review if the called object is null
       System.out.println(MSG1);
       System.out.println(MSG2);
       clientM.showClients();
-    } else{//Process the payment itself
-      res.setPaidStatus(true);
-      LocalDate dIn= LocalDate.parse(dateIn);
-      LocalDate dOut = LocalDate.parse(dateOut);
-      LocalDate paymentDate=LocalDate.now();
-      res.setReservationDate(paymentDate);
-      res.setCheckInDate(dIn);
-      res.setCheckOutDate(dOut);
-      res.setReservationStatus(ReservationStatus.CONFIRM);
-      res.setReservationPrice(this.daysCalculator(name,dateIn,dateOut));
-      res.setReservationDate(paymentDate);
-      res.setClient(aux);
-      rm.updateRecordById(aux.getId(),res);
-      System.out.println("------El-Pago-Se-Ha-Completado-Exitosamente------");
     }
-    System.out.println("____________________");
-    System.out.println("");
+
+    else{//Process the payment itself
+            res.setPaidStatus(true);
+            LocalDate dIn= LocalDate.parse(dateIn);
+            LocalDate dOut = LocalDate.parse(dateOut);
+            LocalDate paymentDate=LocalDate.now();
+            res.setReservationDate(paymentDate);
+            res.setCheckInDate(dIn);
+            res.setCheckOutDate(dOut);
+            res.setReservationStatus(ReservationStatus.CONFIRM);
+            res.setReservationPrice(this.daysCalculator(name,dateIn,dateOut));
+            res.setReservationDate(paymentDate);
+            res.setClient(aux);
+            rm.updateRecordById(aux.getId(),res);
+            System.out.println("------El-Pago-Se-Ha-Completado-Exitosamente------");
+        }
 
     rm.showReservations();
   }
@@ -244,12 +244,14 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
     public void processPaymentMenu(){
         Scanner sc=new Scanner(System.in);
         ControllerEmployee cm=new ControllerEmployee();
+       // ReservationMethods rm=new ReservationMethods();
         System.out.println(MSG3);
         String opt=sc.nextLine();
         System.out.println("Fecha de entrada: YYYY-MM-DD");
         String opt2=sc.nextLine();
         System.out.println("Fecha de salida: YYYY-MM-DD");
         String opt3=sc.nextLine();
+
         cm.processPayment(opt,opt2,opt3);
 
     }
@@ -260,6 +262,11 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
         System.out.println(MSG3);
         String opt=sc.nextLine();
         cm.cancelPayment(opt);
+    }
+
+    public static void main(String[] args) {
+        ControllerEmployee ce=new ControllerEmployee();
+        ce.processPayment("Jhon Doe","2022-07-16","2022-07-20");
     }
 
 }
