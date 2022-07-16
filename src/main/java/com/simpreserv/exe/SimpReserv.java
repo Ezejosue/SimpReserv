@@ -12,7 +12,8 @@ public class SimpReserv {
   public static void main(String[] args) throws ParseException {
 
     Loger loger = new Loger();
-    Loger.createLogger();
+    loger.debug("Debug imformation");
+
 
    /* HotelMethods hotelMethods = new HotelMethods();
     Hotel hotel = hotelMethods.loadRecord();
