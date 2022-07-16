@@ -70,7 +70,6 @@ public class Menu {
         System.exit(0);
       }
     } catch (Exception ex){
-      initialize();
       System.out.println("Error: " + ex.getMessage() + " ingrese una opcion valida");
     }
   }
