@@ -1,10 +1,13 @@
 package com.model.simpreserv;
 
+import com.controller.CtrlReservation;
 import com.controller.ReservationMethods;
 import com.enums.ReservationStatus;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -46,10 +49,40 @@ public class Reservation implements Serializable {
 
   public Reservation() {}
 
-  public void createReservation(Reservation newReserva){
-    ReservationMethods rsmData = new ReservationMethods();
-    rsmData.addNewRecord(newReserva);
+  public void saveAllReservations(Map<Integer, Reservation> reservationsList) {
+    CtrlReservation rsvData = new CtrlReservation();
+    rsvData.saveAllReservations(reservationsList);
   }
+  public void createReservation(Reservation newReserva){
+    CtrlReservation rsvData = new CtrlReservation();
+    rsvData.addNewReservation(newReserva);
+  }
+
+  public Reservation searchReservationById(int reservationId){
+    CtrlReservation rsvData = new CtrlReservation();
+    return rsvData.findReservationById(reservationId);
+  }
+
+  public Reservation searchReservationByClientName(String clientName){
+    CtrlReservation rsvData = new CtrlReservation();
+    return rsvData.findReservationByClientName(clientName);
+  }
+
+  public void updateReservationStatusById(int reservationId, ReservationStatus reservationStatus){
+    CtrlReservation rsvData = new CtrlReservation();
+    rsvData.updateReservationStatusById(reservationId, reservationStatus);
+  }
+
+  public void deleteReservationById(int reservationId){
+    CtrlReservation rsvData = new CtrlReservation();
+    rsvData.deleteReservationById(reservationId);
+  }
+
+  public void printReservations(){
+    CtrlReservation rsvData = new CtrlReservation();
+    rsvData.printReservationsList();
+  }
+
 
   @Override
   public String toString() {
