@@ -205,19 +205,17 @@ public class Menu {
 
             room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
 
-            HotelMethods hotelMethods = new HotelMethods();
-            Hotel hotel = hotelMethods.loadRecord();
+            Hotel hotel = new Hotel().loadHotelInfo();
 
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
-            SendEmail send= new SendEmail();
-            send.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
+            SendEmail sendEmail = new SendEmail();
+            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
 
-            ReservationMethods rsvData = new ReservationMethods();
-            rsvData.showReservations();
+            reserva.printReservations();
 
             userMenu();
             break;
@@ -249,8 +247,9 @@ public class Menu {
           }
         case 4:
           { // Mostrar Clientes
-            ClientMethods showCl = new ClientMethods();
-            showCl.showClients();
+            cl = new Client();
+            cl.printClients();
+
             userMenu();
             break;
           }
@@ -403,7 +402,7 @@ public class Menu {
       int opt = sc.nextInt();
       switch (opt) {
         case 1:
-          { // Registrar Usuario
+          { // Registrar Empleado
             id = 0;
             status = EmployeeStatus.HIRED;
 
@@ -582,8 +581,9 @@ public class Menu {
           }
         case 4:
           { // Mostrar empleados
-            EmployeeMethods employeeList = new EmployeeMethods();
-            employeeList.showEmployees();
+            emp = new Employee();
+            emp.printEmployees();
+
             employeeMenu();
             break;
           }
