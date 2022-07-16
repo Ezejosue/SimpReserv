@@ -111,6 +111,8 @@ public class Menu {
       System.out.println(
           "******           2-Crear reservacion                                  ******");
       System.out.println(
+          "******           3-Cancelar reservacion                               ******");
+      System.out.println(
           "******           4-Mostrar cliente                                    ******");
       System.out.println(
           "******           5-Buscar cliente por id o documento de identidad     ******");
@@ -223,30 +225,10 @@ public class Menu {
             break;
           }
         case 3:
-          { // Eliminar cliente
-            System.out.print(
-                "Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
-            int opcion = sc.nextInt();
-            cl = new Client();
-            if (opcion == 1) {
-              System.out.print("Ingrese el numero de documento del cliente a buscar: ");
-              numberOfDocument = sc.next();
-              cl = cl.searchClientByDocNumber(numberOfDocument);
-            } else if (opcion == 2) {
-              System.out.print("Ingrese el id de cliente a buscar: ");
-              id = sc.nextInt();
-              cl = cl.searchClientById(id);
-            }
-            id = cl.getId();
-            System.out.println("Resultado: " + cl.toString());
-            System.out.print("Seguro que desea eliminar este cliente? Y/N");
-            String eleccion = sc.next();
-            if (eleccion.equals("Y")) {
-              cl.deleteClientById(id);
-            }
-            userMenu();
-            break;
-          }
+        {
+          break;
+        }
+
         case 4:
           { // Mostrar Clientes
             cl = new Client();
@@ -400,7 +382,7 @@ public class Menu {
       System.out.println(
           "******           7-Actualizar Usuario                                 ******");
       System.out.println(
-          "******           8-Cancelar reserva                                   ******");
+          "******           8-Eliminar reserva                                   ******");
       System.out.println(
           "******           9-Eliminar cliente                                  ******");
       System.out.println(
@@ -708,7 +690,7 @@ public class Menu {
           }
           break;
         }
-        case 8:{//Cancelar reserva
+        case 8:{//Eliminar reserva
           System.out.println("Este modulo aun esta en construccion");
           System.out.println("Lo sentimos mucho :(");
           break;
