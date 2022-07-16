@@ -384,11 +384,11 @@ public class Menu {
       System.out.println(
           "******           8-Eliminar reserva                                   ******");
       System.out.println(
-          "******           9-Eliminar cliente                                  ******");
+          "******           9-Eliminar cliente                                   ******");
       System.out.println(
-          "******           11-Registrar Usuario                                 ******");
+          "******           10-Eliminar reserva                                  ******");
       System.out.println(
-          "******           12-Salir                                             ******");
+          "******           11-Salir                                             ******");
       System.out.println(
           "****************************************************************************");
       int opt = sc.nextInt();
