@@ -111,15 +111,17 @@ public class Menu {
       System.out.println(
           "******           2-Crear reservacion                                  ******");
       System.out.println(
-          "******           3-Eliminar cliente                                   ******");
-      System.out.println(
           "******           4-Mostrar cliente                                    ******");
       System.out.println(
           "******           5-Buscar cliente por id o documento de identidad     ******");
       System.out.println(
           "******           6-Actualizar datos de cliente                        ******");
       System.out.println(
-          "******           7-Salir                                              ******");
+          "******           7-Solicitar membresia                                ******");
+      System.out.println(
+          "******           8-Cancelar membresia                                 ******");
+      System.out.println(
+          "******           9-Salir                                              ******");
       System.out.println(
           "****************************************************************************");
 
@@ -332,8 +334,18 @@ public class Menu {
           }
           break;
         }
-        case 7:
-        { // Cerrar la applicacion
+        case 7:{//Solicitar Membresia
+          ControllerEmployee cm=new ControllerEmployee();
+          cm.membershipMenu();
+          break;
+        }
+        case 8:{//Cancelar Membresia
+          ControllerEmployee cm=new ControllerEmployee();
+          cm.cancelMenu();
+          break;
+        }
+        case 9:
+        { // Cerrar la aplicacion
           System.out.println("La aplicacion se ha cerrado con exito");
           opt = 0;
           break;
@@ -356,7 +368,7 @@ public class Menu {
     EmployeeStatus status;
     String position;
     String schedule;
-
+    Client cl;
     Employee emp;
 
 
@@ -390,9 +402,7 @@ public class Menu {
       System.out.println(
           "******           8-Cancelar reserva                                   ******");
       System.out.println(
-          "******           9-Solicitar Membrecia                                ******");
-      System.out.println(
-          "******           10-Cancelar Membrecia                                ******");
+          "******           9-Eliminar cliente                                  ******");
       System.out.println(
           "******           11-Registrar Usuario                                 ******");
       System.out.println(
@@ -703,14 +713,36 @@ public class Menu {
           System.out.println("Lo sentimos mucho :(");
           break;
         }
-        case 9:{//Solicitar membrecia
-            ControllerEmployee cm=new ControllerEmployee();
-            cm.membershipMenu();
+        case 9:{//Eliminar cliente
+          try {
+            System.out.print(
+                "Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
+            int opcion = sc.nextInt();
+            cl = new Client();
+            if (opcion == 1) {
+              System.out.print("Ingrese el numero de documento del cliente a buscar: ");
+              numberOfDocument = sc.next();
+              cl = cl.searchClientByDocNumber(numberOfDocument);
+            } else if (opcion == 2) {
+              System.out.print("Ingrese el id de cliente a buscar: ");
+              id = sc.nextInt();
+              cl = cl.searchClientById(id);
+            }
+            id = cl.getId();
+            System.out.println("Resultado: " + cl.toString());
+            System.out.print("Seguro que desea eliminar este cliente? Y/N");
+            String eleccion = sc.next();
+            if (eleccion.equals("Y")) {
+              cl.deleteClientById(id);
+            }
+            userMenu();
+          } catch (Exception ex){
+            System.out.println("Ocurrio un error" + ex.getMessage());
+          }
           break;
         }
-        case 10:{//Cancelar membrecia
-          ControllerEmployee cm=new ControllerEmployee();
-          cm.cancelMenu();
+        case 10:{
+
           break;
         }
           case 11:
