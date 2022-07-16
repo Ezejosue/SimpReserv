@@ -1,5 +1,6 @@
 package com.model.simpreserv;
 
+import com.controller.CtrlRoom;
 import com.controller.RoomMethods;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
@@ -54,14 +55,19 @@ public class Room implements Serializable {
     return price;
   }
 
-  public Room searchRoomByNumber(int roomNumber){
-    RoomMethods rmData = new RoomMethods();
-    return rmData.findRecordByNumber(roomNumber);
+  public void saveRoomsList(Map<Integer, Room> roomsList){
+    CtrlRoom rmData = new CtrlRoom();
+    rmData.saveRoomsList(roomsList);
   }
 
-  public void changeRoomStatusById(int id, RoomStatus roomStatus){
-    RoomMethods rmData = new RoomMethods();
-    rmData.updateRecordStatusById(id, roomStatus);
+  public Room searchRoomByNumber(int roomNumber){
+    CtrlRoom rmData = new CtrlRoom();
+    return rmData.findRoomByRoomNumber(roomNumber);
+  }
+
+  public void changeRoomStatusById(int roomId, RoomStatus roomStatus){
+    CtrlRoom rmData = new CtrlRoom();
+    rmData.updateRoomStatusById(roomId, roomStatus);
   }
 
   @Override
