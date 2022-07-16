@@ -1,9 +1,11 @@
 package com.model.simpreserv;
 
-import com.controller.EmployeeMethods;
+import com.controller.CtrlEmployee;
 import com.enums.EmployeeStatus;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Map;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -41,34 +43,43 @@ public class Employee extends Person implements Serializable {
     this.schedule = schedule;
   }
 
+  public void saveAllEmployees(Map<Integer, Employee> employeesList){
+    CtrlEmployee empData = new CtrlEmployee();
+    empData.saveAllEmployees(employeesList);
+  }
   public void addEmployee(Employee emp) {
-    EmployeeMethods empData = new EmployeeMethods();
-    empData.addNewRecord(emp);
+    CtrlEmployee empData = new CtrlEmployee();
+    empData.addNewEmployee(emp);
   }
 
   public Employee searchEmployeeById(int id) {
-    EmployeeMethods empData = new EmployeeMethods();
-    return empData.findRecordById(id);
+    CtrlEmployee empData = new CtrlEmployee();
+    return empData.findEmployeeById(id);
   }
 
   public Employee searchEmployeeByCarnet(String cardCompany) {
-    EmployeeMethods empData = new EmployeeMethods();
-    return empData.findRecordByCardCompany(cardCompany);
+    CtrlEmployee empData = new CtrlEmployee();
+    return empData.findEmployeeByCarnet(cardCompany);
   }
 
   public Employee searchEmployeeByName(String name){
-    EmployeeMethods empData = new EmployeeMethods();
-    return empData.findRecordByName(name);
+    CtrlEmployee empData = new CtrlEmployee();
+    return empData.findEmployeeByName(name);
   }
 
   public void updateEmployeeById(int id, Employee emp) {
-    EmployeeMethods empData = new EmployeeMethods();
-    empData.updateRecordById(id, emp);
+    CtrlEmployee empData = new CtrlEmployee();
+    empData.updateEmployeeById(id, emp);
   }
 
   public void deleteEmployeeById(int id) {
-    EmployeeMethods empData = new EmployeeMethods();
-    empData.deleteRecordById(id);
+    CtrlEmployee empData = new CtrlEmployee();
+    empData.deleteEmployeeById(id);
+  }
+
+  public void printEmployees() {
+    CtrlEmployee empData = new CtrlEmployee();
+    empData.printEmployeesList();
   }
 
   @Override
