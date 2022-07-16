@@ -2,9 +2,8 @@ package com.model.simpreserv;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Map;
 
-import com.controller.CtrlClient;
+import com.controller.ClientMethods;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,43 +32,34 @@ public class Client extends Person implements Serializable {
     this.creditCardInfo = creditCardInfo;
   }
 
-  public void saveClientsList(Map<Integer, Client> clientsList){
-    CtrlClient cltData = new CtrlClient();
-    cltData.saveClientsList(clientsList);
-  }
   public void addClient(Client newClient){
-      CtrlClient cltData = new CtrlClient();
-      cltData.addNewClient(newClient);
+      ClientMethods cltData = new ClientMethods();
+      cltData.addNewRecord(newClient);
   }
 
   public Client searchClientById(int id) {
-    CtrlClient cltData = new CtrlClient();
-    return cltData.findClientById(id);
+    ClientMethods cltData = new ClientMethods();
+    return cltData.findRecordById(id);
   }
 
   public Client searchClientByDocNumber(String docNumber) {
-    CtrlClient cltData = new CtrlClient();
-    return cltData.findClientByDocNumber(docNumber);
+    ClientMethods cltData = new ClientMethods();
+    return cltData.findRecordByDocNumber(docNumber);
   }
 
   public Client searchClientByName(String name){
-    CtrlClient cltData = new CtrlClient();
-    return cltData.findClientByName(name);
+    ClientMethods cltData = new ClientMethods();
+    return cltData.findRecordByName(name);
   }
 
   public void updateClientById(int id, Client clt) {
-    CtrlClient cltData = new CtrlClient();
-    cltData.updateClientById(id, clt);
+    ClientMethods cltData = new ClientMethods();
+    cltData.updateRecordById(id, clt);
   }
 
   public void deleteClientById(int id) {
-    CtrlClient cltData = new CtrlClient();
-    cltData.deleteClientById(id);
-  }
-
-  public void printClients() {
-    CtrlClient cltData = new CtrlClient();
-    cltData.printClientsList();
+    ClientMethods cltData = new ClientMethods();
+    cltData.deleteRecordById(id);
   }
 
   @Override

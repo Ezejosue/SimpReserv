@@ -10,11 +10,12 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import java.util.Calendar;
-
+import java.util.Date;
 public class ResetData {
   public void resetHotelData() {
     Hotel myHotel = new Hotel(1, "Hotel Sea Sand", "Caribean Coast", "4 Stars", 15);
-    myHotel.saveHotelInfo(myHotel);
+    HotelMethods hotelData = new HotelMethods();
+    hotelData.updateRecord(myHotel);
   }
 
   public void resetRoomData() {
@@ -172,8 +173,8 @@ public class ResetData {
             "Penhouse",
             RoomStatus.AVAILABLE));
 
-    Room room = new Room();
-    room.saveRoomsList(rooms);
+    RoomMethods roomData = new RoomMethods();
+    roomData.saveAllRecords(rooms);
   }
 
   public void resetEmployeeData() {
@@ -235,8 +236,8 @@ public class ResetData {
             "Atencion al Cliente",
             "Nocturno"));
 
-    Employee employee = new Employee();
-    employee.saveAllEmployees(employees);
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.saveAllRecords(employees);
   }
 
   public void resetClientData(){
@@ -249,8 +250,9 @@ public class ResetData {
     clients.put(2, new Client(ms, cc, 2, "Diana Prince", "30/11/1999", "F", "987654", "cliente2@email.com"));
     clients.put(3, new Client(ms, cc, 3, "Ana de Armas", "30/04/1988", "F", "654789", "cliente3@email.com"));
 
-    Client client = new Client();
-    client.saveClientsList(clients);
+    ClientMethods cltData = new ClientMethods();
+    cltData.saveAllRecords(clients);
+
   }
 
   public void resetReservationData(){
@@ -262,10 +264,8 @@ public class ResetData {
 
     reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD, false));
 
-    /*ReservationMethods rsvData = new ReservationMethods();
-    rsvData.saveAllRecords(reservations);*/
-    Reservation reservation = new Reservation();
-    reservation.saveAllReservations(reservations);
+    ReservationMethods rsvData = new ReservationMethods();
+    rsvData.saveAllRecords(reservations);
   }
 
   public void resetUserData(){

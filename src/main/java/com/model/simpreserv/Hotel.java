@@ -2,8 +2,6 @@ package com.model.simpreserv;
 
 import java.io.Serial;
 import java.io.Serializable;
-
-import com.controller.CtrlHotel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,16 +22,6 @@ public class Hotel implements Serializable {
   }
 
   public Hotel() {}
-
-  public Hotel loadHotelInfo(){
-    CtrlHotel htlData = new CtrlHotel();
-    return htlData.loadHotelInfo();
-  }
-
-  public void saveHotelInfo(Hotel newHotelInfo){
-    CtrlHotel htlData = new CtrlHotel();
-    htlData.saveHotelInfo(newHotelInfo);
-  }
 
   @Override
   public String toString() {

@@ -14,8 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
-
-  Clear cls = new Clear();
+  validator val = new validator();
 
   public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
@@ -39,7 +38,7 @@ public class Menu {
     loggingMenu(user, password);
   }
 
-  public void initialize() throws ParseException {
+  public void initialize(){
 
     System.out.println(
         "****************************************************************************");
@@ -61,13 +60,17 @@ public class Menu {
         "****************************************************************************");
 
     int option = 0;
-    option = sc.nextInt();
-    if (option == 1) {
+    try {
+      option = sc.nextInt();
+      if (option == 1) {
 
-      login();
+        login();
 
-    } else {
-      System.exit(0);
+      } else {
+        System.exit(0);
+      }
+    } catch (Exception ex){
+      System.out.println("Error: " + ex.getMessage() + " ingrese una opcion valida");
     }
   }
 
@@ -136,12 +139,17 @@ public class Menu {
             System.out.print("Ingrese el correo del cliente: ");
             email = sc.next();
 
-            cl = new Client(membership, creditCardInfo, id, completeName, birthDay, gender, numberOfDocument, email);
-            cl.addClient(cl);
+            if (val.validateLetters(completeName)&&val.validateGender(gender)&&val.validateEmail(email)){
 
-            System.out.println("Cliente agregado satisfactoriamente.");
+              cl = new Client(membership, creditCardInfo, id, completeName, birthDay, gender, numberOfDocument, email);
+              cl.addClient(cl);
+              System.out.println("Cliente agregado satisfactoriamente.");
 
-            userMenu();
+              userMenu();
+            } else {
+              userMenu();
+            }
+
             break;
           }
         case 2:
@@ -197,17 +205,19 @@ public class Menu {
 
             room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
 
-            Hotel hotel = new Hotel().loadHotelInfo();
+            HotelMethods hotelMethods = new HotelMethods();
+            Hotel hotel = hotelMethods.loadRecord();
 
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
-            SendEmail sendEmail = new SendEmail();
-            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
+            SendEmail send= new SendEmail();
+            send.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
 
-            reserva.printReservations();
+            ReservationMethods rsvData = new ReservationMethods();
+            rsvData.showReservations();
 
             userMenu();
             break;
@@ -239,9 +249,8 @@ public class Menu {
           }
         case 4:
           { // Mostrar Clientes
-            cl = new Client();
-            cl.printClients();
-
+            ClientMethods showCl = new ClientMethods();
+            showCl.showClients();
             userMenu();
             break;
           }
@@ -351,6 +360,7 @@ public class Menu {
 
     Employee emp;
 
+
     do {
       System.out.println(
           "****************************************************************************");
@@ -393,7 +403,7 @@ public class Menu {
       int opt = sc.nextInt();
       switch (opt) {
         case 1:
-          { // Registrar Empleado
+          { // Registrar Usuario
             id = 0;
             status = EmployeeStatus.HIRED;
 
@@ -401,7 +411,7 @@ public class Menu {
             name = sc.next();
             System.out.print("Ingrese la fecha de nacimiento del empleado: ");
             dateOfBirth = sc.next();
-            System.out.print("Ingrese el genero del empleado: ");
+            System.out.print("Ingrese el genero del empleado: [M / F]");
             gender = sc.next();
             System.out.print("Ingrese el numero de documento de identidad: ");
             numberOfDocument = sc.next();
@@ -416,24 +426,33 @@ public class Menu {
             System.out.print("Ingrese el turno de trabajo del empleado: ");
             schedule = sc.next();
 
-            emp =
-                new Employee(
-                    id,
-                    name,
-                    dateOfBirth,
-                    gender,
-                    numberOfDocument,
-                    email,
-                    cardCompany,
-                    salary,
-                    status,
-                    position,
-                    schedule);
-            emp.addEmployee(emp);
+            if (val.validateLetters(name)&&val.validateGender(gender)&&val.validateEmail(email)&&val.validateNumbers(salary))
+            {
 
-            System.out.println("Empleado agregado satisfactoriamente.");
-
-            employeeMenu();
+                emp =
+                    new Employee(
+                        id,
+                        name,
+                        dateOfBirth,
+                        gender,
+                        numberOfDocument,
+                        email,
+                        cardCompany,
+                        salary,
+                        status,
+                        position,
+                        schedule);
+                emp.addEmployee(emp);
+                System.out.println("Empleado ingresado exitosamente!");
+                System.out.println("Presione enter para continuar...");
+                new java.util.Scanner(System.in).nextLine();
+                employeeMenu();
+            }else {
+              System.out.println("Intentelo de nuevo");
+              System.out.println("Presione enter para continuar...");
+              new java.util.Scanner(System.in).nextLine();
+              employeeMenu();
+            }
             break;
           }
 
@@ -563,9 +582,8 @@ public class Menu {
           }
         case 4:
           { // Mostrar empleados
-            emp = new Employee();
-            emp.printEmployees();
-
+            EmployeeMethods employeeList = new EmployeeMethods();
+            employeeList.showEmployees();
             employeeMenu();
             break;
           }
@@ -596,7 +614,7 @@ public class Menu {
           }
         case 6:
         {
-          Validator validate = new Validator();
+          UserValidator validate = new UserValidator();
           User usr;
           Calendar calendar = Calendar.getInstance();
 

@@ -1,11 +1,9 @@
 package com.model.simpreserv;
 
-import com.controller.CtrlEmployee;
+import com.controller.EmployeeMethods;
 import com.enums.EmployeeStatus;
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Map;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -43,43 +41,34 @@ public class Employee extends Person implements Serializable {
     this.schedule = schedule;
   }
 
-  public void saveAllEmployees(Map<Integer, Employee> employeesList){
-    CtrlEmployee empData = new CtrlEmployee();
-    empData.saveAllEmployees(employeesList);
-  }
   public void addEmployee(Employee emp) {
-    CtrlEmployee empData = new CtrlEmployee();
-    empData.addNewEmployee(emp);
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.addNewRecord(emp);
   }
 
   public Employee searchEmployeeById(int id) {
-    CtrlEmployee empData = new CtrlEmployee();
-    return empData.findEmployeeById(id);
+    EmployeeMethods empData = new EmployeeMethods();
+    return empData.findRecordById(id);
   }
 
   public Employee searchEmployeeByCarnet(String cardCompany) {
-    CtrlEmployee empData = new CtrlEmployee();
-    return empData.findEmployeeByCarnet(cardCompany);
+    EmployeeMethods empData = new EmployeeMethods();
+    return empData.findRecordByCardCompany(cardCompany);
   }
 
   public Employee searchEmployeeByName(String name){
-    CtrlEmployee empData = new CtrlEmployee();
-    return empData.findEmployeeByName(name);
+    EmployeeMethods empData = new EmployeeMethods();
+    return empData.findRecordByName(name);
   }
 
   public void updateEmployeeById(int id, Employee emp) {
-    CtrlEmployee empData = new CtrlEmployee();
-    empData.updateEmployeeById(id, emp);
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.updateRecordById(id, emp);
   }
 
   public void deleteEmployeeById(int id) {
-    CtrlEmployee empData = new CtrlEmployee();
-    empData.deleteEmployeeById(id);
-  }
-
-  public void printEmployees() {
-    CtrlEmployee empData = new CtrlEmployee();
-    empData.printEmployeesList();
+    EmployeeMethods empData = new EmployeeMethods();
+    empData.deleteRecordById(id);
   }
 
   @Override
