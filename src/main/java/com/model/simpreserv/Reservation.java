@@ -7,6 +7,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+import java.time.LocalDate;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,24 +18,14 @@ public class Reservation implements Serializable {
   @Getter @Setter private Client client;
   @Getter @Setter private Employee employee;
   @Getter @Setter private Room room;
-  @Getter @Setter private Date reservationDate;
-  @Getter @Setter private Date checkInDate;
-  @Getter @Setter private Date checkOutDate;
+  @Getter @Setter private LocalDate reservationDate;
+  @Getter @Setter private LocalDate checkInDate;
+  @Getter @Setter private LocalDate checkOutDate;
   @Getter @Setter private double reservationPrice;
   @Getter @Setter private ReservationStatus reservationStatus;
   @Getter @Setter private boolean paidStatus;
 
-  public Reservation(
-      int id,
-      Client client,
-      Employee employee,
-      Room room,
-      Date reservationDate,
-      Date checkInDate,
-      Date checkOutDate,
-      double reservationPrice,
-      ReservationStatus reservationStatus,
-      boolean paidStatus) {
+  public Reservation(int id, Client client, Employee employee, Room room, LocalDate reservationDate, LocalDate checkInDate, LocalDate checkOutDate, double reservationPrice, ReservationStatus reservationStatus, boolean paidStatus) {
     this.id = id;
     this.client = client;
     this.employee = employee;

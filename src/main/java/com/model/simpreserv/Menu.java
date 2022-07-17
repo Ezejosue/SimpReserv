@@ -7,6 +7,7 @@ import com.enums.RoomStatus;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -205,7 +206,7 @@ public class Menu {
             emp = new Employee();
             emp = emp.searchEmployeeById(3);
 
-            reserva = new Reservation(idReserva, cl, emp, room, new Date(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM, false);
+            reserva = new Reservation(idReserva, cl, emp, room, LocalDate.parse("2022-06-24"), LocalDate.parse("2022-06-27"), LocalDate.parse("2022-06-30"), priceReserva, ReservationStatus.CONFIRM, false);
             reserva.createReservation(reserva);
 
             System.out.println("La reservacion se ha realizado satisfactoriamente.");
@@ -401,17 +402,17 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
       System.out.println(
-          "******           1-Registrar Empleado                                 ******");
+              "******           1-Registrar Empleado                                 ******");
       System.out.println(
-          "******           2-Actualizar Empleado                                ******");
+              "******           2-Actualizar Empleado                                ******");
       System.out.println(
-          "******           3-Buscar Empleado por Id o Carnet                    ******");
+              "******           3-Buscar Empleado por Id o Carnet                    ******");
       System.out.println(
-          "******           4-Mostrar Empleados                                  ******");
+              "******           4-Mostrar Empleados                                  ******");
       System.out.println(
-          "******           5-Eliminar Empleado                                  ******");
+              "******           5-Eliminar Empleado                                  ******");
       System.out.println(
-          "******           6-Registrar Usuario                                  ******");
+              "******           6-Registrar Usuario                                  ******");
       System.out.println(
           "******           7-Actualizar Usuario                                 ******");
       System.out.println(
@@ -421,7 +422,11 @@ public class Menu {
       System.out.println(
           "******           10-Eliminar reserva                                  ******");
       System.out.println(
-          "******           11-Salir                                             ******");
+              "******           11-Gestion de Pagos                              ******");
+      System.out.println(
+              "******           12-Gestion de tarjetas de credito                ******");
+      System.out.println(
+              "******           13-Salir                                             ******");
       System.out.println(
           "****************************************************************************");
       int opt = Integer.parseInt(sc.nextLine());
@@ -779,7 +784,49 @@ public class Menu {
           employeeMenu();
           break;
         }
-        case 11: { // Cerrar la applicacion
+        case 11:{//Gestion de pagos
+          System.out.println("Esta es la seccion de gestion de pagos");
+          System.out.println("1-Procesar pagos, 2-Cancelar pagos");
+          int opt2=sc.nextInt();
+          switch (opt2){
+            case 1:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.processPaymentMenu();
+              break;
+            }
+            case 2:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.cancelPaymentMenu();
+              break;
+            }
+          }
+          break;
+        }
+        case 12:{//Gestion de tarjetas de credito
+          System.out.println("Esta es la seccion de gestion de tarjetas de credito");
+          System.out.println("1-Agregar tarjeta, 2-Eliminar tarjeta, 3-Ver informacion de la tarjeta");
+          int opt2=sc.nextInt();
+          switch (opt2){
+            case 1:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.addCardMenu();
+              break;
+            }
+            case 2:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.removeCardMenu();
+              break;
+            }
+            case 3:{
+              ControllerEmployee cm=new ControllerEmployee();
+              cm.cardInfoMenu();
+              break;
+            }
+          }
+          break;
+        }
+          case 13:
+          { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;
             break;

@@ -22,18 +22,7 @@ public class Employee extends Person implements Serializable {
     super();
   }
 
-  public Employee(
-      int employeeId,
-      String name,
-      String dateOfBirth,
-      String gender,
-      String numberOfDocument,
-      String email,
-      String carnet,
-      double salary,
-      EmployeeStatus status,
-      String position,
-      String schedule) {
+  public Employee(int employeeId, String name, String dateOfBirth, String gender, String numberOfDocument, String email, String carnet, double salary, EmployeeStatus status, String position, String schedule) {
     super(name, dateOfBirth, gender, numberOfDocument, email);
     this.id = employeeId;
     this.carnet = carnet;

@@ -18,15 +18,7 @@ public class Client extends Person implements Serializable {
     super();
   }
 
-  public Client(
-      Membership membership,
-      CreditCard creditCardInfo,
-      int idClient,
-      String completeName,
-      String birthDay,
-      String gender,
-      String numberOfDocument,
-      String email) {
+  public Client(Membership membership, CreditCard creditCardInfo, int idClient, String completeName, String birthDay, String gender, String numberOfDocument, String email) {
     super(completeName, birthDay, gender, numberOfDocument, email);
     this.id = idClient;
     this.membership = membership;
