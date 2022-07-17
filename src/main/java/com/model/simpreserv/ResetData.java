@@ -256,14 +256,26 @@ public class ResetData {
   public void resetReservationData(){
     Map<Integer, Reservation> reservations = new TreeMap<>();
 
-    Client clt = new Client();
-    Employee emp = new Employee();
-    Room room = new Room();
+    Membership ms = new Membership();
+    CreditCard cc = new CreditCard();
+    Client clt;
+    Employee emp;
+    Room room;
 
-    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD, false));
+    emp = new Employee(3, "Wanda Maximoff", "1995-03-21", "F", "637489-4", "wmaximoff@elhotel.com", "0003", 650.00, EmployeeStatus.HIRED, "Atencion al Cliente", "Diurno");
 
-    /*ReservationMethods rsvData = new ReservationMethods();
-    rsvData.saveAllRecords(reservations);*/
+    clt = new Client(ms, cc, 1, "Jhon Doe", "18/02/1987", "M", "123456", "cliente1@email.com");
+    room = new Room(7, 22, RoomFloor.SECOND, "Suite", 84.99, "Single", RoomStatus.AVAILABLE);
+    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 84.99, ReservationStatus.CONFIRM, false));
+
+    clt = new Client(ms, cc, 2, "Diana Prince", "30/11/1999", "F", "987654", "cliente2@email.com");
+    room = new Room(3, 13, RoomFloor.FIRST, "Suite with kitchen", 94.99, "Double", RoomStatus.AVAILABLE);
+    reservations.put(2, new Reservation(2, clt, emp, room, new Date(), new Date(), new Date(), 94.99, ReservationStatus.CONFIRM, false));
+
+    clt = new Client(ms, cc, 3, "Ana de Armas", "30/04/1988", "F", "654789", "cliente3@email.com");
+    room = new Room(15, 35, RoomFloor.THIRD, "Penhouse with terrace and interior pool", 224.99, "Penhouse", RoomStatus.AVAILABLE);
+    reservations.put(3, new Reservation(3, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.CONFIRM, false));
+
     Reservation reservation = new Reservation();
     reservation.saveAllReservations(reservations);
   }

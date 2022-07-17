@@ -30,10 +30,10 @@ public class Menu {
 
   public void login() throws ParseException {
     System.out.println("Ingresa tu usuario: ");
-    String user = sc.next();
+    String user = sc.nextLine();
 
     System.out.println("Ingresa tu clave: ");
-    String password = sc.next();
+    String password = sc.nextLine();
 
     loggingMenu(user, password);
   }
@@ -61,7 +61,7 @@ public class Menu {
 
     int option = 0;
     try {
-      option = sc.nextInt();
+      option = Integer.parseInt(sc.nextLine());
       if (option == 1) {
 
         login();
@@ -127,21 +127,21 @@ public class Menu {
       System.out.println(
           "****************************************************************************");
 
-      int opt = sc.nextInt();
+      int opt = Integer.parseInt(sc.nextLine());
       switch (opt) {
         case 1:
           { // Agregar clientes
             id = 0;
             System.out.print("Ingrese el nombre del cliente: ");
-            completeName = sc.next();
+            completeName = sc.nextLine();
             System.out.print("Ingrese la fecha de nacimiento del cliente: ");
-            birthDay = sc.next();
+            birthDay = sc.nextLine();
             System.out.print("Ingrese el genero del cliente: ");
-            gender = sc.next();
+            gender = sc.nextLine();
             System.out.print("Ingrese el numero de documento de identidad: ");
-            numberOfDocument = sc.next();
+            numberOfDocument = sc.nextLine();
             System.out.print("Ingrese el correo del cliente: ");
-            email = sc.next();
+            email = sc.nextLine();
 
             if (val.validateLetters(completeName)&&val.validateGender(gender)&&val.validateEmail(email)){
 
@@ -158,23 +158,27 @@ public class Menu {
           }
         case 2:
           { // Crear reserva
-            id = 0;
-            idRoom = 0;
             idReserva = 0;
-            System.out.println("Seleccione el cliente para hacer la reservacion.");
-            System.out.println("Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
-            int opcion = sc.nextInt();
+            System.out.println("** Seleccione el cliente para hacer la reservacion. **");
+            System.out.println("** Busque al cliente con las siguientes opciones:");
+            System.out.println("**** Digite 1 para buscar por numero de documento");
+            System.out.println("**** Digite 2 para buscar por Id");
+            System.out.println("**** Digite 3 para buscar por nombre");
+            int opcion = Integer.parseInt(sc.nextLine());
             cl = new Client();
             if (opcion == 1) {
               System.out.print("Ingrese el numero de documento del cliente a buscar: ");
-              numberOfDocument = sc.next();
+              numberOfDocument = sc.nextLine();
               cl = cl.searchClientByDocNumber(numberOfDocument);
             } else if (opcion == 2) {
               System.out.print("Ingrese el id de cliente a buscar: ");
-              id = sc.nextInt();
+              id = Integer.parseInt(sc.nextLine());
               cl = cl.searchClientById(id);
+            } else if (opcion == 3) {
+              System.out.print("Ingrese el nombre del cliente a buscar: ");
+              completeName = sc.nextLine();
+              cl = cl.searchClientByName(completeName);
             }
-            id = cl.getId();
             System.out.println("Resultado: " + cl.toString());
             System.out.println("Presione enter para continuar...");
             new java.util.Scanner(System.in).nextLine();
@@ -182,13 +186,12 @@ public class Menu {
             RoomMethods rmData = new RoomMethods();
             rmData.showRooms();
             System.out.print("Ingrese el numero de habitacion: ");
-            roomNum = sc.nextInt();
-
+            roomNum = Integer.parseInt(sc.nextLine());
             System.out.print("Ingrese la fecha de inicio de la reservacion: ");
-            String sTemp = sc.next();
+            String sTemp = sc.nextLine();
             Date checkIn = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
             System.out.print("Ingrese la fecha de fin de la reservacion: ");
-            sTemp = sc.next();
+            sTemp = sc.nextLine();
             Date checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
 
             long difInOut = Math.abs(checkOut.getTime() - checkIn.getTime());
@@ -209,8 +212,7 @@ public class Menu {
 
             room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
 
-            Hotel hotel = new Hotel().loadHotelInfo();
-
+            /*Hotel hotel = new Hotel().loadHotelInfo();
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
 
@@ -218,14 +220,42 @@ public class Menu {
             sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
                     "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
-
+*/
+            System.out.println("** Listado de reservaciones activas **");
             reserva.printReservations();
-
             userMenu();
             break;
           }
         case 3:
-        {
+        { //Cancelar reservación
+          reserva = new Reservation();
+          idReserva = 0;
+          System.out.println("** Seleccione la reservacion a cancelar **");
+          System.out.println("** Busque la reservacion con las siguientes opciones:");
+          System.out.println("**** Digite 1 para buscar por numero de reservacion");
+          System.out.println("**** Digite 2 para buscar por nombre de cliente");
+          int opcion = Integer.parseInt(sc.nextLine());
+          if (opcion == 1) {
+            System.out.print("Ingrese el numero de reservacion a buscar: ");
+            idReserva = Integer.parseInt(sc.nextLine());
+            reserva = reserva.searchReservationById(idReserva);
+          } else if (opcion == 2) {
+            System.out.print("Ingrese el nombre del cliente a buscar: ");
+            completeName = sc.nextLine();
+            reserva = reserva.searchReservationByClientName(completeName);
+            idReserva = reserva.getId();
+          }
+          System.out.println("Resultado de la busqueda: ");
+          System.out.println(reserva.toString());
+          System.out.print("Confirme la reservacion a cancelar (Y/N): ");
+          String confirm = sc.nextLine();
+          if (confirm.equals("Y") || (confirm.equals("y"))){
+            reserva.updateReservationStatusById(idReserva, ReservationStatus.CANCELLED);
+          }
+
+          System.out.println("** Listado de reservaciones activas **");
+          reserva.printReservations();
+          userMenu();
           break;
         }
 
@@ -253,7 +283,7 @@ public class Menu {
               cl = cl.searchClientById(id);
             }
             System.out.println("Resultado: " + cl.toString());
-            employeeMenu();
+            userMenu();
             break;
           }
 
@@ -319,11 +349,13 @@ public class Menu {
         case 7:{//Solicitar Membresia
           ControllerEmployee cm=new ControllerEmployee();
           cm.membershipMenu();
+          userMenu();
           break;
         }
         case 8:{//Cancelar Membresia
           ControllerEmployee cm=new ControllerEmployee();
           cm.cancelMenu();
+          userMenu();
           break;
         }
         case 9:
@@ -352,6 +384,7 @@ public class Menu {
     String schedule;
     Client cl;
     Employee emp;
+    Reservation reserva;
 
 
     do {
@@ -391,31 +424,30 @@ public class Menu {
           "******           11-Salir                                             ******");
       System.out.println(
           "****************************************************************************");
-      int opt = sc.nextInt();
+      int opt = Integer.parseInt(sc.nextLine());
       switch (opt) {
-        case 1:
-          { // Registrar Empleado
+        case 1: { // Registrar Empleado
             id = 0;
             status = EmployeeStatus.HIRED;
 
             System.out.print("Ingrese el nombre del empleado: ");
-            name = sc.next();
+            name = sc.nextLine();
             System.out.print("Ingrese la fecha de nacimiento del empleado: ");
-            dateOfBirth = sc.next();
+            dateOfBirth = sc.nextLine();
             System.out.print("Ingrese el genero del empleado: [M / F]");
-            gender = sc.next();
+            gender = sc.nextLine();
             System.out.print("Ingrese el numero de documento de identidad: ");
-            numberOfDocument = sc.next();
+            numberOfDocument = sc.nextLine();
             System.out.print("Ingrese el correo del empleado: ");
-            email = sc.next();
+            email = sc.nextLine();
             System.out.print("Ingrese el numero de carnet de empleado: ");
-            cardCompany = sc.next();
+            cardCompany = sc.nextLine();
             System.out.print("Ingrese el salario del empleado: ");
             salary = sc.nextFloat();
             System.out.print("Ingrese el puesto de trabajo del empleado: ");
-            position = sc.next();
+            position = sc.nextLine();
             System.out.print("Ingrese el turno de trabajo del empleado: ");
-            schedule = sc.next();
+            schedule = sc.nextLine();
 
             if (val.validateLetters(name)&&val.validateGender(gender)&&val.validateEmail(email)&&val.validateNumbers(salary))
             {
@@ -446,66 +478,64 @@ public class Menu {
             }
             break;
           }
-
-        case 2:
-          { // Reservar Habitacion
+        case 2: { // Actualizar empleado
             System.out.print(
                 "Digite 1 para buscar empleado por carnet o 2 para buscar empleado por Id:");
-            int opcion = sc.nextInt();
+            int opcion = Integer.parseInt(sc.nextLine());
             emp = new Employee();
             if (opcion == 1) {
               System.out.print("Ingrese el numero de carnet de empleado a buscar: ");
-              cardCompany = sc.next();
+              cardCompany = sc.nextLine();
               emp = emp.searchEmployeeByCarnet(cardCompany);
             } else if (opcion == 2) {
               System.out.print("Ingrese el id de empleado a buscar: ");
-              id = sc.nextInt();
+              id = Integer.parseInt(sc.nextLine());
               emp = emp.searchEmployeeById(id);
             }
             id = emp.getId();
-            System.out.println("Resultado: " + emp.toString());
+            System.out.println("Resultado: " + emp);
             System.out.println("Seleccione el campo que desea modificar (1 - 10): ");
-            opcion = sc.nextInt();
+            opcion = Integer.parseInt(sc.nextLine());
 
             switch (opcion) {
               case 1:
                 System.out.print("Digite el nuevo nombre: ");
-                name = sc.next();
+                name = sc.nextLine();
                 emp.setName(name);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
                 break;
               case 2:
                 System.out.print("Digite su fecha de cumpleaños: ");
-                dateOfBirth = sc.next();
+                dateOfBirth = sc.nextLine();
                 emp.setDateOfBirth(dateOfBirth);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
                 break;
               case 3:
-                 System.out.print("Digite el nuevo genero: ");
-                gender = sc.next();
+                System.out.print("Digite el nuevo genero: ");
+                gender = sc.nextLine();
                 emp.setGender(gender);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
                 break;
               case 4:
-                 System.out.print("Digite el nuevo numero de documento: ");
-                numberOfDocument = sc.next();
+                System.out.print("Digite el nuevo numero de documento: ");
+                numberOfDocument = sc.nextLine();
                 emp.setNumberOfDocument(numberOfDocument);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
                 break;
               case 5:
-                 System.out.print("Digite el nuevo email: ");
-                email = sc.next();
+                System.out.print("Digite el nuevo email: ");
+                email = sc.nextLine();
                 emp.setEmail(email);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
                 break;
               case 6:
-                 System.out.print("Digite el nuevo carnet: ");
-                cardCompany = sc.next();
+                System.out.print("Digite el nuevo carnet: ");
+                cardCompany = sc.nextLine();
                 emp.setCarnet(cardCompany);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
@@ -519,7 +549,7 @@ public class Menu {
                 break;
               case 8:
                  System.out.print("Digite el estado [ 1- HIRED, 2- FIRED O 3- SUSPENDED]: ");
-                 int selection = sc.nextInt();
+                int selection = Integer.parseInt(sc.nextLine());
                 if (selection==1){
                   emp.setStatus(EmployeeStatus.HIRED);
                   emp.updateEmployeeById(id, emp);
@@ -535,15 +565,15 @@ public class Menu {
                 }
                 break;
               case 9:
-                 System.out.print("Digite el nuevo puesto: ");
-                position = sc.next();
+                System.out.print("Digite el nuevo puesto: ");
+                position = sc.nextLine();
                 emp.setPosition(position);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
                 break;
               case 10:
-                 System.out.print("Digite el nuevo horario: ");
-                schedule = sc.next();
+                System.out.print("Digite el nuevo horario: ");
+                schedule = sc.nextLine();
                 emp.setSchedule(schedule);
                 emp.updateEmployeeById(id, emp);
                 employeeMenu();
@@ -552,60 +582,56 @@ public class Menu {
 
             break;
           }
-        case 3:
-          { // Cancelar reserva
+        case 3: { // Buscar empleado
             System.out.print(
                 "Digite 1 para buscar empleado por carnet o 2 para buscar empleado por Id:");
-            int opcion = sc.nextInt();
+            int opcion = Integer.parseInt(sc.nextLine());
             emp = new Employee();
             if (opcion == 1) {
               System.out.print("Ingrese el numero de carnet de empleado a buscar: ");
-              cardCompany = sc.next();
+              cardCompany = sc.nextLine();
               emp = emp.searchEmployeeByCarnet(cardCompany);
             } else if (opcion == 2) {
               System.out.print("Ingrese el id de empleado a buscar: ");
-              id = sc.nextInt();
+              id = Integer.parseInt(sc.nextLine());
               emp = emp.searchEmployeeById(id);
             }
             System.out.println("Resultado: " + emp.toString());
             employeeMenu();
             break;
           }
-        case 4:
-          { // Mostrar empleados
+        case 4: { // Mostrar empleados
             emp = new Employee();
             emp.printEmployees();
 
             employeeMenu();
             break;
           }
-        case 5:
-          { // Cancelar Membrecia
+        case 5: { // Eliminar empleado
             System.out.print(
                 "Digite 1 para buscar empleado por carnet o 2 para buscar empleado por Id:");
-            int opcion = sc.nextInt();
+            int opcion = Integer.parseInt(sc.nextLine());
             emp = new Employee();
             if (opcion == 1) {
               System.out.print("Ingrese el numero de carnet de empleado a buscar: ");
-              cardCompany = sc.next();
+              cardCompany = sc.nextLine();
               emp = emp.searchEmployeeByCarnet(cardCompany);
             } else if (opcion == 2) {
               System.out.print("Ingrese el id de empleado a buscar: ");
-              id = sc.nextInt();
+              id = Integer.parseInt(sc.nextLine());
               emp = emp.searchEmployeeById(id);
             }
             id = emp.getId();
             System.out.println("Resultado: " + emp.toString());
             System.out.print("Seguro que desea eliminar este empleado? Y/N");
             String eleccion = sc.next();
-            if (eleccion.equals("Y")) {
+            if ((eleccion.equals("Y")) || (eleccion.equals("y"))) {
               emp.deleteEmployeeById(id);
             }
             employeeMenu();
             break;
           }
-        case 6:
-        {
+        case 6: { // Registrar usuario
           UserValidator validate = new UserValidator();
           User usr;
           Calendar calendar = Calendar.getInstance();
@@ -615,11 +641,11 @@ public class Menu {
           String user, pass;
           int typeUser;
           System.out.print("Ingrese el nombre del usuario: ");
-          user = sc.next();
+          user = sc.nextLine();
           System.out.print("Ingrese la clave: ");
-          pass = sc.next();
+          pass = sc.nextLine();
           System.out.print("Ingrese el tipo de usuario: 1 para cliente y 2 para usuario: ");
-          typeUser = sc.nextInt();
+          typeUser = Integer.parseInt(sc.nextLine());
 
           if (validate.formatUsername(user)&&validate.formatPassword(pass)&&validate.validateTypeUser(typeUser)){
             usr =
@@ -644,45 +670,45 @@ public class Menu {
 
           break;
         }
-        case 7:{//Modificar usuario
+        case 7: {//Actualizar usuario
           User usr;
           id = 0;
           System.out.print(
               "Digite 1 para buscar usuario por id o 2 para buscar por username: ");
-          int opcion = sc.nextInt();
+          int opcion = Integer.parseInt(sc.nextLine());
           usr = new User();
           if (opcion == 1) {
             System.out.print("Ingrese el id del usuario a buscar: ");
-            id = sc.nextInt();
+            id = Integer.parseInt(sc.nextLine());
             usr = usr.searchUserById(id);
           } else if (opcion == 2) {
             System.out.print("Ingrese el username del usuario a buscar: ");
-            String Uname = sc.next();
+            String Uname = sc.nextLine();
             usr = usr.searchUserByName(Uname);
           }
 
           id = usr.getId();
           System.out.println("Resultado: " + usr.toString());
           System.out.println("Seleccione el campo que desea modificar (1 - 3): ");
-          opcion = sc.nextInt();
+          opcion = Integer.parseInt(sc.nextLine());
           switch (opcion) {
             case 1:
               System.out.print("Digite el nuevo nombre: ");
-              String user = sc.next();
+              String user = sc.nextLine();
               usr.setUserName(user);
               usr.updateUserById(id, usr);
               employeeMenu();
               break;
             case 2:
               System.out.print("Digite la nueva clave: ");
-              String pass = sc.next();
+              String pass = sc.nextLine();
               usr.setPassword(pass);
               usr.updateUserById(id, usr);
               employeeMenu();
               break;
             case 3:
               System.out.print("Digite el tipo de usuario: ");
-              int type = sc.nextInt();
+              int type = Integer.parseInt(sc.nextLine());
               usr.setTypeOfUser(type);
               usr.updateUserById(id, usr);
               employeeMenu();
@@ -690,45 +716,70 @@ public class Menu {
           }
           break;
         }
-        case 8:{//Eliminar reserva
-          System.out.println("Este modulo aun esta en construccion");
-          System.out.println("Lo sentimos mucho :(");
+        case 8: {//Eliminar reserva
+          reserva = new Reservation();
+          int idReserva = 0;
+          System.out.println("** Seleccione la reservacion a eliminar **");
+          System.out.println("** Busque la reservacion con las siguientes opciones:");
+          System.out.println("**** Digite 1 para buscar por numero de reservacion");
+          System.out.println("**** Digite 2 para buscar por nombre de cliente");
+          int opcion = Integer.parseInt(sc.nextLine());
+          if (opcion == 1) {
+            System.out.print("Ingrese el numero de reservacion a buscar: ");
+            idReserva = Integer.parseInt(sc.nextLine());
+            reserva = reserva.searchReservationById(idReserva);
+          } else if (opcion == 2) {
+            System.out.print("Ingrese el nombre del cliente a buscar: ");
+            name = sc.nextLine();
+            reserva = reserva.searchReservationByClientName(name);
+            idReserva = reserva.getId();
+          }
+          System.out.println("Resultado de la busqueda: ");
+          System.out.println(reserva.toString());
+          System.out.print("Confirme la reservacion a eliminar (Y/N): ");
+          String confirm = sc.nextLine();
+          if (confirm.equals("Y") || (confirm.equals("y"))){
+            reserva.deleteReservationById(idReserva);
+          }
+
+          System.out.println("** Listado de reservaciones activas **");
+          reserva.printReservations();
+          employeeMenu();
           break;
         }
-        case 9:{//Eliminar cliente
+        case 9: {//Eliminar cliente
           try {
             System.out.print(
                 "Digite 1 para buscar cliente por numero de documento o 2 para buscarlo por Id:");
-            int opcion = sc.nextInt();
+            int opcion = Integer.parseInt(sc.nextLine());
             cl = new Client();
             if (opcion == 1) {
               System.out.print("Ingrese el numero de documento del cliente a buscar: ");
-              numberOfDocument = sc.next();
+              numberOfDocument = sc.nextLine();
               cl = cl.searchClientByDocNumber(numberOfDocument);
             } else if (opcion == 2) {
               System.out.print("Ingrese el id de cliente a buscar: ");
-              id = sc.nextInt();
+              id = Integer.parseInt(sc.nextLine());
               cl = cl.searchClientById(id);
             }
             id = cl.getId();
             System.out.println("Resultado: " + cl.toString());
             System.out.print("Seguro que desea eliminar este cliente? Y/N");
-            String eleccion = sc.next();
-            if (eleccion.equals("Y")) {
+            String eleccion = sc.nextLine();
+            if ((eleccion.equals("Y")) || (eleccion.equals("y"))) {
               cl.deleteClientById(id);
             }
-            userMenu();
+            employeeMenu();
           } catch (Exception ex){
             System.out.println("Ocurrio un error" + ex.getMessage());
           }
           break;
         }
-        case 10:{
-
+        case 10: {
+          employeeMenu();
           break;
         }
-          case 11:
-          { // Cerrar la applicacion
+        case 11: { // Cerrar la applicacion
             System.out.println("La aplicacion se ha cerrado con exito");
             opt = 0;
             break;
