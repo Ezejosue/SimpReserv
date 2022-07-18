@@ -819,6 +819,7 @@ public class Menu {
         case 10: {
           ResetData rs = new ResetData();
           rs.resetData();
+          employeeMenu();
           break;
         }
         case 11:{//Gestion de pagos
