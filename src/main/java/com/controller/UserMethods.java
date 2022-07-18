@@ -7,6 +7,7 @@ import com.model.simpreserv.WriteObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class UserMethods {
   private final String filePath;
@@ -15,10 +16,10 @@ public class UserMethods {
     this.filePath = "src\\main\\resources\\users.dat";
   }
 
-  private Map<Integer, User> readFromFile() {
+  private TreeMap<Integer, User> readFromFile() {
     try (FileInputStream fis = new FileInputStream(filePath)) {
       ReadObject ro = new ReadObject(filePath);
-      return (Map<Integer, User>) ro.loadInputStream(fis);
+      return (TreeMap<Integer, User>) ro.loadInputStream(fis);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -29,15 +30,15 @@ public class UserMethods {
     wo.writeToFile();
   }
 
-  public Map<Integer, User> loadAllRecords() {
+  public TreeMap<Integer, User> loadAllRecords() {
     return readFromFile();
   }
 
   public void addNewRecord(User newUser) {
     int lastId;
-    Map<Integer, User> list = loadAllRecords();
+    TreeMap<Integer, User> list = loadAllRecords();
     if (list.size() != 0) {
-      lastId = list.get(list.size()).getId();
+      lastId = list.get(list.lastKey()).getId();
     } else {
       lastId = 0;
     }

@@ -16,10 +16,10 @@ public class CtrlRoom implements IRoomController {
     private static final String FILEPATH = "src\\main\\resources\\rooms.dat";
 
     @Override
-    public Map<Integer, Room> loadRoomsList() {
+    public TreeMap<Integer, Room> loadRoomsList() {
         try (FileInputStream fis = new FileInputStream(FILEPATH)) {
             ReadObject ro = new ReadObject(FILEPATH);
-            return (Map<Integer, Room>) ro.loadInputStream(fis);
+            return (TreeMap<Integer, Room>) ro.loadInputStream(fis);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -34,9 +34,9 @@ public class CtrlRoom implements IRoomController {
     @Override
     public void addNewRoom(Room newRoomInfo) {
         int lastId;
-        Map<Integer, Room> list = this.loadRoomsList();
+        TreeMap<Integer, Room> list = this.loadRoomsList();
         if (list.size() != 0) {
-            lastId = list.get(list.size()).getId();
+            lastId = list.get(list.lastKey()).getId();
         } else {
             lastId = 0;
         }

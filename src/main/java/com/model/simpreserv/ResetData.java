@@ -259,14 +259,13 @@ public class ResetData {
   public void resetReservationData(){
     Map<Integer, Reservation> reservations = new TreeMap<>();
 
-    Membership ms = new Membership();
-    CreditCard cc = new CreditCard();
-    Client clt;
     Employee emp;
-    Room room;
 
     emp = new Employee(3, "Wanda Maximoff", "1995-03-21", "F", "637489-4", "wmaximoff@elhotel.com", "0003", 650.00, EmployeeStatus.HIRED, "Atencion al Cliente", "Diurno");
     RoomMethods rm=new RoomMethods();
+    rm.updateRecordStatusById(1, RoomStatus.BUSY);
+    rm.updateRecordStatusById(2, RoomStatus.BUSY);
+    rm.updateRecordStatusById(3, RoomStatus.BUSY);
     ClientMethods cm=new ClientMethods();
     reservations.put(1, new Reservation(1, cm.findRecordById(1),
             emp.searchEmployeeById(1), rm.findRecordById(1),

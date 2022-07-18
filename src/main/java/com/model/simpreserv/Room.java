@@ -34,20 +34,6 @@ public class Room implements Serializable {
 
   public Room() {}
 
-  public int calculateRoomPrice(String roomType) {
-    int price;
-    if (roomType.equalsIgnoreCase("Single")) {
-      price = 95;
-    } else if (roomType.equalsIgnoreCase("Double")) {
-      price = 83;
-    } else if (roomType.equalsIgnoreCase("Triple")) {
-      price = 125;
-    } else {
-      price = 170;
-    }
-    return price;
-  }
-
   public void saveRoomsList(Map<Integer, Room> roomsList){
     CtrlRoom rmData = new CtrlRoom();
     rmData.saveRoomsList(roomsList);
@@ -61,6 +47,11 @@ public class Room implements Serializable {
   public void changeRoomStatusById(int roomId, RoomStatus roomStatus){
     CtrlRoom rmData = new CtrlRoom();
     rmData.updateRoomStatusById(roomId, roomStatus);
+  }
+
+  public void printRooms(){
+    CtrlRoom rmData = new CtrlRoom();
+    rmData.printRoomsList();
   }
 
   @Override

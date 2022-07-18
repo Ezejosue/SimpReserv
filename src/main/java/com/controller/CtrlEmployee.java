@@ -8,16 +8,17 @@ import com.model.simpreserv.WriteObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CtrlEmployee implements IEmployeeController {
 
     private final static String FILEPATH = "src\\main\\resources\\employees.dat";
 
     @Override
-    public Map<Integer, Employee> loadAllEmployees() {
+    public TreeMap<Integer, Employee> loadAllEmployees() {
         try (FileInputStream fis = new FileInputStream(FILEPATH)) {
             ReadObject ro = new ReadObject(FILEPATH);
-            return (Map<Integer, Employee>) ro.loadInputStream(fis);
+            return (TreeMap<Integer, Employee>) ro.loadInputStream(fis);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -32,9 +33,9 @@ public class CtrlEmployee implements IEmployeeController {
     @Override
     public void addNewEmployee(Employee newEmployee) {
         int lastId;
-        Map<Integer, Employee> list = this.loadAllEmployees();
+        TreeMap<Integer, Employee> list = this.loadAllEmployees();
         if (list.size() != 0) {
-            lastId = list.get(list.size()).getId();
+            lastId = list.get(list.lastKey()).getId();
         } else {
             lastId = 0;
         }

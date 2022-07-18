@@ -4,9 +4,10 @@ import com.enums.ReservationStatus;
 import com.model.simpreserv.Reservation;
 
 import java.util.Map;
+import java.util.TreeMap;
 
 public interface IReservationController {
-    Map<Integer, Reservation> loadAllReservations();
+    TreeMap<Integer, Reservation> loadAllReservations();
     void saveAllReservations(Map<Integer, Reservation> reservationsList);
     void addNewReservation(Reservation newReservation);
     Reservation findReservationById(int reservationId);
