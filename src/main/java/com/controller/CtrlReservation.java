@@ -9,16 +9,17 @@ import com.model.simpreserv.WriteObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CtrlReservation implements IReservationController {
 
     private static final String FILEPATH = "src\\main\\resources\\reservations.dat";
 
     @Override
-    public Map<Integer, Reservation> loadAllReservations() {
+    public TreeMap<Integer, Reservation> loadAllReservations() {
         try (FileInputStream fis = new FileInputStream(FILEPATH)) {
             ReadObject ro = new ReadObject(FILEPATH);
-            return (Map<Integer, Reservation>) ro.loadInputStream(fis);
+            return (TreeMap<Integer, Reservation>)  ro.loadInputStream(fis);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -33,9 +34,9 @@ public class CtrlReservation implements IReservationController {
     @Override
     public void addNewReservation(Reservation newReservation) {
         int lastId;
-        Map<Integer, Reservation> list = this.loadAllReservations();
+        TreeMap<Integer, Reservation> list = this.loadAllReservations();
         if (list.size() != 0) {
-            lastId = list.get(list.size()).getId();
+            lastId = list.get(list.lastKey()).getId();
         } else {
             lastId = 0;
         }
@@ -104,5 +105,16 @@ public class CtrlReservation implements IReservationController {
         for (Map.Entry<Integer, Reservation> item : list.entrySet()) {
             System.out.println(item.getKey() + " - " + item.getValue());
         }
+    }
+
+    public static void main (String[] args){
+        CtrlReservation test = new CtrlReservation();
+        TreeMap<Integer, Reservation> list = test.loadAllReservations();
+        System.out.println("Map size = " + list.size());
+        System.out.println("Map last id = " + list.lastKey());
+        System.out.println("Map data in position 1 = " + list.get(1).toString());
+        System.out.println("Map data in position 2 = " + list.get(2).toString());
+        System.out.println("Map data in position 3 = " + list.get(3).toString());
+        System.out.println("Map data in position 5 = " + list.get(5).toString());
     }
 }

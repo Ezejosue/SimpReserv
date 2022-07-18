@@ -70,10 +70,12 @@ public class Menu {
 
       } else {
         System.exit(0);
+        sc.close();
       }
     } catch (Exception ex){
-      log.error(ex.getMessage());
-      System.out.println("Ocurrio un error en la ejecucion del programa");
+        log.error(ex.getMessage());
+        System.out.println("Ocurrio un error en la ejecucion del programa");
+        sc.close();
     }
   }
 
@@ -132,8 +134,7 @@ public class Menu {
 
       int opt = Integer.parseInt(sc.nextLine());
       switch (opt) {
-        case 1:
-          { // Agregar clientes
+        case 1: { // Agregar clientes
             id = 0;
             System.out.print("Ingrese el nombre del cliente: ");
             completeName = sc.nextLine();
@@ -159,8 +160,7 @@ public class Menu {
 
             break;
           }
-        case 2:
-          { // Crear reserva
+        case 2: { // Crear reserva
             idReserva = 0;
             System.out.println("** Seleccione el cliente para hacer la reservacion. **");
             System.out.println("** Busque al cliente con las siguientes opciones:");
@@ -182,30 +182,43 @@ public class Menu {
               completeName = sc.nextLine();
               cl = cl.searchClientByName(completeName);
             }
+            if (!val.validateClientExists(cl)){
+                userMenu();
+                break;
+            }
             System.out.println("Resultado: " + cl.toString());
-            System.out.println("Presione enter para continuar...");
-            new java.util.Scanner(System.in).nextLine();
+            id = cl.getId();
+            System.out.println("Verificando si cliente tiene reservacion activa...");
+            if (val.validateClientHasReservation(id)){
+                userMenu();
+                break;
+            }
             System.out.println("Seleccione la habitacion a reservar.");
-            RoomMethods rmData = new RoomMethods();
-            rmData.showRooms();
+            room = new Room();
+            room.printRooms();
             System.out.print("Ingrese el numero de habitacion: ");
             roomNum = Integer.parseInt(sc.nextLine());
+            room = room.searchRoomByNumber(roomNum);
+            if (!val.validateRoomExists(room)){
+                userMenu();
+                break;
+            }
+            if (!val.validateRoomAvailable(room)){
+                userMenu();
+                break;
+            }
+            idRoom = room.getId();
             System.out.print("Ingrese la fecha de inicio de la reservacion: ");
             String sTemp = sc.nextLine();
-            Date dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            Date dateStart = val.formatDate(sTemp);
             System.out.print("Ingrese la fecha de fin de la reservacion: ");
             sTemp = sc.nextLine();
-            Date dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            Date dateEnd = val.formatDate(sTemp);
 
-            LocalDate checkIn = dateStart.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate checkOut = dateEnd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate checkIn = val.dateToLocalDate(dateStart);
+            LocalDate checkOut = val.dateToLocalDate(dateEnd);
 
-            long difInOut = Math.abs(dateStart.getTime() - dateEnd.getTime());
-            long days = TimeUnit.DAYS.convert(difInOut, TimeUnit.MILLISECONDS);
-
-            room = new Room();
-            room = room.searchRoomByNumber(roomNum);
-            idRoom = room.getId();
+            long days = val.countDays(dateStart, dateEnd);
             double priceReserva = days * room.getRoomPrice();
 
             emp = new Employee();
@@ -214,9 +227,9 @@ public class Menu {
             reserva = new Reservation(idReserva, cl, emp, room, LocalDate.now(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM, false);
             reserva.createReservation(reserva);
 
-            System.out.println("La reservacion se ha realizado satisfactoriamente.");
-
             room.changeRoomStatusById(idRoom, RoomStatus.BUSY);
+
+            System.out.println("La reservacion se ha realizado satisfactoriamente.");
 
             /*Hotel hotel = new Hotel().loadHotelInfo();
             CreateFile createFile = new CreateFile();
@@ -232,8 +245,7 @@ public class Menu {
             userMenu();
             break;
           }
-        case 3:
-        { //Cancelar reservación
+        case 3: { //Cancelar reservación
           reserva = new Reservation();
           idReserva = 0;
           System.out.println("** Seleccione la reservacion a cancelar **");
@@ -245,12 +257,21 @@ public class Menu {
             System.out.print("Ingrese el numero de reservacion a buscar: ");
             idReserva = Integer.parseInt(sc.nextLine());
             reserva = reserva.searchReservationById(idReserva);
+              if (!val.validateReservationById(reserva)){
+                  userMenu();
+                  break;
+              }
           } else if (opcion == 2) {
             System.out.print("Ingrese el nombre del cliente a buscar: ");
             completeName = sc.nextLine();
             reserva = reserva.searchReservationByClientName(completeName);
             idReserva = reserva.getId();
+              if (!val.validateReservationByName(reserva)){
+                  userMenu();
+                  break;
+              }
           }
+
           System.out.println("Resultado de la busqueda: ");
           System.out.println(reserva.toString());
           System.out.print("Confirme la reservacion a cancelar (Y/N): ");
@@ -264,17 +285,14 @@ public class Menu {
           userMenu();
           break;
         }
-
-        case 4:
-          { // Mostrar Clientes
+        case 4: { // Mostrar Clientes
             cl = new Client();
             cl.printClients();
 
             userMenu();
             break;
           }
-        case 5:
-          {
+        case 5: {
             System.out.print(
                 "Digite 1 para buscar cliente por documeto de identidad o 2 para buscar cliente por Id:");
             int opcion = Integer.parseInt(sc.nextLine());
@@ -292,9 +310,7 @@ public class Menu {
             userMenu();
             break;
           }
-
-        case 6:
-        {
+        case 6: {
           System.out.print(
               "Digite 1 para buscar cliente por documento de identidad o 2 para buscar cliente por Id:");
           int opcion = Integer.parseInt(sc.nextLine());
@@ -357,20 +373,19 @@ public class Menu {
           }
           break;
         }
-        case 7:{//Solicitar Membresia
+        case 7: {//Solicitar Membresia
           ControllerEmployee cm=new ControllerEmployee();
           cm.membershipMenu();
           userMenu();
           break;
         }
-        case 8:{//Cancelar Membresia
+        case 8: {//Cancelar Membresia
           ControllerEmployee cm=new ControllerEmployee();
           cm.cancelMenu();
           userMenu();
           break;
         }
-        case 9:
-        { // Cerrar la aplicacion
+        case 9: { // Cerrar la aplicacion
           initialize();
           opt = 0;
           break;
@@ -748,11 +763,19 @@ public class Menu {
             System.out.print("Ingrese el numero de reservacion a buscar: ");
             idReserva = Integer.parseInt(sc.nextLine());
             reserva = reserva.searchReservationById(idReserva);
+              if (!val.validateReservationById(reserva)){
+                  employeeMenu();
+                  break;
+              }
           } else if (opcion == 2) {
             System.out.print("Ingrese el nombre del cliente a buscar: ");
             name = sc.nextLine();
             reserva = reserva.searchReservationByClientName(name);
             idReserva = reserva.getId();
+              if (!val.validateReservationByName(reserva)){
+                  employeeMenu();
+                  break;
+              }
           }
           System.out.println("Resultado de la busqueda: ");
           System.out.println(reserva.toString());
@@ -864,4 +887,5 @@ public class Menu {
       }
     } while (close != 0);
   }
+
 }

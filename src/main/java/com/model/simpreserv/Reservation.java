@@ -54,6 +54,11 @@ public class Reservation implements Serializable {
     return rsvData.findReservationById(reservationId);
   }
 
+  public Reservation searchReservationByClientId(int clientId){
+    CtrlReservation rsvData = new CtrlReservation();
+    return rsvData.findReservationByClientId(clientId);
+  }
+
   public Reservation searchReservationByClientName(String clientName){
     CtrlReservation rsvData = new CtrlReservation();
     return rsvData.findReservationByClientName(clientName);
@@ -77,8 +82,8 @@ public class Reservation implements Serializable {
 
   @Override
   public String toString() {
-    return "Reservation{" +
-            "id=" + id +
+    return "Reservation " +
+            " id=" + id +
             " | client=" + client +
             " | employee=" + employee +
             " | room=" + room +

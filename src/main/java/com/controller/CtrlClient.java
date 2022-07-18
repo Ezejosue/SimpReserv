@@ -8,16 +8,17 @@ import com.model.simpreserv.WriteObject;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CtrlClient implements IClientController {
 
     private final static String FILEPATH = "src\\main\\resources\\clients.dat";
 
     @Override
-    public Map<Integer, Client> loadClientsList() {
+    public TreeMap<Integer, Client> loadClientsList() {
         try (FileInputStream fis = new FileInputStream(FILEPATH)) {
             ReadObject ro = new ReadObject(FILEPATH);
-            return (Map<Integer, Client>) ro.loadInputStream(fis);
+            return (TreeMap<Integer, Client>) ro.loadInputStream(fis);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -32,9 +33,9 @@ public class CtrlClient implements IClientController {
     @Override
     public void addNewClient(Client newClient) {
         int lastId;
-        Map<Integer, Client> list = this.loadClientsList();
+        TreeMap<Integer, Client> list = this.loadClientsList();
         if (list.size() != 0) {
-            lastId = list.get(list.size()).getId();
+            lastId = list.get(list.lastKey()).getId();
         } else {
             lastId = 0;
         }
