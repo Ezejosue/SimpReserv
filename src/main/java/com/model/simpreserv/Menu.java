@@ -451,7 +451,7 @@ public class Menu {
       System.out.println(
               "******           9-Eliminar cliente                                   ******");
       System.out.println(
-              "******           10-Eliminar reserva                                  ******");
+              "******           10-Resetear data                                     ******");
       System.out.println(
               "******           11-Gestion de Pagos                                  ******");
       System.out.println(
