@@ -263,10 +263,5 @@ public class ControllerEmployee implements EmployeeControllerInterface, Controll
         String opt=sc.nextLine();
         cm.cancelPayment(opt);
     }
-
-    public static void main(String[] args) {
-        ControllerEmployee ce=new ControllerEmployee();
-        ce.processPayment("Jhon Doe","2022-07-16","2022-07-20");
-    }
-
+    
 }
