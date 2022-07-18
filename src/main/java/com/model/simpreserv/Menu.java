@@ -6,18 +6,22 @@ import com.enums.ReservationStatus;
 import com.enums.RoomStatus;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
   Validator val = new Validator();
   Loger log = new Loger();
+  Client cl;
+  Employee emp;
+  Reservation reserva;
+  Membership membership = new Membership();
+  CreditCard creditCardInfo = new CreditCard();
+  Room room;
+
   public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
     if (users.login(user, pass) == 1) {
@@ -61,7 +65,7 @@ public class Menu {
     System.out.println(
         "****************************************************************************");
 
-    int option = 0;
+    int option;
     try {
       option = Integer.parseInt(sc.nextLine());
       if (option == 1) {
@@ -81,21 +85,17 @@ public class Menu {
 
   public void userMenu() throws ParseException {
     int id;
-    Membership membership = new Membership();
-    CreditCard creditCardInfo = new CreditCard();
+
     String completeName;
     String birthDay;
     String gender;
     String numberOfDocument;
     String email;
-    Client cl;
 
-    Reservation reserva;
     int idReserva;
-    Room room;
     int idRoom;
     int roomNum;
-    Employee emp;
+
 
     int close = 0;
     do {
@@ -402,7 +402,6 @@ public class Menu {
 
   public void employeeMenu() {
     int close = 0;
-
     int id;
     String name;
     String dateOfBirth;
@@ -414,9 +413,7 @@ public class Menu {
     EmployeeStatus status;
     String position;
     String schedule;
-    Client cl;
-    Employee emp;
-    Reservation reserva;
+
 
 
     do {
