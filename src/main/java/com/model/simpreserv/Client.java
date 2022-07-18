@@ -36,6 +36,7 @@ public class Client extends Person implements Serializable {
 
   public Client searchClientById(int id) {
     CtrlClient cltData = new CtrlClient();
+    Client client = cltData.findClientById(id);
     return cltData.findClientById(id);
   }
 

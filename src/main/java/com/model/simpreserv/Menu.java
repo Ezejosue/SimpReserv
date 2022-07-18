@@ -8,6 +8,7 @@ import com.enums.RoomStatus;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
@@ -124,7 +125,7 @@ public class Menu {
       System.out.println(
           "******           8-Cancelar membresia                                 ******");
       System.out.println(
-          "******           9-Salir                                              ******");
+          "******           9-Cerrar sesion                                      ******");
       System.out.println(
           "****************************************************************************");
 
@@ -190,12 +191,15 @@ public class Menu {
             roomNum = Integer.parseInt(sc.nextLine());
             System.out.print("Ingrese la fecha de inicio de la reservacion: ");
             String sTemp = sc.nextLine();
-            Date checkIn = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            Date dateStart = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
             System.out.print("Ingrese la fecha de fin de la reservacion: ");
             sTemp = sc.nextLine();
-            Date checkOut = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
+            Date dateEnd = new SimpleDateFormat("dd/MM/yyyy").parse(sTemp);
 
-            long difInOut = Math.abs(checkOut.getTime() - checkIn.getTime());
+            LocalDate checkIn = dateStart.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate checkOut = dateEnd.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            long difInOut = Math.abs(dateStart.getTime() - dateEnd.getTime());
             long days = TimeUnit.DAYS.convert(difInOut, TimeUnit.MILLISECONDS);
 
             room = new Room();
@@ -206,7 +210,7 @@ public class Menu {
             emp = new Employee();
             emp = emp.searchEmployeeById(3);
 
-            reserva = new Reservation(idReserva, cl, emp, room, LocalDate.parse("2022-06-24"), LocalDate.parse("2022-06-27"), LocalDate.parse("2022-06-30"), priceReserva, ReservationStatus.CONFIRM, false);
+            reserva = new Reservation(idReserva, cl, emp, room, LocalDate.now(), checkIn, checkOut, priceReserva, ReservationStatus.CONFIRM, false);
             reserva.createReservation(reserva);
 
             System.out.println("La reservacion se ha realizado satisfactoriamente.");
@@ -272,15 +276,15 @@ public class Menu {
           {
             System.out.print(
                 "Digite 1 para buscar cliente por documeto de identidad o 2 para buscar cliente por Id:");
-            int opcion = sc.nextInt();
+            int opcion = Integer.parseInt(sc.nextLine());
             cl = new Client();
             if (opcion == 1) {
               System.out.print("Ingrese el numero de documento de cliente a buscar: ");
-              numberOfDocument = sc.next();
+              numberOfDocument = sc.nextLine();
               cl = cl.searchClientByDocNumber(numberOfDocument);
             } else if (opcion == 2) {
               System.out.print("Ingrese el id de cliente a buscar: ");
-              id = sc.nextInt();
+              id = Integer.parseInt(sc.nextLine());
               cl = cl.searchClientById(id);
             }
             System.out.println("Resultado: " + cl.toString());
@@ -292,54 +296,59 @@ public class Menu {
         {
           System.out.print(
               "Digite 1 para buscar cliente por documento de identidad o 2 para buscar cliente por Id:");
-          int opcion = sc.nextInt();
+          int opcion = Integer.parseInt(sc.nextLine());
           cl = new Client();
           if (opcion == 1) {
             System.out.print("Ingrese el numero de documento de cliente a buscar: ");
-            numberOfDocument = sc.next();
+            numberOfDocument = sc.nextLine();
             cl = cl.searchClientByDocNumber(numberOfDocument);
           } else if (opcion == 2) {
             System.out.print("Ingrese el id de cliente a buscar: ");
-            id = sc.nextInt();
+            id = Integer.parseInt(sc.nextLine());
             cl = cl.searchClientById(id);
           }
           id = cl.getId();
           System.out.println("Resultado: " + cl.toString());
           System.out.println("Seleccione el campo que desea modificar (1 - 5): ");
-          opcion = sc.nextInt();
+          System.out.println("**** 1 - Nombre");
+          System.out.println("**** 2 - Fecha de nacimiento");
+          System.out.println("**** 3 - Genero");
+          System.out.println("**** 4 - Numero de documento");
+          System.out.println("**** 5 - Correo");
+          opcion = Integer.parseInt(sc.nextLine());
 
           switch (opcion) {
             case 1:
               System.out.print("Digite el nuevo nombre: ");
-              completeName = sc.next();
+              completeName = sc.nextLine();
               cl.setName(completeName);
               cl.updateClientById(id, cl);
               userMenu();
               break;
             case 2:
-              System.out.print("Digite su fecha de cumpleaños: ");
-              birthDay = sc.next();
+              System.out.print("Digite su fecha de nacimiento: ");
+              birthDay = sc.nextLine();
               cl.setDateOfBirth(birthDay);
               cl.updateClientById(id, cl);
               userMenu();
               break;
             case 3:
               System.out.print("Digite el nuevo genero: ");
-              gender = sc.next();
+              gender = sc.nextLine();
               cl.setGender(gender);
               cl.updateClientById(id, cl);
               userMenu();
               break;
             case 4:
               System.out.print("Digite el nuevo numero de documento: ");
-              numberOfDocument = sc.next();
+              numberOfDocument = sc.nextLine();
               cl.setNumberOfDocument(numberOfDocument);
               cl.updateClientById(id, cl);
               userMenu();
               break;
             case 5:
               System.out.print("Digite el nuevo email: ");
-              email = sc.next();
+              email = sc.nextLine();
               cl.setEmail(email);
               cl.updateClientById(id, cl);
               userMenu();
@@ -361,7 +370,7 @@ public class Menu {
         }
         case 9:
         { // Cerrar la aplicacion
-          System.out.println("La aplicacion se ha cerrado con exito");
+          initialize();
           opt = 0;
           break;
         }
@@ -414,19 +423,19 @@ public class Menu {
       System.out.println(
               "******           6-Registrar Usuario                                  ******");
       System.out.println(
-          "******           7-Actualizar Usuario                                 ******");
+              "******           7-Actualizar Usuario                                 ******");
       System.out.println(
-          "******           8-Eliminar reserva                                   ******");
+              "******           8-Eliminar reserva                                   ******");
       System.out.println(
-          "******           9-Eliminar cliente                                   ******");
+              "******           9-Eliminar cliente                                   ******");
       System.out.println(
-          "******           10-Eliminar reserva                                  ******");
+              "******           10-Eliminar reserva                                  ******");
       System.out.println(
-              "******           11-Gestion de Pagos                              ******");
+              "******           11-Gestion de Pagos                                  ******");
       System.out.println(
-              "******           12-Gestion de tarjetas de credito                ******");
+              "******           12-Gestion de tarjetas de credito                    ******");
       System.out.println(
-              "******           13-Salir                                             ******");
+              "******           13-Cerrar sesion                                     ******");
       System.out.println(
           "****************************************************************************");
       int opt = Integer.parseInt(sc.nextLine());
@@ -787,39 +796,48 @@ public class Menu {
         case 11:{//Gestion de pagos
           System.out.println("Esta es la seccion de gestion de pagos");
           System.out.println("1-Procesar pagos, 2-Cancelar pagos");
-          int opt2=sc.nextInt();
+          int opt2=Integer.parseInt(sc.nextLine());
           switch (opt2){
             case 1:{
               ControllerEmployee cm=new ControllerEmployee();
               cm.processPaymentMenu();
+              employeeMenu();
               break;
             }
             case 2:{
               ControllerEmployee cm=new ControllerEmployee();
               cm.cancelPaymentMenu();
+              employeeMenu();
               break;
             }
+            default:{
+              System.out.println("Ingrese una opcion valida.");
+            }
           }
+          employeeMenu();
           break;
         }
         case 12:{//Gestion de tarjetas de credito
           System.out.println("Esta es la seccion de gestion de tarjetas de credito");
           System.out.println("1-Agregar tarjeta, 2-Eliminar tarjeta, 3-Ver informacion de la tarjeta");
-          int opt2=sc.nextInt();
+          int opt2=Integer.parseInt(sc.nextLine());
           switch (opt2){
             case 1:{
               ControllerEmployee cm=new ControllerEmployee();
               cm.addCardMenu();
+              employeeMenu();
               break;
             }
             case 2:{
               ControllerEmployee cm=new ControllerEmployee();
               cm.removeCardMenu();
+              employeeMenu();
               break;
             }
             case 3:{
               ControllerEmployee cm=new ControllerEmployee();
               cm.cardInfoMenu();
+              employeeMenu();
               break;
             }
           }
@@ -827,7 +845,7 @@ public class Menu {
         }
           case 13:
           { // Cerrar la applicacion
-            System.out.println("La aplicacion se ha cerrado con exito");
+            initialize();
             opt = 0;
             break;
           }
