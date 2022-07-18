@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class Menu {
   Scanner sc = new Scanner(System.in);
   Validator val = new Validator();
-
+  Loger log = new Loger();
   public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();
     if (users.login(user, pass) == 1) {
@@ -72,7 +72,8 @@ public class Menu {
         System.exit(0);
       }
     } catch (Exception ex){
-      System.out.println("Error: " + ex.getMessage() + " ingrese una opcion valida");
+      log.error(ex.getMessage());
+      System.out.println("Ocurrio un error en la ejecucion del programa");
     }
   }
 
@@ -374,6 +375,11 @@ public class Menu {
           opt = 0;
           break;
         }
+        default:
+        {
+          System.out.println("Ingrese una opcion valida");
+          userMenu();
+        };
       }
     } while (close != 0);
   }
@@ -790,7 +796,8 @@ public class Menu {
           break;
         }
         case 10: {
-          employeeMenu();
+          ResetData rs = new ResetData();
+          rs.resetData();
           break;
         }
         case 11:{//Gestion de pagos
@@ -849,6 +856,11 @@ public class Menu {
             opt = 0;
             break;
           }
+        default:
+        {
+          System.out.println("Ingrese una opcion valida");
+          employeeMenu();
+        };
       }
     } while (close != 0);
   }

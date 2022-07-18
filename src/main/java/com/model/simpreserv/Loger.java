@@ -3,6 +3,7 @@ package com.model.simpreserv;
 
 import org.apache.log4j.Logger;
 
+
 public class Loger {
     private static Logger LogJava = Logger.getLogger(Loger.class);
 

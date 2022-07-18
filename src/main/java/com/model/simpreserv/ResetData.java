@@ -305,13 +305,12 @@ public class ResetData {
 
   }
 
-  public static void main(String[] args) {
-    ResetData rs = new ResetData();
-    rs.resetHotelData();
-    rs.resetRoomData();
-    rs.resetEmployeeData();
-    rs.resetClientData();
-    rs.resetReservationData();
-    rs.resetUserData();
-  }
+ public void resetData(){
+   resetHotelData();
+   resetRoomData();
+   resetEmployeeData();
+   resetClientData();
+   resetReservationData();
+   resetUserData();
+ }
 }
