@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Menu {
   Scanner sc = new Scanner(System.in);
-  validator val = new validator();
+  Validator val = new Validator();
 
   public void loggingMenu(String user, String pass) throws ParseException {
     User users = new User();

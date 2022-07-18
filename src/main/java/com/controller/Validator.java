@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class validator {
+public class Validator {
   private static final String PATTERNLETTERS = "^[a-zA-Z]+$";
   private static final String PATTERNNUMBERS = "^\\d+$";
   private static final String PATTERNEMAIL = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
