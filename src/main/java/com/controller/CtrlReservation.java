@@ -107,14 +107,4 @@ public class CtrlReservation implements IReservationController {
         }
     }
 
-    public static void main (String[] args){
-        CtrlReservation test = new CtrlReservation();
-        TreeMap<Integer, Reservation> list = test.loadAllReservations();
-        System.out.println("Map size = " + list.size());
-        System.out.println("Map last id = " + list.lastKey());
-        System.out.println("Map data in position 1 = " + list.get(1).toString());
-        System.out.println("Map data in position 2 = " + list.get(2).toString());
-        System.out.println("Map data in position 3 = " + list.get(3).toString());
-        System.out.println("Map data in position 5 = " + list.get(5).toString());
-    }
 }

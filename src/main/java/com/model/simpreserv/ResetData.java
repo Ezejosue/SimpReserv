@@ -15,7 +15,7 @@ import java.util.Calendar;
 
 public class ResetData {
   public void resetHotelData() {
-    Hotel myHotel = new Hotel(1, "Hotel Sea Sand", "Caribean Coast", "4 Stars", 15);
+    Hotel myHotel = new Hotel(1, "Hotel Hilton", "Caribean Coast", "4 Stars", 15);
     myHotel.saveHotelInfo(myHotel);
   }
 
@@ -250,7 +250,7 @@ public class ResetData {
     clients.put(1, new Client(ms, cc, 1, "Jhon Doe", "18/02/1987", "M", "123456", "cliente1@email.com"));
     clients.put(2, new Client(ms, cc, 2, "Diana Prince", "30/11/1999", "F", "987654", "cliente2@email.com"));
     clients.put(3, new Client(ms, cc, 3, "Ana de Armas", "30/04/1988", "F", "654789", "cliente3@email.com"));
-    clients.put(4, new Client(ms, cc, 4, "Jose Ramirez", "25/07/1978", "M", "869587", "cliente4@email.com"));
+    clients.put(4, new Client(ms, cc, 4, "Jose Ramirez", "25/07/1978", "M", "869587", "test503sv@gmail.com"));
 
     Client client = new Client();
     client.saveClientsList(clients);

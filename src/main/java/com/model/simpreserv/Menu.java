@@ -231,15 +231,16 @@ public class Menu {
 
             System.out.println("La reservacion se ha realizado satisfactoriamente.");
 
-            /*Hotel hotel = new Hotel().loadHotelInfo();
+
+            Hotel hotel = new Hotel().loadHotelInfo();
             CreateFile createFile = new CreateFile();
             createFile.setCreateFile(hotel, cl, room);
-
+            System.out.println("Enviando correo de confirmacion...");
             SendEmail sendEmail = new SendEmail();
-            sendEmail.createAndSendEmail("tonyvasqueza002@gmail.com", "Reserva del hotel Sea Sand",
-                    "En el archivo adjunto esta toda la informacion de su reserva" + "\n" + "\n" + "Saludos cordiales");
+            sendEmail.createAndSendEmail(reserva.getClient().getEmail(), "Reserva del hotel Hilton",
+                    "En el archivo adjunto se encuentra toda la informacion de su reservacion." + "\n" + "\n" + "Saludos cordiales");
             System.out.println("Se ha enviado correo de confirmacion de reservacion.");
-*/
+
             System.out.println("** Listado de reservaciones activas **");
             reserva.printReservations();
             userMenu();
