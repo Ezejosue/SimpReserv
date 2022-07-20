@@ -5,17 +5,18 @@ import com.enums.EmployeeStatus;
 import com.enums.ReservationStatus;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Map;
 import java.util.TreeMap;
 
 import java.util.Calendar;
-import java.util.Date;
+
 public class ResetData {
   public void resetHotelData() {
-    Hotel myHotel = new Hotel(1, "Hotel Sea Sand", "Caribean Coast", "4 Stars", 15);
-    HotelMethods hotelData = new HotelMethods();
-    hotelData.updateRecord(myHotel);
+    Hotel myHotel = new Hotel(1, "Hotel Hilton", "Caribean Coast", "4 Stars", 15);
+    myHotel.saveHotelInfo(myHotel);
   }
 
   public void resetRoomData() {
@@ -173,8 +174,8 @@ public class ResetData {
             "Penhouse",
             RoomStatus.AVAILABLE));
 
-    RoomMethods roomData = new RoomMethods();
-    roomData.saveAllRecords(rooms);
+    Room room = new Room();
+    room.saveRoomsList(rooms);
   }
 
   public void resetEmployeeData() {
@@ -236,8 +237,8 @@ public class ResetData {
             "Atencion al Cliente",
             "Nocturno"));
 
-    EmployeeMethods empData = new EmployeeMethods();
-    empData.saveAllRecords(employees);
+    Employee employee = new Employee();
+    employee.saveAllEmployees(employees);
   }
 
   public void resetClientData(){
@@ -249,23 +250,44 @@ public class ResetData {
     clients.put(1, new Client(ms, cc, 1, "Jhon Doe", "18/02/1987", "M", "123456", "cliente1@email.com"));
     clients.put(2, new Client(ms, cc, 2, "Diana Prince", "30/11/1999", "F", "987654", "cliente2@email.com"));
     clients.put(3, new Client(ms, cc, 3, "Ana de Armas", "30/04/1988", "F", "654789", "cliente3@email.com"));
+    clients.put(4, new Client(ms, cc, 4, "Jose Ramirez", "25/07/1978", "M", "869587", "test503sv@gmail.com"));
 
-    ClientMethods cltData = new ClientMethods();
-    cltData.saveAllRecords(clients);
-
+    Client client = new Client();
+    client.saveClientsList(clients);
   }
 
   public void resetReservationData(){
     Map<Integer, Reservation> reservations = new TreeMap<>();
 
-    Client clt = new Client();
-    Employee emp = new Employee();
-    Room room = new Room();
+    Employee emp;
 
-    reservations.put(1, new Reservation(1, clt, emp, room, new Date(), new Date(), new Date(), 224.99, ReservationStatus.HOLD, false));
+    emp = new Employee(3, "Wanda Maximoff", "1995-03-21", "F", "637489-4", "wmaximoff@elhotel.com", "0003", 650.00, EmployeeStatus.HIRED, "Atencion al Cliente", "Diurno");
+    RoomMethods rm=new RoomMethods();
+    rm.updateRecordStatusById(1, RoomStatus.BUSY);
+    rm.updateRecordStatusById(2, RoomStatus.BUSY);
+    rm.updateRecordStatusById(3, RoomStatus.BUSY);
+    ClientMethods cm=new ClientMethods();
+    reservations.put(1, new Reservation(1, cm.findRecordById(1),
+            emp.searchEmployeeById(1), rm.findRecordById(1),
+            LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"),
+            LocalDate.parse("2022-01-20"),
+            224.99, ReservationStatus.HOLD,
+            false));
+    reservations.put(2, new Reservation(2, cm.findRecordById(2),
+            emp.searchEmployeeById(2), rm.findRecordById(2),
+            LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"),
+            LocalDate.parse("2022-01-20"),
+            224.99, ReservationStatus.HOLD,
+            false));
+    reservations.put(3, new Reservation(3, cm.findRecordById(3),
+            emp.searchEmployeeById(3), rm.findRecordById(3),
+            LocalDate.parse("2022-01-15"), LocalDate.parse("2022-01-18"),
+            LocalDate.parse("2022-01-20"),
+            224.99, ReservationStatus.HOLD,
+            false));
 
-    ReservationMethods rsvData = new ReservationMethods();
-    rsvData.saveAllRecords(reservations);
+    Reservation reservation = new Reservation();
+    reservation.saveAllReservations(reservations);
   }
 
   public void resetUserData(){
@@ -282,13 +304,12 @@ public class ResetData {
 
   }
 
-  public static void main(String[] args) {
-    ResetData rs = new ResetData();
-    rs.resetHotelData();
-    rs.resetRoomData();
-    rs.resetEmployeeData();
-    rs.resetClientData();
-    rs.resetReservationData();
-    rs.resetUserData();
-  }
+ public void resetData(){
+   resetHotelData();
+   resetRoomData();
+   resetEmployeeData();
+   resetClientData();
+   resetReservationData();
+   resetUserData();
+ }
 }

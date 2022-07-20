@@ -46,7 +46,8 @@ public class ReservationMethods {
     lastId++;
     newReservation.setId(lastId);
     list.put(lastId, newReservation);
-    saveAllRecords(list);
+    //saveAllRecords(list);
+    this.saveAllRecords(list);
   }
 
   public Reservation findRecordById(int id) {
@@ -65,10 +66,29 @@ public class ReservationMethods {
     }
     return reserva;
   }
+  //Metodo de prueba
+  public Reservation findRecordByClientName(String  clientName) {
+    Map<Integer, Reservation> list = loadAllRecords();
+    Reservation reserva = new Reservation();
+    for (Map.Entry<Integer, Reservation> item : list.entrySet()) {
+      if (item.getValue().getClient().getName().compareTo(clientName)==0) {
+        reserva = item.getValue();
+        break;
+      }
+    }
+    return reserva;
+  }
 
   public void updateRecordById(int id, Reservation newReservation) {
     Map<Integer, Reservation> list = loadAllRecords();
     list.replace(id, newReservation);
+    saveAllRecords(list);
+  }
+
+
+  public void updatePamentStatus(int id, boolean payment) {//Metodo que actualiza el pago
+    Map<Integer, Reservation> list = loadAllRecords();
+    list.get(id).setPaidStatus(payment);
     saveAllRecords(list);
   }
 

@@ -18,13 +18,13 @@ public class CreateFile {
         try {
             File myFile = new File("src\\main\\java\\com\\file\\SimpReserv.txt");
             if (myFile.createNewFile()){
-                System.out.println("Archivo creado: " + myFile.getName());
+                System.out.println("Informacion de reservacion actualizada en archivo adjunto.");
             } else {
-                System.out.println("Archivo ya existe.");
+                System.out.println("Informacion de reservacion actualizada en archivo adjunto.");
             }
 
         } catch (IOException e) {
-            System.out.println("Ocurrio un error al crear el archivo");
+            System.out.println("Ocurrio un error al crear el archivo adjunto.");
             e.printStackTrace();
         }
 
@@ -35,10 +35,9 @@ public class CreateFile {
                     + "\n" + "Numero: " + room.getRoomNumber() + "\n" + "Precio: " + room.getRoomPrice() );
             fileWriter.write("\n" + "Cliente: " + client.getName());
             fileWriter.close();
-            System.out.println("Se agrego texto al archivo");
 
         }catch (IOException e){
-            System.out.println("Error al agregarle contenido al archivo");
+            System.out.println("Error al agregarle contenido al archivo adjunto.");
             e.printStackTrace();
 
         }

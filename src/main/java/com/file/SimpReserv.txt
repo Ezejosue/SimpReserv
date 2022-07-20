@@ -1,9 +1,11 @@
-Hotel: Hotel Sea Sand
+Hotel: Hotel Hilton
 Categoria: 4 Stars
 Direccion: Caribean Coast
 Descripcion: Suite
 Tipo: Single
-Piso: FIRST
-Numero: 11
+Piso: SECOND
+Numero: 22
 Precio: 84.99
 Cliente: Jhon Doe
+Cliente: Jose Ramirez
+

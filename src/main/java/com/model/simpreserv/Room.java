@@ -1,5 +1,6 @@
 package com.model.simpreserv;
 
+import com.controller.CtrlRoom;
 import com.controller.RoomMethods;
 import com.enums.RoomFloor;
 import com.enums.RoomStatus;
@@ -21,14 +22,7 @@ public class Room implements Serializable {
   @Getter @Setter private String roomType;
   @Getter @Setter private RoomStatus roomStatus;
 
-  public Room(
-      int id,
-      int roomNumber,
-      RoomFloor roomFloor,
-      String roomDescription,
-      double roomPrice,
-      String roomType,
-      RoomStatus roomStatus) {
+  public Room(int id, int roomNumber, RoomFloor roomFloor, String roomDescription, double roomPrice, String roomType, RoomStatus roomStatus) {
     this.id = id;
     this.roomNumber = roomNumber;
     this.roomFloor = roomFloor;
@@ -40,28 +34,24 @@ public class Room implements Serializable {
 
   public Room() {}
 
-  public int calculateRoomPrice(String roomType) {
-    int price;
-    if (roomType.equalsIgnoreCase("Single")) {
-      price = 95;
-    } else if (roomType.equalsIgnoreCase("Double")) {
-      price = 83;
-    } else if (roomType.equalsIgnoreCase("Triple")) {
-      price = 125;
-    } else {
-      price = 170;
-    }
-    return price;
+  public void saveRoomsList(Map<Integer, Room> roomsList){
+    CtrlRoom rmData = new CtrlRoom();
+    rmData.saveRoomsList(roomsList);
   }
 
   public Room searchRoomByNumber(int roomNumber){
-    RoomMethods rmData = new RoomMethods();
-    return rmData.findRecordByNumber(roomNumber);
+    CtrlRoom rmData = new CtrlRoom();
+    return rmData.findRoomByRoomNumber(roomNumber);
   }
 
-  public void changeRoomStatusById(int id, RoomStatus roomStatus){
-    RoomMethods rmData = new RoomMethods();
-    rmData.updateRecordStatusById(id, roomStatus);
+  public void changeRoomStatusById(int roomId, RoomStatus roomStatus){
+    CtrlRoom rmData = new CtrlRoom();
+    rmData.updateRoomStatusById(roomId, roomStatus);
+  }
+
+  public void printRooms(){
+    CtrlRoom rmData = new CtrlRoom();
+    rmData.printRoomsList();
   }
 
   @Override
